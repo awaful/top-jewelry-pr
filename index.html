@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-[#050403] text-[#E8E0D2] overflow-hidden select-none">
+<html lang="es" class="bg-[#050403] text-[#E8E0D2] select-none">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,14 +61,47 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: initial;
+    }
+
     body {
       background-color: #050403;
       color: #E8E0D2;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Durante la cortina cinemática inicial bloqueamos scroll temporalmente */
+    body.curtain-locked {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* Soporte nativo para Lenis Smooth Scroll */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis.lenis-smooth [data-lenis-prevent] {
+      overscroll-behavior: contain;
+    }
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     /* Grano de película de 35mm para profundidad analógica cinematográfica */
@@ -148,7 +181,7 @@
     }
   </style>
 </head>
-<body class="bg-[#050403] text-[#E8E0D2] font-sans antialiased overflow-hidden select-none">
+<body class="bg-[#050403] text-[#E8E0D2] font-sans antialiased select-none curtain-locked">
 
   <!-- Grano analógico cinematográfico -->
   <div class="film-grain"></div>
@@ -197,15 +230,15 @@
 
     <!-- Enlaces Editoriales Minimalistas -->
     <nav class="hidden lg:flex items-center gap-10 text-[10.5px] font-sans tracking-[0.22em] uppercase text-[#E8E0D2]/90">
-      <a href="#colecciones" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group">
+      <a href="#colecciones" data-atelier-action="colecciones" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Explorar Colecciones del Atelier">
         <span>Colecciones</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
-      <a href="#historia" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group">
+      <a href="#historia" data-atelier-action="historia" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Conocer Nuestra Historia">
         <span>Nuestra Historia</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
-      <a href="#contacto" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group">
+      <a href="#contacto" data-atelier-action="contacto" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Contacto con el Atelier y Bóveda">
         <span>Contacto & Bóveda</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
@@ -215,26 +248,26 @@
     <div class="flex items-center gap-5 md:gap-7">
       
       <!-- Audio Táctil Procedural (Desactivado por defecto según requerimiento 7) -->
-      <button onclick="toggleAudio()" class="hidden md:flex items-center gap-2 text-[9px] font-mono tracking-widest text-[#82786D] hover:text-[#E8E0D2] transition-colors magnetic-target" id="audio-btn" title="Activar sonido táctil">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block" id="audio-indicator"></span>
+      <button type="button" onclick="toggleAudio()" class="hidden md:flex items-center gap-2 text-[9px] font-mono tracking-widest text-[#82786D] hover:text-[#E8E0D2] transition-colors magnetic-target min-h-[32px] px-1" id="audio-btn" title="Activar sonido táctil" aria-label="Activar o desactivar sonido táctil háptico">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block" id="audio-indicator" aria-hidden="true"></span>
         <span>AUDIO: <strong id="audio-status" class="text-[#82786D]">OFF</strong></span>
       </button>
 
       <!-- Ícono de Búsqueda Minimalista -->
-      <button class="text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-1.5" aria-label="Buscar en Bóveda">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" data-atelier-action="buscar" class="text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Buscar pieza en la Bóveda de Top Jewelry PR">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="7"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
 
       <!-- Ícono de Bolsa Editorial con Badge Micro -->
-      <button class="relative text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-1.5" aria-label="Ver Bolsa de Adquisiciones">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <button type="button" data-atelier-action="bolsa" class="relative text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Ver Bolsa de Adquisiciones. 0 piezas actuales">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M6 7h12l1.5 13H4.5L6 7z"/>
           <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
         </svg>
-        <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#B58A4B] text-[#050403] text-[8px] font-mono font-bold flex items-center justify-center">0</span>
+        <span class="absolute 1 right-1 w-3.5 h-3.5 rounded-full bg-[#B58A4B] text-[#050403] text-[8px] font-mono font-bold flex items-center justify-center" aria-hidden="true">0</span>
       </button>
 
     </div>
@@ -243,10 +276,10 @@
   <!-- ========================================================================= -->
   <!-- 03. COMPOSICIÓN DEL HERO (100% VIEWPORT · ASIMÉTRICA · CINEMÁTICA)        -->
   <!-- ========================================================================= -->
-  <main id="hero-viewport" class="relative w-screen h-screen overflow-hidden flex items-center">
+  <main id="hero-viewport" class="relative w-full min-h-screen h-screen overflow-hidden flex items-center">
     
-    <!-- CAPA 0: FONDO WEBGL THREE.JS (POLVO DE ORO & ILUMINACIÓN DINÁMICA DE ESTUDIO) -->
-    <canvas id="hero-three-canvas" class="absolute inset-0 z-0 pointer-events-none w-full h-full"></canvas>
+    <!-- CAPA 0: FONDO WEBGL THREE.JS (POLVO DE ORO VOLUMÉTRICO SUSPENDIDO) -->
+    <canvas id="hero-three-canvas" class="absolute inset-0 z-0 pointer-events-none w-full h-full" aria-hidden="true"></canvas>
 
     <!-- CAPA 1: ELEMENTO VISUAL PROTAGONISTA — JOYERÍA MONUMENTAL SOBRE ROCA BASÁLTICA -->
     <div id="hero-jewelry-layer" class="absolute inset-0 z-10 pointer-events-none overflow-hidden will-change-transform">
@@ -263,8 +296,8 @@
       <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent pointer-events-none"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-[#050403]/70 via-transparent to-transparent pointer-events-none"></div>
 
-      <!-- Destello de luz cálida de contra (Rim Light) en Three.js / CSS Blend -->
-      <div class="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(214,189,145,0.14)_0%,transparent_70%)] filter blur-3xl pointer-events-none"></div>
+      <!-- Destello de luz cálida de contra (Rim Light interactivo reactivo al cursor) -->
+      <div id="hero-dynamic-rim" class="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(214,189,145,0.18)_0%,rgba(181,138,75,0.06)_45%,transparent_70%)] filter blur-3xl pointer-events-none will-change-transform"></div>
     </div>
 
     <!-- CAPA 2: CONTENIDO EDITORIAL DE GRAN FORMATO (TEXT REVEAL MASKS) -->
@@ -323,10 +356,12 @@
             <a 
               href="#colecciones" 
               id="hero-cta"
+              data-atelier-action="colecciones"
               class="group inline-flex items-center gap-4 text-xs font-sans font-semibold tracking-[0.28em] uppercase text-[#FFF9F2] pb-2 relative magnetic-target transition-colors duration-300 hover:text-[#D6BD91]"
+              aria-label="Explorar Colección de Joyas Exclusivas"
             >
               <span class="relative z-10 transition-transform duration-300 group-hover:translate-x-1.5">EXPLORAR LA COLECCIÓN</span>
-              <span class="relative z-10 text-base leading-none text-[#B58A4B] transition-transform duration-300 group-hover:translate-x-3">→</span>
+              <span class="relative z-10 text-base leading-none text-[#B58A4B] transition-transform duration-300 group-hover:translate-x-3" aria-hidden="true">→</span>
               <span id="hero-cta-underline" class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#B58A4B]" style="transform-origin: left center; transform: scaleX(0);"></span>
             </a>
           </div>
@@ -388,10 +423,24 @@
 
   </main>
 
+  <!-- Notificación de Atelier para Interacciones de Enlaces/Bóveda (Cero Destinos Rotos) -->
+  <aside id="atelier-toast" role="status" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] pointer-events-none opacity-0 transform translate-y-3 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] bg-[#090806]/95 border border-[rgba(181,138,75,0.35)] px-5 py-2.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.8)] backdrop-blur-md flex items-center gap-2.5">
+    <span class="w-1.5 h-1.5 rounded-full bg-[#B58A4B] animate-pulse" aria-hidden="true"></span>
+    <span id="atelier-toast-text">TOP JEWELRY PR</span>
+  </aside>
+
   <!-- ========================================================================= -->
   <!-- SISTEMA JAVASCRIPT: GSAP ORYZO ENGINE, THREE.JS Y PARALLAX MULTICAPA      -->
   <!-- ========================================================================= -->
   <script>
+    // ── 00. REGISTRO OFICIAL DE PLUGINS GSAP Y DETECCIÓN ACCESIBILIDAD ───────
+    if (typeof gsap !== 'undefined') {
+      if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+      if (typeof Flip !== 'undefined') gsap.registerPlugin(Flip);
+    }
+
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // ── 01. AUDIO TÁCTIL PROCEDURAL (OFF POR DEFECTO · ACTIVACIÓN VOLUNTARIA) ─
     let audioContext = null;
     let audioActive = false;
@@ -431,8 +480,10 @@
       if (audioActive) playHapticTick(1400);
     }
 
-    // ── 02. THREE.JS: PARTÍCULAS DE ORO SUSPENDIDAS Y FOCO DE LUZ DINÁMICO ───
-    let scene, camera, renderer, goldDust, dynamicLight;
+    // ── 02. THREE.JS: POLVO DE ORO VOLUMÉTRICO Y GESTIÓN DE CICLO DE VIDA ────
+    let threeScene, threeCamera, threeRenderer, goldDust;
+    let threeRafId = null;
+    let threeRunning = false;
 
     function initHeroThreeScene() {
       const canvas = document.getElementById('hero-three-canvas');
@@ -441,19 +492,20 @@
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-      camera.position.z = 6;
+      threeScene = new THREE.Scene();
+      threeCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+      threeCamera.position.z = 6;
 
-      renderer = new THREE.WebGLRenderer({
+      threeRenderer = new THREE.WebGLRenderer({
         canvas,
         alpha: true,
         antialias: true,
         powerPreference: 'high-performance'
       });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      threeRenderer.setSize(width, height);
+      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
+      // 120 micro-partículas de polvo de oro en suspensión
       const count = 120;
       const positions = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i += 3) {
@@ -474,26 +526,56 @@
       });
 
       goldDust = new THREE.Points(geometry, material);
-      scene.add(goldDust);
+      threeScene.add(goldDust);
 
-      dynamicLight = new THREE.PointLight(0xffdfa8, 2.0, 12);
-      dynamicLight.position.set(2, 1, 3);
-      scene.add(dynamicLight);
-
-      (function animate() {
-        requestAnimationFrame(animate);
+      function renderFrame() {
+        if (!threeRunning) return;
         if (goldDust) {
           goldDust.rotation.y += 0.0003;
           goldDust.rotation.x += 0.00015;
         }
-        renderer.render(scene, camera);
-      })();
+        threeRenderer.render(threeScene, threeCamera);
+        threeRafId = requestAnimationFrame(renderFrame);
+      }
 
-      window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+      threeRunning = true;
+      renderFrame();
+
+      // Pausa automática de render cuando la pestaña pierde el foco (Ahorro GPU/CPU)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          threeRunning = false;
+          if (threeRafId) cancelAnimationFrame(threeRafId);
+        } else {
+          if (!threeRunning) {
+            threeRunning = true;
+            renderFrame();
+          }
+        }
       });
+
+      window.addEventListener('resize', onThreeResize);
+      window.addEventListener('beforeunload', cleanupHeroThreeScene);
+    }
+
+    function onThreeResize() {
+      if (!threeCamera || !threeRenderer) return;
+      const nw = window.innerWidth;
+      const nh = window.innerHeight;
+      threeCamera.aspect = nw / nh;
+      threeCamera.updateProjectionMatrix();
+      threeRenderer.setSize(nw, nh);
+    }
+
+    function cleanupHeroThreeScene() {
+      threeRunning = false;
+      if (threeRafId) cancelAnimationFrame(threeRafId);
+      window.removeEventListener('resize', onThreeResize);
+      if (goldDust) {
+        if (goldDust.geometry) goldDust.geometry.dispose();
+        if (goldDust.material) goldDust.material.dispose();
+      }
+      if (threeRenderer) threeRenderer.dispose();
     }
 
     // ── 03. CURSOR CINEMÁTICO HALO LÍQUIDO & MICRO-FÍSICA MAGNÉTICA ─────────
@@ -502,7 +584,6 @@
       const halo = document.getElementById('cursor-halo');
       if (!dot || !halo || window.innerWidth <= 768) return;
 
-      // Posición inicial centrada para evitar salto desde (0,0)
       gsap.set([dot, halo], { left: window.innerWidth / 2, top: window.innerHeight / 2 });
 
       window.addEventListener('mousemove', (e) => {
@@ -516,11 +597,17 @@
           ease: 'power2.out'
         });
 
-        if (dynamicLight) {
-          const nx = (e.clientX / window.innerWidth  - 0.5) * 5;
-          const ny = -(e.clientY / window.innerHeight - 0.5) * 3.5;
-          dynamicLight.position.x += (nx - dynamicLight.position.x) * 0.08;
-          dynamicLight.position.y += (ny - dynamicLight.position.y) * 0.08;
+        // Interacción lumínica real en el DOM: desplazamiento del foco especular sobre la joyería
+        const rim = document.getElementById('hero-dynamic-rim');
+        if (rim) {
+          const nx = (e.clientX / window.innerWidth  - 0.5) * 2;
+          const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+          gsap.to(rim, {
+            x: nx * 32,
+            y: ny * 22,
+            duration: 1.4,
+            ease: 'power2.out'
+          });
         }
       });
 
@@ -553,8 +640,10 @@
 
     // ── 04. CINEMATIC PARALLAX MULTICAPA ────────────────────────────────────
     function initCinematicParallax() {
+      if (prefersReducedMotion) return;
+
       const jewelryInner = document.getElementById('hero-jewelry-inner');
-      const specCard      = document.getElementById('hero-spec-card');
+      const specCard     = document.getElementById('hero-spec-card');
 
       window.addEventListener('mousemove', (e) => {
         const nx = (e.clientX / window.innerWidth  - 0.5) * 2;
@@ -583,13 +672,24 @@
       const nav        = document.getElementById('hero-nav');
       const ctaLine    = document.getElementById('hero-cta-underline');
 
-      // Selectores por grupo narrativo para stagger independiente y controlado
       const kickerLines   = document.querySelectorAll('#hero-kicker .reveal-line, #hero-edition-tag .reveal-line');
       const headlineLines = document.querySelectorAll('h1 .reveal-line');
       const subtitleLines = document.querySelectorAll('.rl-footer');
       const bodyLines     = document.querySelectorAll('.reveal-line.rl-body');
 
-      // Estado inicial explícito — evita saltos y conflictos con clases CSS
+      // Mientras la cortina está activa, Lenis pausa el scroll
+      if (window.lenisInstance) window.lenisInstance.stop();
+
+      if (prefersReducedMotion) {
+        if (stage) stage.style.display = 'none';
+        document.body.classList.remove('curtain-locked');
+        if (window.lenisInstance) window.lenisInstance.start();
+        gsap.set(nav, { opacity: 1, y: 0 });
+        gsap.set([kickerLines, headlineLines, subtitleLines, bodyLines], { y: '0%' });
+        gsap.set(ctaLine, { scaleX: 1 });
+        return;
+      }
+
       gsap.set(nav, { opacity: 0, y: -16 });
       gsap.set(kickerLines, { y: '115%' });
       gsap.set(headlineLines, { y: '115%' });
@@ -599,13 +699,8 @@
 
       const master = gsap.timeline({ defaults: { overwrite: 'auto' } });
 
-      // — Fase 1: Rayo de luz dorada que corta la oscuridad
       master.to(beam, { height: '58vh', duration: 0.9, ease: 'power4.inOut' })
-
-      // — Fase 2: Monograma del atelier emerge
       .to(brandIntro, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-
-      // — Fase 3: Contador de calibración 0→100%
       .to({ val: 0 }, {
         val: 100,
         duration: 1.1,
@@ -616,60 +711,86 @@
           if (progress) progress.style.width = v + '%';
         }
       })
-
-      // — Fase 4: Cortina asciende — el mundo se revela
       .to(stage, {
         yPercent: -100,
         duration: 1.2,
         ease: 'expo.inOut',
-        onComplete: () => { stage.style.display = 'none'; }
+        onComplete: () => {
+          stage.style.display = 'none';
+          document.body.classList.remove('curtain-locked');
+          if (window.lenisInstance) window.lenisInstance.start();
+        }
       }, '+=0.1')
-
-      // — Fase 4b: Joyería emerge con zoom inercial y normalización lumínica
       .fromTo('#hero-jewelry-inner',
         { scale: 1.18, filter: 'brightness(0.65) contrast(1.2) saturate(0.8)' },
         { scale: 1.05, filter: 'brightness(0.98) contrast(1.14) saturate(1.12)', duration: 2.4, ease: 'power3.out' },
         '-=1.1'
       )
-
-      // — Fase 5: Navegación desciende suavemente
       .to(nav, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.6')
-
-      // — Fase 6a: Micro-tags del atelier (kicker + edition)
       .to(kickerLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power4.out' }, '-=1.0')
-
-      // — Fase 6b: Titular monumental por líneas — el momento dominante
       .to(headlineLines, { y: '0%', duration: 1.5, stagger: 0.14, ease: 'power4.out' }, '-=0.6')
-
-      // — Fase 6c: Subtítulo y botón CTA — el cierre narrativo
       .to(bodyLines, { y: '0%', duration: 1.1, stagger: 0.1, ease: 'power3.out' }, '-=0.7')
-
-      // — Fase 6d: Metadatos y bloque inferior — el epílogo técnico
       .to(subtitleLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power3.out' }, '-=0.5')
-
-      // — Fase 7: Línea dorada del CTA se traza de izquierda a derecha
       .to(ctaLine, { scaleX: 1, duration: 1.2, ease: 'power3.inOut' }, '-=0.8');
     }
 
-    // ── 06. INICIALIZACIÓN GENERAL ──────────────────────────────────────────
+    // ── 06. GESTIÓN DE ACCIONES Y ENLACES (ATELIER NOTIFIER) ─────────────────
+    function notifyAtelier(msg) {
+      const toast = document.getElementById('atelier-toast');
+      const text = document.getElementById('atelier-toast-text');
+      if (!toast || !text) return;
+      text.innerText = msg;
+      gsap.killTweensOf(toast);
+      gsap.timeline()
+        .to(toast, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' })
+        .to(toast, { opacity: 0, y: 10, duration: 0.4, delay: 2.2, ease: 'power2.in' });
+    }
+
+    function initAtelierActions() {
+      const actionMap = {
+        'colecciones': 'BÓVEDA DE COLECCIONES · FASE DE ALTA CURADURÍA',
+        'historia': 'ATELIER HISTORIA · CALLE DEL CRISTO, SAN JUAN',
+        'contacto': 'BÓVEDA & CONCIERGE · SERVICIO PRIVADO DISPONIBLE',
+        'buscar': 'CATÁLOGO GENERAL · BÚSQUEDA DISPONIBLE EN FASE 02',
+        'bolsa': 'BOLSA DE ADQUISICIONES · 0 PIEZAS SELECCIONADAS'
+      };
+
+      document.querySelectorAll('[data-atelier-action]').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const action = el.getAttribute('data-atelier-action');
+          const msg = actionMap[action] || 'TOP JEWELRY PR · SAN JUAN ATELIER';
+          notifyAtelier(msg);
+          if (audioActive) playHapticTick(1600, 0.02);
+        });
+      });
+    }
+
+    // ── 07. INICIALIZACIÓN GENERAL ──────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-      // Lenis sincronizado con GSAP ticker (protocolo oficial)
+      // Lenis Smooth Scroll sincronizado con GSAP ScrollTrigger
       try {
-        const lenis = new Lenis({
+        window.lenisInstance = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           orientation: 'vertical',
           smoothWheel: true
         });
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+
+        window.lenisInstance.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+          window.lenisInstance.raf(time * 1000);
+        });
         gsap.ticker.lagSmoothing(0);
-      } catch(e) {}
+      } catch(e) {
+        console.warn('Lenis scroll inicializado con fallback:', e);
+      }
 
       initHeroThreeScene();
       initCursorAndMagnets();
       initCinematicParallax();
       initCurtainEntrance();
+      initAtelierActions();
     });
   </script>
 </body>

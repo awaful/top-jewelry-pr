@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth bg-[#080604] text-[#FFF9F2]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOP JEWELRY PR — Alta Orfebrería en Oro Macizo · San Juan, Puerto Rico</title>
+  <meta name="description" content="Digital Flagship oficial de TOP JEWELRY PR. Cadenas Miami Cuban Link 100% macizas, cordones diamantados, sortijas de sello en ónix y orfebrería de estricta elegancia en Oro 14K y 10K. San Juan, Puerto Rico.">
+
+  <!-- Favicon Oficial Transparente -->
+  <link rel="icon" type="image/png" href="/logo-transparent.png">
+  <link rel="apple-touch-icon" href="/logo-transparent.png">
+
+  <!-- Tipografías de Alta Fidelidad a la Referencia: Syne + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Framework CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- GSAP + ScrollTrigger para Animaciones Cinematográficas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Three.js CDN para Escultura 3D WebGL PBR y Partículas de Polvo de Oro -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#080604',
+            walnut: '#0D0906',
+            panel: '#140E0A',
+            cream: '#FFF9F2',
+            sand: '#B8ADA1',
+            dim: '#8C8278',
+            amberpr: '#E0662D',
+            goldpr: '#D4AF37',
+            hairline: 'rgba(140, 110, 80, 0.22)',
+            dashedpr: 'rgba(140, 110, 80, 0.32)'
+          },
+          fontFamily: {
+            headline: ['"Syne"', 'sans-serif'],
+            sans: ['"Inter"', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          letterSpacing: {
+            ultra: '0.25em',
+            widepr: '0.18em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos globales y texturas de película */
+    html {
+      background-color: #080604;
+      color: #FFF9F2;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background-color: #E0662D;
+      color: #080604;
+    }
+
+    /* Grano de película de 35mm para profundidad analógica cinematográfica */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 160px 160px;
+      mix-blend-mode: overlay;
+    }
+
+    /* Ocultar scrollbars estándar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080604; }
+    ::-webkit-scrollbar-thumb { background: #3A2D22; border-radius: 2px; }
+
+    /* Línea discontinua técnica exacta de la referencia */
+    .border-dashed-divider {
+      border-bottom: 1px dashed rgba(140, 110, 80, 0.35);
+    }
+
+    /* Contenedor de zoom cinemático */
+    .zoom-frame {
+      overflow: hidden;
+    }
+    .zoom-frame img {
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+      will-change: transform;
+    }
+    .zoom-frame:hover img {
+      transform: scale(1.045);
+    }
+
+    /* Slider de rango personalizado para el simulador */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 2px;
+      background: rgba(140, 110, 80, 0.35);
+      outline: none;
+      background-image: linear-gradient(#E0662D, #E0662D);
+      background-size: 45% 100%;
+      background-repeat: no-repeat;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FFF9F2;
+      cursor: pointer;
+      border: 3px solid #080604;
+      box-shadow: 0 0 0 2px #E0662D;
+      transition: transform 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+
+    /* Barra de navegación de cristal ahumado */
+    .glass-nav {
+      background: rgba(8, 6, 4, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(140, 110, 80, 0.18);
+    }
+
+    /* Hotspot pulsante */
+    .hotspot-pulse {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #E0662D;
+      cursor: pointer;
+      border: 2px solid #080604;
+      box-shadow: 0 0 0 0 rgba(224, 102, 45, 0.7);
+      animation: hpulse 2.2s infinite cubic-bezier(0.66, 0, 0, 1);
+    }
+    @keyframes hpulse {
+      0%   { box-shadow: 0 0 0 0 rgba(224, 102, 45, 0.7); }
+      70%  { box-shadow: 0 0 0 14px rgba(224, 102, 45, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(224, 102, 45, 0); }
+    }
+
+    /* Audio pulse */
+    .audio-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #E0662D;
+      display: inline-block;
+      animation: abeat 1.4s infinite;
+    }
+    @keyframes abeat {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+  </style>
+</head>
+<body class="bg-[#080604] text-[#FFF9F2] font-sans antialiased overflow-x-hidden selection:bg-[#E0662D] selection:text-[#080604]">
+
+  <!-- ========================================================================= -->
+  <!-- BARRA DE NAVEGACIÓN IDÉNTICA A LA REFERENCIA                              -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+      
+      <!-- LOGO OFICIAL: Corona & Diamante en Oro + TOP JEWELRY PR (Exacto a la referencia con el logo oficial) -->
+      <a href="#" class="flex items-center gap-3 group" aria-label="TOP JEWELRY PR Inicio">
+        <span class="w-[2.5px] h-6 bg-[#E0662D] rounded-full inline-block"></span>
+        <img src="/logo-transparent.png" alt="Top Jewelry PR Insignia" class="h-8 md:h-9 w-auto object-contain filter drop-shadow-[0_2px_10px_rgba(224,102,45,0.3)] transition-transform duration-300 group-hover:scale-105">
+        <div class="flex items-baseline gap-1.5 hidden sm:flex">
+          <span class="font-headline font-extrabold text-xl tracking-wider text-[#FFF9F2] uppercase">TOP</span>
+          <span class="font-sans font-normal text-xs tracking-[0.24em] text-[#B8ADA1] uppercase">JEWELRY PR</span>
+        </div>
+      </a>
+
+      <!-- MENÚ DE NAVEGACIÓN Y BOLSA (Exacto como en la referencia) -->
+      <div class="flex items-center gap-8 md:gap-12">
+        <nav class="hidden md:flex items-center gap-8 text-[11px] font-sans font-medium tracking-[0.2em] uppercase text-[#FFF9F2]">
+          <a href="#coleccion" class="hover:text-[#E0662D] transition-colors">Colección</a>
+          <a href="#piezas" class="hover:text-[#E0662D] transition-colors">Piezas</a>
+          <a href="#nosotros" class="hover:text-[#E0662D] transition-colors">Nosotros</a>
+        </nav>
+
+        <!-- Toggle Sonido Procedural -->
+        <button onclick="toggleAudio()" class="hidden lg:flex items-center gap-2 text-[9.5px] font-mono tracking-wider uppercase text-[#8C8278] hover:text-[#FFF9F2]" id="audio-toggle-btn" title="Audio Táctil">
+          <span class="audio-dot"></span>
+          <span>AUDIO: <strong id="audio-state-text" class="text-[#E0662D]">ACTIVO</strong></span>
+        </button>
+
+        <!-- Ícono de Bolsa Minimalista Idéntico a la Referencia -->
+        <button 
+          onclick="toggleBolsa()" 
+          class="relative flex items-center text-[#FFF9F2] hover:text-[#E0662D] transition-colors p-1"
+          aria-label="Abrir bolsa de compras"
+        >
+          <!-- Ícono de tote bag lineal -->
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 7h12l1.5 13H4.5L6 7z"/>
+            <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
+          </svg>
+          <span class="absolute -top-1 -right-2 inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#E0662D] text-[#080604] text-[8.5px] font-bold font-mono" id="bolsa-badge">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN 01: HERO PRINCIPAL (REPRODUCCIÓN EXACTA DE LA REFERENCIA)         -->
+  <!-- ========================================================================= -->
+  <section class="relative min-h-[90vh] md:min-h-[92vh] flex items-center overflow-hidden border-dashed-divider">
+    
+    <!-- FONDO FOTOGRÁFICO DE ALTA RESOLUCIÓN EXTRAÍDO DE LA REFERENCIA (Joyería y Roca Basáltica) -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <!-- Imagen original en alta fidelidad colocada a la derecha con degradado de fusión a la izquierda -->
+      <img 
+        src="/hero-clean-bg.jpg" 
+        alt="Cadena Miami Cuban con Diamantes y Pulsera Tennis sobre roca volcánica — TOP JEWELRY PR" 
+        class="w-full h-full object-cover object-right md:object-center filter brightness-[0.92] contrast-[1.05]"
+      >
+      <!-- Capa de sombra lateral izquierda para garantizar 100% legibilidad y pureza editorial -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#080604] via-[#080604]/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#080604] via-transparent to-transparent"></div>
+    </div>
+
+    <!-- CANVAS 3D INTERACTIVO PARA EFECTOS DE LUZ AMBIENTAL Y POLVO DE ORO -->
+    <canvas id="hero-fx-canvas" class="absolute inset-0 z-1 pointer-events-none"></canvas>
+
+    <!-- WATERMARK VERTICAL DE LA DERECHA (Idéntico a la referencia: | TOP JEWELRY PR en vertical) -->
+    <div class="absolute right-6 md:right-8 top-1/2 -translate-y-1/2 z-10 hidden xl:flex items-center gap-3 rotate-90 origin-right pointer-events-none">
+      <span class="w-4 h-[2px] bg-[#E0662D] inline-block"></span>
+      <span class="font-sans text-[10px] tracking-[0.3em] uppercase text-[#FFF9F2] opacity-80 font-medium">TOP JEWELRY PR</span>
+    </div>
+
+    <!-- CONTENIDO EDITORIAL HERO (Izquierda) -->
+    <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full py-16 md:py-24">
+      <div class="max-w-2xl">
+        
+        <!-- Etiqueta superior exacta: JOYERÍA CONTEMPORÁNEA · PUERTO RICO -->
+        <div class="text-[10px] md:text-[11px] font-sans font-medium tracking-[0.24em] uppercase text-[#8C8278] mb-6 flex items-center gap-2">
+          <span>JOYERÍA CONTEMPORÁNEA</span>
+          <span class="w-1 h-1 rounded-full bg-[#E0662D]"></span>
+          <span>PUERTO RICO</span>
+        </div>
+
+        <!-- Titular monumental exacto con punto naranja característico -->
+        <h1 class="font-headline font-extrabold text-[46px] sm:text-[62px] md:text-[76px] lg:text-[86px] leading-[0.93] tracking-[-0.03em] text-[#FFF9F2] uppercase mb-8">
+          EL VALOR<br>
+          ESTÁ EN LOS<br>
+          DETALLES<span class="text-[#E0662D]">.</span>
+        </h1>
+
+        <!-- Subtítulo exacto -->
+        <p class="font-sans text-[#B8ADA1] text-sm sm:text-base md:text-[17px] font-light leading-relaxed max-w-lg mb-10">
+          Diseños exclusivos, calidad incomparable<br class="hidden sm:inline">
+          y un estilo que trasciende.
+        </p>
+
+        <!-- Botón CTA con subrayado naranja y flecha exactos -->
+        <div>
+          <a 
+            href="#piezas" 
+            class="group inline-flex items-center gap-3 text-[11px] md:text-xs font-sans font-semibold tracking-[0.22em] uppercase text-[#FFF9F2] border-b-2 border-[#E0662D] pb-1.5 transition-all duration-300 hover:text-[#E0662D]"
+          >
+            <span>EXPLORAR COLECCIÓN</span>
+            <span class="transform transition-transform duration-300 group-hover:translate-x-1.5 text-base leading-none">→</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TARJETA FLOTANTE INFERIOR DERECHA (Idéntica a la referencia: CADENA CUBANA / ORO 14K · 12MM / barra de progreso) -->
+    <div class="absolute bottom-8 right-6 md:right-16 z-20 hidden sm:block">
+      <div class="bg-[#140E0A]/80 backdrop-blur-md border border-[rgba(140,110,80,0.25)] rounded-lg px-5 py-3.5 shadow-2xl min-w-[200px]">
+        <div class="text-[10px] font-sans font-bold tracking-[0.16em] uppercase text-[#FFF9F2]">
+          CADENA CUBANA
+        </div>
+        <div class="text-[9px] font-mono tracking-wider text-[#8C8278] mt-0.5">
+          ORO 14K · 12MM
+        </div>
+        <!-- Indicador de slider activo -->
+        <div class="flex items-center gap-1.5 mt-2.5">
+          <span class="w-2 h-2 rounded-full bg-[#E0662D]"></span>
+          <div class="h-[1.5px] w-20 bg-[rgba(140,110,80,0.35)] rounded-full overflow-hidden">
+            <div class="h-full w-2/5 bg-[#E0662D]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN 02: BRAND STATEMENT (REPRODUCCIÓN EXACTA DE LA REFERENCIA)       -->
+  <!-- ========================================================================= -->
+  <section id="nosotros" class="relative py-20 md:py-28 bg-[#080604] border-dashed-divider">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- COLUMNA IZQUIERDA: MÁS QUE JOYAS, UN ESTILO DE VIDA. -->
+        <div class="lg:col-span-5 space-y-5">
+          <!-- Marcador horizontal naranja + TOP JEWELRY PR (Exacto como en la referencia) -->
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-6 h-[3px] bg-[#E0662D] rounded-full inline-block"></span>
+            <span class="font-sans text-[10px] font-medium tracking-[0.24em] uppercase text-[#FFF9F2]">TOP JEWELRY PR</span>
+          </div>
+
+          <!-- Titular exacto con punto naranja -->
+          <h2 class="font-headline font-extrabold text-3xl sm:text-4xl md:text-[42px] leading-[1.05] tracking-tight text-[#FFF9F2] uppercase">
+            MÁS QUE JOYAS,<br>
+            UN ESTILO DE VIDA<span class="text-[#E0662D]">.</span>
+          </h2>
+
+          <!-- Párrafo exacto -->
+          <p class="font-sans text-[#8C8278] text-sm md:text-[15px] font-light leading-relaxed max-w-md pt-1">
+            En Top Jewelry PR, cada pieza cuenta una historia:<br>
+            la tuya.
+          </p>
+        </div>
+
+        <!-- COLUMNA CENTRAL: RELOJ ROLEX DE ORO SOBRE ROCA VOLCÁNICA (Exacto de la referencia) -->
+        <div class="lg:col-span-3 flex justify-center py-4">
+          <div class="relative group cursor-pointer" onclick="abrirQuickView('prod-reloj-oro')">
+            <img 
+              src="/watch-blend.png" 
+              alt="Reloj Presidente en Oro 14K sobre roca volcánica — TOP JEWELRY PR" 
+              class="h-56 sm:h-64 md:h-72 w-auto object-contain filter drop-shadow-[0_20px_40px_rgba(224,102,45,0.18)] transition-transform duration-700 group-hover:scale-105"
+            >
+            <!-- Badge sutil al pasar cursor -->
+            <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#140E0A]/90 border border-[#E0662D]/40 text-[#FFF9F2] text-[9px] font-mono px-3 py-1 rounded-full whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              Ver Reloj Presidente 14K · $3,850
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: TRES PROPUESTAS DE VALOR CON ÍCONOS LINEALES (Exacto de la referencia) -->
+        <div class="lg:col-span-4 lg:border-l lg:border-[rgba(140,110,80,0.3)] lg:pl-10 space-y-7">
+          
+          <!-- Item 1: Calidad Garantizada -->
+          <div class="flex items-start gap-4 group">
+            <div class="text-[#FFF9F2] mt-0.5 flex-shrink-0 group-hover:text-[#E0662D] transition-colors">
+              <!-- Ícono Diamante Geométrico -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 3h12l4 6-10 12L2 9l4-6z"/>
+                <path d="M2 9h20M10 3l2 6-2 12M14 3l-2 6 2 12"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-xs tracking-[0.14em] uppercase text-[#FFF9F2]">
+                CALIDAD GARANTIZADA
+              </h4>
+              <p class="font-sans text-[11.5px] font-light text-[#8C8278] mt-1 leading-normal">
+                Piezas con los más altos estándares.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2: Envíos a Todo PR -->
+          <div class="flex items-start gap-4 group">
+            <div class="text-[#FFF9F2] mt-0.5 flex-shrink-0 group-hover:text-[#E0662D] transition-colors">
+              <!-- Ícono Camión de Reparto -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-xs tracking-[0.14em] uppercase text-[#FFF9F2]">
+                ENVÍOS A TODO PR
+              </h4>
+              <p class="font-sans text-[11.5px] font-light text-[#8C8278] mt-1 leading-normal">
+                Recibe tu joya en la isla.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: Compra Segura -->
+          <div class="flex items-start gap-4 group">
+            <div class="text-[#FFF9F2] mt-0.5 flex-shrink-0 group-hover:text-[#E0662D] transition-colors">
+              <!-- Ícono Escudo con Check -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <polyline points="9 11 11 13 15 9"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-sans font-bold text-xs tracking-[0.14em] uppercase text-[#FFF9F2]">
+                COMPRA SEGURA
+              </h4>
+              <p class="font-sans text-[11.5px] font-light text-[#8C8278] mt-1 leading-normal">
+                Tu confianza es nuestra prioridad.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN 03: COLECCIONES EDITORIALES (DISEÑO CINEMATOGRÁFICO DE ALTA GAMA)  -->
+  <!-- ========================================================================= -->
+  <section id="coleccion" class="py-24 md:py-32 bg-[#080604] border-dashed-divider">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-[rgba(140,110,80,0.25)]">
+        <div>
+          <div class="text-[10px] font-mono tracking-[0.24em] uppercase text-[#E0662D] mb-2">[CATEGORÍAS DE BÓVEDA]</div>
+          <h2 class="font-headline font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#FFF9F2]">
+            Colecciones de Orfebrería
+          </h2>
+        </div>
+        <p class="font-sans text-[#8C8278] text-xs font-light max-w-xs mt-3 md:mt-0">
+          Piezas forjadas con núcleo denso inalterable en San Juan, Puerto Rico.
+        </p>
+      </div>
+
+      <!-- Cuadrícula Asimétrica de Colecciones -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        
+        <!-- Colección 1: Cadenas Miami Cuban (Grande - 7 columnas) -->
+        <div class="md:col-span-7 bg-[#140E0A] border border-[rgba(140,110,80,0.25)] group relative overflow-hidden flex flex-col justify-between">
+          <div class="zoom-frame h-80 sm:h-96 relative">
+            <img 
+              src="https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1200&fit=crop" 
+              alt="Cadenas Miami Cuban Link 14K Macizas" 
+              class="w-full h-full object-cover filter brightness-[0.85] contrast-[1.08]"
+            >
+            <span class="absolute top-4 left-4 bg-[#080604] text-[#E0662D] text-[9px] font-mono uppercase px-3 py-1 border border-[rgba(140,110,80,0.25)]">
+              Pieza Insignia · 14KP
+            </span>
+          </div>
+          <div class="p-8 flex items-end justify-between bg-gradient-to-t from-[#080604] to-transparent">
+            <div>
+              <div class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">01 / DENSIDAD PLUMB</div>
+              <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Cadenas Cubanas & Cordones</h3>
+              <p class="font-sans text-xs text-[#B8ADA1] font-light mt-1">Desde 3.5mm hasta 12mm macizos.</p>
+            </div>
+            <button onclick="filtrarCategoria('cadenas')" class="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-[#E0662D] border-b border-[#E0662D] pb-1 hover:text-[#FFF9F2] transition-colors">
+              Explorar →
+            </button>
+          </div>
+        </div>
+
+        <!-- Colección 2: Sortijas & Sellos de Ónix (5 columnas) -->
+        <div class="md:col-span-5 bg-[#140E0A] border border-[rgba(140,110,80,0.25)] group relative overflow-hidden flex flex-col justify-between">
+          <div class="zoom-frame h-80 sm:h-96 relative">
+            <img 
+              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=92&w=1000&fit=crop" 
+              alt="Sortijas de Sello en Ónix y Oro 14K" 
+              class="w-full h-full object-cover filter brightness-[0.85] contrast-[1.08]"
+            >
+            <span class="absolute top-4 left-4 bg-[#080604] text-[#FFF9F2] text-[9px] font-mono uppercase px-3 py-1 border border-[rgba(140,110,80,0.25)]">
+              Alta Joyería
+            </span>
+          </div>
+          <div class="p-8 flex items-end justify-between bg-gradient-to-t from-[#080604] to-transparent">
+            <div>
+              <div class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">02 / SELLOS IMPERIALES</div>
+              <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Sortijas & Ónix</h3>
+              <p class="font-sans text-xs text-[#B8ADA1] font-light mt-1">Ónix natural engastado en oro 14K.</p>
+            </div>
+            <button onclick="filtrarCategoria('anillos')" class="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-[#E0662D] border-b border-[#E0662D] pb-1 hover:text-[#FFF9F2] transition-colors">
+              Explorar →
+            </button>
+          </div>
+        </div>
+
+        <!-- Colección 3: Pulseras & Tennis Royale (5 columnas) -->
+        <div class="md:col-span-5 bg-[#140E0A] border border-[rgba(140,110,80,0.25)] group relative overflow-hidden flex flex-col justify-between">
+          <div class="zoom-frame h-80 sm:h-96 relative">
+            <img 
+              src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=92&w=1000&fit=crop" 
+              alt="Pulseras Cuban y Tennis Royale" 
+              class="w-full h-full object-cover filter brightness-[0.85] contrast-[1.08]"
+            >
+          </div>
+          <div class="p-8 flex items-end justify-between bg-gradient-to-t from-[#080604] to-transparent">
+            <div>
+              <div class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">03 / ARTICULACIÓN</div>
+              <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Pulseras & Tennis</h3>
+              <p class="font-sans text-xs text-[#B8ADA1] font-light mt-1">Cierre oculto con doble pestillo suizo.</p>
+            </div>
+            <button onclick="filtrarCategoria('pulseras')" class="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-[#E0662D] border-b border-[#E0662D] pb-1 hover:text-[#FFF9F2] transition-colors">
+              Explorar →
+            </button>
+          </div>
+        </div>
+
+        <!-- Colección 4: Medallas Sagradas & Dijes (7 columnas) -->
+        <div class="md:col-span-7 bg-[#140E0A] border border-[rgba(140,110,80,0.25)] group relative overflow-hidden flex flex-col justify-between">
+          <div class="zoom-frame h-80 sm:h-96 relative">
+            <img 
+              src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=92&w=1200&fit=crop" 
+              alt="Medallas Sagradas San Judas y Cristo en Oro Macizo" 
+              class="w-full h-full object-cover filter brightness-[0.85] contrast-[1.08]"
+            >
+          </div>
+          <div class="p-8 flex items-end justify-between bg-gradient-to-t from-[#080604] to-transparent">
+            <div>
+              <div class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">04 / DEVOCIÓN & ARTE</div>
+              <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Medallas Religiosas & Dijes</h3>
+              <p class="font-sans text-xs text-[#B8ADA1] font-light mt-1">San Judas Tadeo y Cristo en relieve satinado.</p>
+            </div>
+            <button onclick="filtrarCategoria('collares')" class="text-[10px] font-sans font-semibold tracking-[0.2em] uppercase text-[#E0662D] border-b border-[#E0662D] pb-1 hover:text-[#FFF9F2] transition-colors">
+              Explorar →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN 04: PRODUCTOS DESTACADOS & CATÁLOGO COMPLETO                      -->
+  <!-- ========================================================================= -->
+  <section id="piezas" class="py-24 md:py-32 bg-[#080604] border-dashed-divider">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+      
+      <!-- Cabecera de Catálogo con Buscador y Filtros -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-[rgba(140,110,80,0.25)]">
+        <div>
+          <div class="text-[10px] font-mono tracking-[0.24em] uppercase text-[#E0662D] mb-2">[CATÁLOGO OFICIAL]</div>
+          <h2 class="font-headline font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#FFF9F2]">
+            Bóveda de Piezas
+          </h2>
+        </div>
+
+        <!-- Buscador en tiempo real -->
+        <div class="mt-6 md:mt-0 relative w-full md:w-80">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Buscar cubana, sortija, reloj..." 
+            oninput="filtrarProductos()"
+            class="w-full bg-[#140E0A] border border-[rgba(140,110,80,0.35)] px-4 py-2.5 text-xs text-[#FFF9F2] placeholder-[#8C8278] font-mono focus:border-[#E0662D] outline-none transition-colors"
+          >
+          <svg class="w-4 h-4 absolute right-3 top-3 text-[#8C8278] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </div>
+      </div>
+
+      <!-- Pestañas de Categoría -->
+      <div class="flex flex-wrap items-center gap-2.5 mb-12" id="category-bar">
+        <button onclick="filtrarCategoria('todos')" class="cat-pill active px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[#E0662D] bg-[#E0662D] text-[#080604] font-bold" data-cat="todos">Todas las Piezas (12)</button>
+        <button onclick="filtrarCategoria('cadenas')" class="cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]" data-cat="cadenas">Cadenas Macizas</button>
+        <button onclick="filtrarCategoria('anillos')" class="cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]" data-cat="anillos">Sortijas & Sellos</button>
+        <button onclick="filtrarCategoria('pulseras')" class="cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]" data-cat="pulseras">Pulseras</button>
+        <button onclick="filtrarCategoria('collares')" class="cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]" data-cat="collares">Medallas</button>
+        <button onclick="filtrarCategoria('aretes')" class="cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]" data-cat="aretes">Aretes & Relojes</button>
+      </div>
+
+      <!-- Cuadrícula de Productos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+        <!-- Renderizado dinámico vía JavaScript con los 12 productos reales -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECCIÓN 05: LABORATORIO DE ORO (SIMULADOR DE GRAMAJE Y DENSIDAD)          -->
+  <!-- ========================================================================= -->
+  <section class="py-24 md:py-32 bg-[#0D0906] border-dashed-divider">
+    <div class="max-w-[1000px] mx-auto px-6 md:px-12">
+      
+      <div class="text-center max-w-xl mx-auto mb-14">
+        <div class="text-[10px] font-mono tracking-[0.24em] uppercase text-[#E0662D] mb-2">[HERRAMIENTA TÁCTIL]</div>
+        <h2 class="font-headline font-extrabold text-3xl md:text-5xl uppercase tracking-tight text-[#FFF9F2]">
+          Calculador de Gramaje
+        </h2>
+        <p class="font-sans text-[#8C8278] text-xs font-light mt-3">
+          Ajuste el peso deseado para calcular calibre en milímetros, masa áurea pura e inversión de bóveda.
+        </p>
+      </div>
+
+      <div class="bg-[#140E0A] border border-[rgba(140,110,80,0.35)] p-8 md:p-14 shadow-2xl relative">
+        
+        <!-- Toggle de pureza -->
+        <div class="flex justify-center gap-4 mb-10">
+          <button onclick="setLabPurity('14k')" id="lab-p-14k" class="px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[#E0662D] bg-[#E0662D] text-[#080604] font-bold">Oro 14K Plumb (58.5% Au)</button>
+          <button onclick="setLabPurity('10k')" id="lab-p-10k" class="px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]">Oro 10K Macizo (41.7% Au)</button>
+        </div>
+
+        <!-- Slider de gramos -->
+        <div class="space-y-4 mb-12">
+          <div class="flex justify-between items-baseline">
+            <span class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">Masa Total de Cadena:</span>
+            <span id="lab-grams-val" class="font-headline font-extrabold text-4xl md:text-6xl text-[#FFF9F2]">48.5 g</span>
+          </div>
+          <input type="range" min="15" max="120" step="0.5" value="48.5" id="lab-slider" oninput="updateLab()">
+          <div class="flex justify-between text-[9px] font-mono text-[#8C8278]">
+            <span>15g · 3.5mm Ligera</span>
+            <span>48.5g · 7.0mm Estándar</span>
+            <span>120g · 10.5mm Pesada</span>
+          </div>
+        </div>
+
+        <!-- Métricas Calculadas -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-[rgba(140,110,80,0.25)] mb-10 text-center md:text-left">
+          <div>
+            <div class="text-[9px] font-mono tracking-widest uppercase text-[#8C8278]">Calibre Ancho</div>
+            <div id="lab-width-val" class="font-headline font-bold text-2xl text-[#FFF9F2] mt-1">7.0 mm</div>
+            <div class="text-[11px] font-sans text-[#8C8278] mt-0.5">Caída simétrica plana</div>
+          </div>
+          <div>
+            <div class="text-[9px] font-mono tracking-widest uppercase text-[#8C8278]">Oro Fino Puro Contenido</div>
+            <div id="lab-pure-val" class="font-headline font-bold text-2xl text-[#FFF9F2] mt-1">28.4 g Au</div>
+            <div class="text-[11px] font-sans text-[#8C8278] mt-0.5">Masa áurea certificada</div>
+          </div>
+          <div>
+            <div class="text-[9px] font-mono tracking-widest uppercase text-[#8C8278]">Inversión Estimada</div>
+            <div id="lab-price-val" class="font-headline font-bold text-2xl text-[#FFF9F2] mt-1">$2,450.00 USD</div>
+            <div class="text-[11px] font-sans text-[#8C8278] mt-0.5">Precio de taller en San Juan</div>
+          </div>
+        </div>
+
+        <!-- Botón Cotizar por WhatsApp -->
+        <div class="text-center">
+          <a id="lab-whatsapp-btn" href="#" target="_blank" class="inline-flex items-center gap-3 bg-[#E0662D] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#080604] font-sans font-bold text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>Cotizar Medida con Maestro Orfebre</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- PIE DE PÁGINA MINIMALISTA (ATELIER SAN JUAN & CONCIERGE)                  -->
+  <!-- ========================================================================= -->
+  <footer class="bg-[#050403] border-t border-[rgba(140,110,80,0.25)] py-20 px-6 md:px-12 text-[#FFF9F2]">
+    <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+      
+      <!-- Marca y Manifiesto -->
+      <div class="md:col-span-5 space-y-4">
+        <div class="flex items-center gap-3.5">
+          <span class="w-[2.5px] h-6 bg-[#E0662D] rounded-full inline-block"></span>
+          <img src="/logo-transparent.png" alt="Top Jewelry PR Sello de Bóveda" class="h-10 w-auto object-contain filter drop-shadow-[0_4px_16px_rgba(212,175,55,0.3)]">
+          <div class="flex items-baseline gap-2">
+            <span class="font-headline font-extrabold text-2xl tracking-wider text-[#FFF9F2] uppercase">TOP</span>
+            <span class="font-sans font-normal text-xs tracking-[0.24em] text-[#B8ADA1] uppercase">JEWELRY PR</span>
+          </div>
+        </div>
+        <p class="font-sans text-xs text-[#8C8278] font-light max-w-sm leading-relaxed mt-4">
+          La referencia indiscutible de orfebrería en oro 100% macizo en San Juan, Puerto Rico. Cadenas Miami Cuban, cordones diamantados y sortijas de sello certificadas bajo contraste oficial.
+        </p>
+        <div class="pt-2 text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">
+          San Juan · Condado · Guaynabo · Despacho a todo PR & EE.UU.
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <div class="md:col-span-3 space-y-3 text-xs font-sans">
+        <div class="text-[10px] font-mono tracking-widest uppercase text-[#E0662D] mb-3">NAVEGACIÓN</div>
+        <div><a href="#coleccion" class="text-[#B8ADA1] hover:text-[#FFF9F2] transition-colors">Colecciones</a></div>
+        <div><a href="#piezas" class="text-[#B8ADA1] hover:text-[#FFF9F2] transition-colors">Catálogo de Piezas</a></div>
+        <div><a href="#nosotros" class="text-[#B8ADA1] hover:text-[#FFF9F2] transition-colors">Filosofía de Marca</a></div>
+        <div><button onclick="abrirAdminModal()" class="text-[#E0662D] hover:underline text-left">Control de Inventario Bóveda</button></div>
+      </div>
+
+      <!-- Atelier & Concierge -->
+      <div class="md:col-span-4 space-y-3 text-xs font-sans">
+        <div class="text-[10px] font-mono tracking-widest uppercase text-[#E0662D] mb-3">ATELIER & CONCIERGE</div>
+        <div class="text-[#8C8278]">Atención personalizada con Maestro Orfebre:</div>
+        <div class="font-headline font-bold text-lg text-[#FFF9F2]">+1 (787) 942-8812</div>
+        <div class="text-[#8C8278]">contacto@topjewelrypr.com</div>
+        <div class="pt-2">
+          <a href="https://wa.me/17879428812?text=Deseo%20coordinar%20una%20consulta%20en%20el%20Atelier%20de%20TOP%20JEWELRY%20PR" target="_blank" class="inline-flex items-center gap-2 text-[#E0662D] hover:text-[#FFF9F2] transition-colors font-medium">
+            <span>Coordinar Visita Privada a Bóveda</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Barra de Derechos y Garantía -->
+    <div class="max-w-[1440px] mx-auto pt-8 border-t border-[rgba(140,110,80,0.2)] flex flex-col md:flex-row items-center justify-between text-[10px] font-mono tracking-wider uppercase text-[#8C8278] gap-4">
+      <div>© 2025 TOP JEWELRY PR. Todos los derechos reservados. San Juan, Puerto Rico.</div>
+      <div class="flex gap-6">
+        <span>Oro 14KP & 10K Contrastado</span>
+        <span>IVU PR 11.5%</span>
+        <span>ATH Móvil Verificado</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL QUICK VIEW (DETALLE DE PIEZA Y SELECCIÓN DE MEDIDA)                 -->
+  <!-- ========================================================================= -->
+  <div id="quickview-modal" class="fixed inset-0 z-50 bg-[#080604]/80 backdrop-blur-md hidden items-center justify-center p-4 md:p-8">
+    <div class="bg-[#140E0A] border border-[rgba(140,110,80,0.35)] max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative">
+      <button onclick="cerrarQuickView()" class="absolute top-6 right-6 z-10 w-8 h-8 bg-[#080604] border border-[rgba(140,110,80,0.35)] text-[#FFF9F2] flex items-center justify-center hover:bg-[#E0662D] hover:text-[#080604] transition-colors" aria-label="Cerrar">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-10">
+        <!-- Foto -->
+        <div class="zoom-frame bg-[#080604] aspect-square border border-[rgba(140,110,80,0.2)]">
+          <img id="qv-main-image" src="" alt="" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Datos -->
+        <div class="flex flex-col justify-between space-y-6">
+          <div>
+            <div class="text-[10px] font-mono tracking-widest uppercase text-[#E0662D]" id="qv-category">CATEGORÍA</div>
+            <h3 class="font-headline font-extrabold text-2xl md:text-3xl text-[#FFF9F2] uppercase mt-1" id="qv-name">Nombre de Pieza</h3>
+            <div class="font-headline font-bold text-3xl text-[#FFF9F2] mt-3" id="qv-price">$0.00 USD</div>
+            <p class="font-sans text-[#B8ADA1] text-xs font-light mt-4 leading-relaxed" id="qv-description">Descripción técnica.</p>
+          </div>
+
+          <!-- Selector de variantes / largos -->
+          <div class="space-y-3 pt-4 border-t border-[rgba(140,110,80,0.25)]">
+            <div class="text-[10px] font-mono tracking-widest uppercase text-[#8C8278]">CONFIGURACIÓN DE MEDIDA:</div>
+            <div class="grid grid-cols-2 gap-2" id="qv-variants-container"></div>
+          </div>
+
+          <div class="space-y-3 pt-4 border-t border-[rgba(140,110,80,0.25)]">
+            <button onclick="agregarAlCarritoDesdeModal()" class="w-full bg-[#E0662D] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#080604] font-sans font-bold text-xs tracking-[0.2em] uppercase py-3.5 transition-all duration-300">
+              + Añadir a la Bolsa
+            </button>
+            <button onclick="comprarDirectoATH()" class="w-full border border-[#FFF9F2] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#FFF9F2] font-sans font-medium text-xs tracking-[0.16em] uppercase py-3 transition-all duration-300">
+              Comprar Directo con ATH Móvil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- DRAWER LATERAL DE BOLSA DE COMPRAS (IVU PUERTO RICO 11.5%)                -->
+  <!-- ========================================================================= -->
+  <div id="bolsa-drawer" class="fixed inset-0 z-50 pointer-events-none transition-opacity duration-300 opacity-0">
+    <div class="absolute inset-0 bg-[#080604]/75 backdrop-blur-xs transition-opacity duration-300" onclick="toggleBolsa()"></div>
+    <div class="absolute top-0 right-0 bottom-0 w-full max-w-md bg-[#140E0A] border-l border-[rgba(140,110,80,0.35)] shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-400 ease-out pointer-events-auto" id="bolsa-content">
+      
+      <!-- Cabecera -->
+      <div class="p-6 md:p-8 border-b border-[rgba(140,110,80,0.25)] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="/logo-transparent.png" alt="Top Jewelry PR" class="h-8 w-auto object-contain">
+          <div>
+            <div class="text-[9px] font-mono tracking-widest uppercase text-[#E0662D]">TOP JEWELRY PR</div>
+            <h3 class="font-headline font-bold text-xl text-[#FFF9F2] uppercase">Bolsa de Orfebrería</h3>
+          </div>
+        </div>
+        <button onclick="toggleBolsa()" class="w-8 h-8 bg-[#080604] text-[#FFF9F2] flex items-center justify-center hover:bg-[#E0662D] hover:text-[#080604] transition-colors" aria-label="Cerrar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Ítems -->
+      <div class="flex-1 overflow-y-auto p-6 md:p-8 space-y-4" id="bolsa-items-container"></div>
+
+      <!-- Resumen Financiero e IVU Puerto Rico (11.5%) -->
+      <div class="p-6 md:p-8 border-t border-[rgba(140,110,80,0.25)] bg-[#0D0906] space-y-3 font-sans text-xs">
+        <div class="flex justify-between text-[#8C8278]">
+          <span>Subtotal Bóveda:</span>
+          <span class="font-mono text-[#FFF9F2]" id="bolsa-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between text-[#8C8278]">
+          <span>Envío Asegurado USPS Priority:</span>
+          <span class="text-[#E0662D] font-mono font-medium">Gratis</span>
+        </div>
+        <div class="flex justify-between text-[#8C8278]">
+          <span>IVU Puerto Rico (11.5%):</span>
+          <span class="font-mono text-[#FFF9F2]" id="bolsa-tax">$0.00</span>
+        </div>
+        <div class="flex justify-between font-headline font-bold text-base text-[#FFF9F2] pt-2 border-t border-[rgba(140,110,80,0.25)]">
+          <span>Total Inversión:</span>
+          <span class="text-xl text-[#E0662D]" id="bolsa-total">$0.00 USD</span>
+        </div>
+
+        <button onclick="abrirCheckout()" class="w-full bg-[#E0662D] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#080604] font-sans font-bold text-xs tracking-[0.2em] uppercase py-3.5 transition-all duration-300 mt-2">
+          Proceder al Pago Seguro
+        </button>
+        <div class="text-[9px] text-center text-[#8C8278] font-mono tracking-wider uppercase pt-1">
+          ATH Móvil Business · Stripe Encrypted
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE CHECKOUT (ATH MÓVIL BUSINESS & STRIPE)                           -->
+  <!-- ========================================================================= -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 bg-[#080604]/85 backdrop-blur-md hidden items-center justify-center p-4 md:p-8">
+    <div class="bg-[#140E0A] border border-[rgba(140,110,80,0.35)] max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl p-6 md:p-10 relative font-sans text-xs">
+      <button onclick="cerrarCheckout()" class="absolute top-6 right-6 w-8 h-8 bg-[#080604] text-[#FFF9F2] flex items-center justify-center hover:bg-[#E0662D] hover:text-[#080604]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="mb-6 flex items-start justify-between">
+        <div>
+          <div class="text-[9px] font-mono tracking-widest uppercase text-[#E0662D]">DESPACHO OFICIAL · PUERTO RICO</div>
+          <h3 class="font-headline font-extrabold text-2xl text-[#FFF9F2] uppercase mt-1">Finalizar Adquisición</h3>
+          <p class="text-xs text-[#8C8278] mt-1 font-light">Todas las piezas se envían en estuche rígido forrado en terciopelo con sello de lacre.</p>
+        </div>
+        <img src="/logo-transparent.png" alt="Top Jewelry PR" class="h-10 w-auto object-contain opacity-90 hidden sm:block">
+      </div>
+
+      <form id="checkout-form" onsubmit="procesarPago(event)" class="space-y-4">
+        <div>
+          <label class="block text-[#8C8278] font-mono uppercase text-[9px] mb-1">Nombre Completo:</label>
+          <input type="text" id="chk-name" required placeholder="Carlos Rivera Santos" class="w-full bg-[#080604] border border-[rgba(140,110,80,0.35)] px-3.5 py-2.5 text-xs text-[#FFF9F2] outline-none focus:border-[#E0662D]">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[#8C8278] font-mono uppercase text-[9px] mb-1">Teléfono (ATH Móvil):</label>
+            <input type="tel" id="chk-phone" required placeholder="(787) 942-8812" class="w-full bg-[#080604] border border-[rgba(140,110,80,0.35)] px-3.5 py-2.5 text-xs text-[#FFF9F2] outline-none focus:border-[#E0662D]">
+          </div>
+          <div>
+            <label class="block text-[#8C8278] font-mono uppercase text-[9px] mb-1">Correo Electrónico:</label>
+            <input type="email" id="chk-email" required placeholder="carlos@pr.gov" class="w-full bg-[#080604] border border-[rgba(140,110,80,0.35)] px-3.5 py-2.5 text-xs text-[#FFF9F2] outline-none focus:border-[#E0662D]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[#8C8278] font-mono uppercase text-[9px] mb-1">Dirección Postal en PR o EE.UU.:</label>
+          <input type="text" id="chk-address" required placeholder="Calle del Cristo #104, San Juan, PR 00901" class="w-full bg-[#080604] border border-[rgba(140,110,80,0.35)] px-3.5 py-2.5 text-xs text-[#FFF9F2] outline-none focus:border-[#E0662D]">
+        </div>
+
+        <!-- Método de Pago -->
+        <div class="space-y-3 pt-3 border-t border-[rgba(140,110,80,0.25)]">
+          <label class="block text-[#8C8278] font-mono uppercase text-[9px]">Método de Pago:</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 p-3 bg-[#080604] border border-[#E0662D] cursor-pointer">
+              <input type="radio" name="payment_method" value="ath_movil" checked onchange="togglePaymentFields('ath')" class="accent-[#E0662D]">
+              <div>
+                <div class="font-bold text-[#FFF9F2]">ATH Móvil</div>
+                <div class="text-[9px] font-mono text-[#E0662D]">/topjewelrypr</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-[#080604] border border-[rgba(140,110,80,0.35)] cursor-pointer">
+              <input type="radio" name="payment_method" value="card" onchange="togglePaymentFields('card')" class="accent-[#E0662D]">
+              <div>
+                <div class="font-bold text-[#FFF9F2]">Tarjeta</div>
+                <div class="text-[9px] font-mono text-[#8C8278]">Visa, MC, Amex</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div id="ath-fields" class="p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.35)] space-y-1.5">
+          <div class="text-[11px] font-mono text-[#FFF9F2] flex items-center justify-between">
+            <span>ATH Móvil Negocio:</span>
+            <span class="text-[#E0662D] font-bold">/topjewelrypr</span>
+          </div>
+          <p class="text-[10px] text-[#8C8278] font-light leading-relaxed">
+            Abra su aplicación ATH Móvil, seleccione <strong>Pagar a Negocio</strong>, busque <strong>topjewelrypr</strong> y envíe el monto exacto.
+          </p>
+        </div>
+
+        <div id="card-fields" class="p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.35)] space-y-2.5 hidden">
+          <input type="text" placeholder="4242 •••• •••• 4242" class="w-full bg-[#140E0A] border border-[rgba(140,110,80,0.35)] px-3 py-2 text-xs outline-none text-[#FFF9F2]">
+          <div class="grid grid-cols-2 gap-2.5">
+            <input type="text" placeholder="MM/AA" class="w-full bg-[#140E0A] border border-[rgba(140,110,80,0.35)] px-3 py-2 text-xs outline-none text-[#FFF9F2]">
+            <input type="text" placeholder="CVC" class="w-full bg-[#140E0A] border border-[rgba(140,110,80,0.35)] px-3 py-2 text-xs outline-none text-[#FFF9F2]">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-[#E0662D] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#080604] font-sans font-bold text-xs tracking-[0.2em] uppercase py-3.5 transition-all duration-300 mt-2">
+          <span id="chk-btn-text">Confirmar Orden de Bóveda</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL DE ÉXITO                                                            -->
+  <!-- ========================================================================= -->
+  <div id="success-modal" class="fixed inset-0 z-50 bg-[#080604]/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#140E0A] border border-[rgba(140,110,80,0.35)] max-w-md w-full p-8 text-center space-y-5">
+      <div class="flex justify-center mb-2">
+        <img src="/logo-transparent.png" alt="Top Jewelry PR" class="h-14 w-auto object-contain filter drop-shadow-[0_4px_20px_rgba(224,102,45,0.4)]">
+      </div>
+      <div class="w-10 h-10 rounded-full bg-[#080604] border border-[#E0662D] text-[#E0662D] flex items-center justify-center mx-auto">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      </div>
+
+      <div>
+        <div class="text-[9px] font-mono tracking-widest uppercase text-[#E0662D]">ORDEN CONFIRMADA</div>
+        <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Transacción en Proceso</h3>
+        <p class="font-mono text-xs text-[#8C8278] mt-1.5" id="success-order-id">Orden #ORD-0000</p>
+      </div>
+
+      <p class="font-sans text-[#8C8278] text-xs font-light leading-relaxed">
+        Su orden ha sido asentada en el libro de bóveda. Nuestro equipo en San Juan preparará el estuche rígido con sello de lacre y certificado de kilataje.
+      </p>
+
+      <div class="space-y-2.5 pt-2">
+        <a id="success-whatsapp-btn" href="#" target="_blank" class="w-full bg-[#E0662D] hover:bg-[#FFF9F2] hover:text-[#080604] text-[#080604] font-sans font-bold text-xs tracking-[0.16em] uppercase py-3 inline-flex items-center justify-center gap-2 transition-colors">
+          <span>Enviar Comprobante por WhatsApp</span>
+        </a>
+        <button onclick="cerrarSuccessModal()" class="w-full border border-[rgba(140,110,80,0.35)] text-[#FFF9F2] hover:bg-[#080604] font-sans text-xs uppercase py-2.5 transition-colors">
+          Regresar a la Galería
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL ADMINISTRATIVO DE CONTROL DE INVENTARIO                             -->
+  <!-- ========================================================================= -->
+  <div id="admin-modal" class="fixed inset-0 z-50 bg-[#080604]/90 backdrop-blur-md hidden items-center justify-center p-4 md:p-8">
+    <div class="bg-[#140E0A] border border-[rgba(140,110,80,0.35)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl relative font-sans text-xs">
+      <button onclick="cerrarAdminModal()" class="absolute top-6 right-6 w-8 h-8 bg-[#080604] text-[#FFF9F2] flex items-center justify-center hover:bg-[#E0662D] hover:text-[#080604]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="mb-6">
+        <div class="text-[9px] font-mono tracking-widest uppercase text-[#E0662D]">PANEL INTERNO</div>
+        <h3 class="font-headline font-bold text-2xl text-[#FFF9F2] uppercase mt-1">Control de Bóveda & Existencias</h3>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <div class="p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.25)] text-center">
+          <div class="text-[9px] font-mono text-[#8C8278]">PIEZAS ACTIVAS</div>
+          <div class="font-headline font-bold text-2xl text-[#FFF9F2] mt-1">12</div>
+        </div>
+        <div class="p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.25)] text-center">
+          <div class="text-[9px] font-mono text-[#8C8278]">VALOR EN BÓVEDA</div>
+          <div class="font-headline font-bold text-2xl text-[#FFF9F2] mt-1">$18,470</div>
+        </div>
+        <div class="p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.25)] text-center">
+          <div class="text-[9px] font-mono text-[#8C8278]">ATH MÓVIL</div>
+          <div class="font-headline font-bold text-2xl text-[#E0662D] mt-1">Activo</div>
+        </div>
+      </div>
+
+      <div class="space-y-2 max-h-64 overflow-y-auto pr-1" id="admin-items-list"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SISTEMA JAVASCRIPT: LENIS, GSAP, THREE.JS Y ECOMMERCE PUERTO RICO         -->
+  <!-- ========================================================================= -->
+  <script>
+    // ── 1. LENIS SMOOTH SCROLLING ───────────────────────────────────────────
+    let lenis = null;
+    try {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true
+      });
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+    } catch(e) {}
+
+    // ── 2. AUDIO TÁCTIL PROCEDURAL (WEB AUDIO API) ──────────────────────────
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function playTactileTick(freq = 1200) {
+      if (!audioEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + 0.03);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.03);
+      } catch (err) {}
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('audio-state-text').innerText = audioEnabled ? 'ACTIVO' : 'MUTE';
+      document.getElementById('audio-state-text').className = audioEnabled ? 'text-[#E0662D]' : 'text-[#8C8278]';
+      if (audioEnabled) playTactileTick(1400);
+    }
+
+    // ── 3. PRODUCTOS REALES DE TOP JEWELRY PR (San Juan) ───────────────────
+    const PRODUCTS = [
+      {
+        id: 'prod-cuban-14k-solid',
+        name: 'Cadena Miami Cuban Link 14K Maciza',
+        category: 'cadenas',
+        categoryName: 'Cadenas Macizas',
+        price: 2450.00,
+        weight: '48.5g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '7.0 mm',
+        description: 'La pieza insignia del taller. Eslabones macizos con 8 facetas de corte diamante suizo. Caída perpendicular simétrica impecable.',
+        images: [
+          'https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1400&fit=crop',
+          'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=92&w=1400&fit=crop'
+        ],
+        variants: [
+          { name: '20 pulgadas (44.0g)', price: 2250.00 },
+          { name: '22 pulgadas (Estándar · 48.5g)', price: 2450.00 },
+          { name: '24 pulgadas (53.0g)', price: 2680.00 }
+        ],
+        stock: 4
+      },
+      {
+        id: 'prod-reloj-oro',
+        name: 'Reloj Presidente Cronógrafo Oro 14K',
+        category: 'aretes',
+        categoryName: 'Relojería de Precisión',
+        price: 3850.00,
+        weight: '94.0g total',
+        purity: 'Oro 14K & Acero Suizo',
+        width: '41.0 mm caja',
+        description: 'Bisel estriado en oro macizo 14K con dial negro satinado, brazalete presidente de 3 eslabones y calibre cronógrafo automático.',
+        images: [
+          '/watch-blend.png',
+          '/ref-watch.jpg'
+        ],
+        variants: [
+          { name: 'Caja 41mm con Eslabón Oro 14K', price: 3850.00 }
+        ],
+        stock: 1
+      },
+      {
+        id: 'prod-pulsera-tennis',
+        name: 'Pulsera Tennis Royale 14K con Circones',
+        category: 'pulseras',
+        categoryName: 'Pulseras Macizas',
+        price: 1350.00,
+        weight: '16.8g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '4.0 mm',
+        description: 'Engaste de 4 garras individuales por piedra con bisagras articuladas suaves que abrazan la muñeca con reflejo constante.',
+        images: [
+          'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: '7.0 pulgadas (16.0g)', price: 1300.00 },
+          { name: '7.5 pulgadas (16.8g)', price: 1350.00 }
+        ],
+        stock: 2
+      },
+      {
+        id: 'prod-ring-onix-14k',
+        name: 'Sortija Sello Imperial Ónix 14K',
+        category: 'anillos',
+        categoryName: 'Sortijas & Sellos',
+        price: 890.00,
+        weight: '18.2g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '16.0 mm cara',
+        description: 'Placa de ónix negro natural engastada a bisel en marco de oro macizo pulido a espejo. Núcleo denso con aro anatómico confort.',
+        images: [
+          'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Talla 9 (17.5g)', price: 870.00 },
+          { name: 'Talla 10 (18.2g)', price: 890.00 },
+          { name: 'Talla 11 (19.0g)', price: 920.00 }
+        ],
+        stock: 3
+      },
+      {
+        id: 'prod-rope-14k-solid',
+        name: 'Cordón Rope Chain 14K Diamantado',
+        category: 'cadenas',
+        categoryName: 'Cadenas Macizas',
+        price: 1680.00,
+        weight: '32.4g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '5.0 mm',
+        description: 'Tejido helicoidal continuo con biselado perimetral. Reflejo constante de luz y resistencia superior a tirones.',
+        images: [
+          'https://images.unsplash.com/photo-1598560917505-59a3ad559071?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: '22 pulgadas (29.5g)', price: 1540.00 },
+          { name: '24 pulgadas (32.4g)', price: 1680.00 },
+          { name: '26 pulgadas (35.2g)', price: 1820.00 }
+        ],
+        stock: 5
+      },
+      {
+        id: 'prod-medalla-sanjudas',
+        name: 'Medalla Sagrada San Judas Tadeo 14K',
+        category: 'collares',
+        categoryName: 'Medallas Religiosas',
+        price: 1150.00,
+        weight: '22.8g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '38.0 mm',
+        description: 'Relieve tridimensional de San Judas Tadeo con manto pulido y fondo arenado mate. Basa reforzada para cadenas de hasta 8mm.',
+        images: [
+          'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Mediana 30mm (16.5g)', price: 890.00 },
+          { name: 'Grande 38mm (22.8g)', price: 1150.00 }
+        ],
+        stock: 2
+      },
+      {
+        id: 'prod-pulsera-cuban-14k',
+        name: 'Pulsera Miami Cuban Link 14K Maciza',
+        category: 'pulseras',
+        categoryName: 'Pulseras Macizas',
+        price: 1120.00,
+        weight: '22.0g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '7.5 mm',
+        description: 'La versión muñeca del clásico cubano. Cierre de caja oculto con dos seguros laterales suizos.',
+        images: [
+          'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: '7.5 pulgadas (20.5g)', price: 1050.00 },
+          { name: '8.0 pulgadas (22.0g)', price: 1120.00 },
+          { name: '8.5 pulgadas (23.8g)', price: 1210.00 }
+        ],
+        stock: 4
+      },
+      {
+        id: 'prod-ring-nugget-10k',
+        name: 'Sortija Nugget Clásica 10K Maciza',
+        category: 'anillos',
+        categoryName: 'Sortijas & Sellos',
+        price: 640.00,
+        weight: '14.5g',
+        purity: 'Oro 10K Macizo (41.7%)',
+        width: '14.0 mm',
+        description: 'Textura orgánica de pepita de oro natural pulida a mano con cavidades arenadas para alto contraste de sombras.',
+        images: [
+          'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Talla 9.5 (14.0g)', price: 620.00 },
+          { name: 'Talla 10.5 (14.5g)', price: 640.00 },
+          { name: 'Talla 11.5 (15.2g)', price: 670.00 }
+        ],
+        stock: 6
+      },
+      {
+        id: 'prod-cadena-franco-14k',
+        name: 'Cadena Franco Cuadrada 14K Maciza',
+        category: 'cadenas',
+        categoryName: 'Cadenas Macizas',
+        price: 1980.00,
+        weight: '38.0g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '4.5 mm',
+        description: 'Estructura en V de cuatro caras pulidas. Máxima resistencia mecánica que no se tuerce ni se dobla.',
+        images: [
+          'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1598560917505-59a3ad559071?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: '22 pulgadas (35.0g)', price: 1820.00 },
+          { name: '24 pulgadas (38.0g)', price: 1980.00 }
+        ],
+        stock: 3
+      },
+      {
+        id: 'prod-dije-cristo-14k',
+        name: 'Dije Cristo Crucificado 14K Macizo',
+        category: 'collares',
+        categoryName: 'Medallas Religiosas',
+        price: 780.00,
+        weight: '12.6g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '42.0 mm',
+        description: 'Escultura sacra en tres dimensiones con cruz diamantada y cuerpo de Cristo en relieve brillante.',
+        images: [
+          'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Estándar 42mm (12.6g)', price: 780.00 }
+        ],
+        stock: 4
+      },
+      {
+        id: 'prod-ring-solitario-14k',
+        name: 'Sortija Solitario de Compromiso 14K',
+        category: 'anillos',
+        categoryName: 'Sortijas & Sellos',
+        price: 1420.00,
+        weight: '6.8g',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '2.5 mm brazo',
+        description: 'Bisel refinado de 6 puntas sosteniendo piedra central de corte brillante con galería calada.',
+        images: [
+          'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Talla 6 (6.5g)', price: 1390.00 },
+          { name: 'Talla 7 (6.8g)', price: 1420.00 }
+        ],
+        stock: 2
+      },
+      {
+        id: 'prod-aretes-huggies-14k',
+        name: 'Aretes Huggies 14K Oro Macizo',
+        category: 'aretes',
+        categoryName: 'Aretes & Relojes',
+        price: 420.00,
+        weight: '5.2g par',
+        purity: 'Oro 14K Plumb (58.5%)',
+        width: '12.0 mm diámetro',
+        description: 'Argollas tipo huggie con cierre invisible de clic para uso diario continuo sin incomodidad.',
+        images: [
+          'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=92&w=1200&fit=crop',
+          'https://images.unsplash.com/photo-1611591475103-4fa1b7765a7f?q=92&w=1200&fit=crop'
+        ],
+        variants: [
+          { name: 'Par Regular (5.2g)', price: 420.00 }
+        ],
+        stock: 8
+      }
+    ];
+
+    let cart = [];
+    let activeCategory = 'todos';
+    let qvCurrentProduct = null;
+    let qvSelectedVariantIndex = 0;
+
+    // ── 4. THREE.JS EFECTOS DE LUZ AMBIENTAL Y POLVO EN EL HERO ─────────────
+    let fxScene, fxCamera, fxRenderer, dustPoints, ambientLightLeak;
+
+    function initHeroThreeFX() {
+      const canvas = document.getElementById('hero-fx-canvas');
+      if (!canvas) return;
+
+      const W = canvas.parentElement.clientWidth || window.innerWidth;
+      const H = canvas.parentElement.clientHeight || window.innerHeight;
+
+      fxScene = new THREE.Scene();
+      fxCamera = new THREE.PerspectiveCamera(35, W / H, 0.1, 100);
+      fxCamera.position.z = 7;
+
+      fxRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      fxRenderer.setSize(W, H);
+      fxRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Partículas flotantes de polvo de oro
+      const dustGeo = new THREE.BufferGeometry();
+      const count = 150;
+      const pos = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i += 3) {
+        pos[i] = (Math.random() - 0.5) * 14;
+        pos[i + 1] = (Math.random() - 0.5) * 8;
+        pos[i + 2] = (Math.random() - 0.5) * 8;
+      }
+      dustGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      const dustMat = new THREE.PointsMaterial({
+        color: 0xE0662D,
+        size: 0.038,
+        transparent: true,
+        opacity: 0.45,
+        blending: THREE.AdditiveBlending
+      });
+      dustPoints = new THREE.Points(dustGeo, dustMat);
+      fxScene.add(dustPoints);
+
+      // Foco de luz que sigue suavemente el mouse
+      ambientLightLeak = new THREE.PointLight(0xffb866, 1.8, 10);
+      ambientLightLeak.position.set(2, 1, 3);
+      fxScene.add(ambientLightLeak);
+
+      window.addEventListener('mousemove', (e) => {
+        const nx = (e.clientX / window.innerWidth - 0.5) * 8;
+        const ny = -(e.clientY / window.innerHeight - 0.5) * 6;
+        if (ambientLightLeak) {
+          ambientLightLeak.position.x += (nx - ambientLightLeak.position.x) * 0.05;
+          ambientLightLeak.position.y += (ny - ambientLightLeak.position.y) * 0.05;
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        const nw = canvas.parentElement.clientWidth || window.innerWidth;
+        const nh = canvas.parentElement.clientHeight || window.innerHeight;
+        fxCamera.aspect = nw / nh;
+        fxCamera.updateProjectionMatrix();
+        fxRenderer.setSize(nw, nh);
+      });
+
+      function loop() {
+        requestAnimationFrame(loop);
+        if (dustPoints) {
+          dustPoints.rotation.y += 0.0005;
+          dustPoints.rotation.x += 0.0002;
+        }
+        fxRenderer.render(fxScene, fxCamera);
+      }
+      loop();
+    }
+
+    // ── 5. RENDERIZADO DEL CATÁLOGO & FILTROS ────────────────────────────────
+    function filtrarCategoria(cat) {
+      activeCategory = cat;
+      playTactileTick(950);
+      document.querySelectorAll('#category-bar button').forEach(b => {
+        if (b.dataset.cat === cat) {
+          b.className = 'cat-pill active px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[#E0662D] bg-[#E0662D] text-[#080604] font-bold';
+        } else {
+          b.className = 'cat-pill px-4 py-2 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]';
+        }
+      });
+      renderProducts();
+    }
+
+    function filtrarProductos() {
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      if (!grid) return;
+
+      const q = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+
+      const filtered = PRODUCTS.filter(p => {
+        const matchCat = (activeCategory === 'todos' || p.category === activeCategory);
+        const matchQ = !q || p.name.toLowerCase().includes(q) || p.purity.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="col-span-3 py-16 text-center text-[#8C8278] font-mono text-xs">
+            No se encontraron piezas en bóveda con esos términos.
+            <button onclick="filtrarCategoria('todos')" class="mt-3 block mx-auto text-[#E0662D] underline">Ver todo el catálogo</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(prod => `
+        <article class="bg-[#140E0A] border border-[rgba(140,110,80,0.25)] flex flex-col justify-between group hover:border-[#E0662D] transition-colors cursor-pointer" onclick="abrirQuickView('${prod.id}')">
+          <div class="zoom-frame h-72 relative bg-[#080604]">
+            <img src="${prod.images[0]}" alt="${prod.name} — TOP JEWELRY PR" class="w-full h-full object-cover filter brightness-[0.88] contrast-[1.08]">
+            <div class="absolute top-3 left-3 bg-[#080604] border border-[rgba(140,110,80,0.25)] text-[#FFF9F2] text-[9px] font-mono uppercase px-2.5 py-1">
+              ${prod.purity}
+            </div>
+            <div class="absolute bottom-3 right-3 bg-[#080604]/85 text-[#8C8278] text-[9.5px] font-mono px-2 py-0.5">
+              ${prod.weight}
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col justify-between flex-1 space-y-4">
+            <div>
+              <div class="text-[9px] font-mono tracking-widest uppercase text-[#E0662D]">${prod.categoryName}</div>
+              <h4 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase mt-1 group-hover:text-[#E0662D] transition-colors">${prod.name}</h4>
+              <p class="font-sans text-xs text-[#8C8278] font-light mt-1.5 line-clamp-2 leading-relaxed">${prod.description}</p>
+            </div>
+
+            <div class="pt-4 border-t border-[rgba(140,110,80,0.2)] flex items-baseline justify-between">
+              <div>
+                <span class="text-[8px] font-mono uppercase tracking-widest text-[#8C8278] block">INVERSIÓN</span>
+                <span class="font-headline font-bold text-xl text-[#FFF9F2]">$${prod.price.toLocaleString()}.00</span>
+              </div>
+              <div class="flex gap-2">
+                <button onclick="event.stopPropagation();abrirQuickView('${prod.id}')" class="text-[9px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] px-3 py-1.5 text-[#FFF9F2] hover:border-[#E0662D]">Ver</button>
+                <button onclick="event.stopPropagation();agregarAlCarritoDirecto('${prod.id}','${prod.name.replace(/'/g,"\\'")}',${prod.price},'${prod.variants[0]?.name || prod.weight}','${prod.images[0]}')" class="text-[9px] font-mono tracking-wider uppercase bg-[#E0662D] text-[#080604] font-bold px-3 py-1.5 hover:bg-[#FFF9F2]">+ Bolsa</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // ── 6. MODAL DE VISTA RÁPIDA (QUICK VIEW) ────────────────────────────────
+    function abrirQuickView(id) {
+      playTactileTick(1100);
+      const prod = PRODUCTS.find(p => p.id === id);
+      if (!prod) return;
+
+      qvCurrentProduct = prod;
+      qvSelectedVariantIndex = 0;
+
+      document.getElementById('qv-category').innerText = `${prod.categoryName} · ${prod.purity}`;
+      document.getElementById('qv-name').innerText = prod.name;
+      document.getElementById('qv-price').innerText = `$${prod.variants[0]?.price?.toLocaleString() || prod.price.toLocaleString()}.00 USD`;
+      document.getElementById('qv-description').innerText = prod.description;
+      document.getElementById('qv-main-image').src = prod.images[0];
+
+      document.getElementById('qv-variants-container').innerHTML = prod.variants.map((v, i) => `
+        <button onclick="selectQvVariant(${i})" id="qvv-btn-${i}" class="p-2.5 text-left text-xs font-mono border ${i === 0 ? 'border-[#E0662D] bg-[#080604] text-[#E0662D] font-bold' : 'border-[rgba(140,110,80,0.3)] text-[#8C8278]'} transition-colors">
+          <div>${v.name}</div>
+          <div class="text-[10px] mt-0.5">$${v.price.toLocaleString()} USD</div>
+        </button>
+      `).join('');
+
+      const m = document.getElementById('quickview-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function selectQvVariant(idx) {
+      playTactileTick(900);
+      qvSelectedVariantIndex = idx;
+      const v = qvCurrentProduct.variants[idx];
+      document.getElementById('qv-price').innerText = `$${v.price.toLocaleString()}.00 USD`;
+
+      qvCurrentProduct.variants.forEach((_, i) => {
+        const btn = document.getElementById(`qvv-btn-${i}`);
+        if (i === idx) {
+          btn.className = 'p-2.5 text-left text-xs font-mono border border-[#E0662D] bg-[#080604] text-[#E0662D] font-bold';
+        } else {
+          btn.className = 'p-2.5 text-left text-xs font-mono border border-[rgba(140,110,80,0.3)] text-[#8C8278]';
+        }
+      });
+    }
+
+    function cerrarQuickView() {
+      const m = document.getElementById('quickview-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+      qvCurrentProduct = null;
+    }
+
+    function agregarAlCarritoDesdeModal() {
+      if (!qvCurrentProduct) return;
+      const v = qvCurrentProduct.variants[qvSelectedVariantIndex];
+      agregarAlCarritoDirecto(qvCurrentProduct.id, qvCurrentProduct.name, v.price, v.name, qvCurrentProduct.images[0]);
+      cerrarQuickView();
+    }
+
+    function comprarDirectoATH() {
+      agregarAlCarritoDesdeModal();
+      abrirCheckout();
+    }
+
+    // ── 7. CARRITO & GESTIÓN DE BOLSA (IVU PUERTO RICO 11.5%) ────────────────
+    function agregarAlCarritoDirecto(id, name, price, variant, image) {
+      playTactileTick(1300);
+      const ex = cart.find(i => i.id === id && i.variant === variant);
+      if (ex) ex.quantity += 1;
+      else cart.push({ id, name, price, variant, image, quantity: 1 });
+      updateBolsaUI();
+      toggleBolsa(true);
+    }
+
+    function updateBolsaUI() {
+      const count = cart.reduce((a, b) => a + b.quantity, 0);
+      document.getElementById('bolsa-badge').innerText = count;
+
+      const container = document.getElementById('bolsa-items-container');
+      if (!container) return;
+
+      if (!cart.length) {
+        container.innerHTML = `
+          <div class="py-16 text-center text-[#8C8278] font-mono text-xs">
+            <svg class="w-10 h-10 mx-auto text-[rgba(140,110,80,0.35)] mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <p class="tracking-wider uppercase">Su bolsa de orfebrería está vacía</p>
+            <button onclick="toggleBolsa()" class="mt-3 text-xs underline text-[#E0662D]">Explorar Bóveda</button>
+          </div>
+        `;
+        document.getElementById('bolsa-subtotal').innerText = '$0.00';
+        document.getElementById('bolsa-tax').innerText = '$0.00';
+        document.getElementById('bolsa-total').innerText = '$0.00 USD';
+        return;
+      }
+
+      container.innerHTML = cart.map((item, idx) => `
+        <div class="flex gap-4 p-3.5 bg-[#080604] border border-[rgba(140,110,80,0.25)]">
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover flex-shrink-0 border border-[rgba(140,110,80,0.2)]">
+          <div class="flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-start">
+                <h5 class="font-headline font-bold text-xs text-[#FFF9F2] uppercase">${item.name}</h5>
+                <button onclick="removerItemBolsa(${idx})" class="text-[#8C8278] hover:text-[#E0662D] text-xs ml-2">✕</button>
+              </div>
+              <div class="text-[9.5px] font-mono text-[#8C8278] mt-0.5">${item.variant}</div>
+            </div>
+            <div class="flex justify-between items-center mt-2.5 pt-2 border-t border-[rgba(140,110,80,0.2)]">
+              <div class="flex items-center border border-[rgba(140,110,80,0.35)] bg-[#140E0A] text-xs">
+                <button onclick="cambiarCantidad(${idx}, -1)" class="px-2 py-0.5 text-[#8C8278] hover:text-[#FFF9F2]">-</button>
+                <span class="px-2 py-0.5 text-[#FFF9F2] font-mono font-medium">${item.quantity}</span>
+                <button onclick="cambiarCantidad(${idx}, 1)" class="px-2 py-0.5 text-[#8C8278] hover:text-[#FFF9F2]">+</button>
+              </div>
+              <span class="font-headline font-bold text-sm text-[#FFF9F2]">$${(item.price * item.quantity).toLocaleString()}.00</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((a, b) => a + (b.price * b.quantity), 0);
+      const tax = subtotal * 0.115;
+      const total = subtotal + tax;
+
+      document.getElementById('bolsa-subtotal').innerText = `$${subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})}`;
+      document.getElementById('bolsa-tax').innerText = `$${tax.toFixed(2)}`;
+      document.getElementById('bolsa-total').innerText = `$${total.toFixed(2)} USD`;
+    }
+
+    function cambiarCantidad(idx, d) {
+      playTactileTick(800);
+      if (!cart[idx]) return;
+      cart[idx].quantity += d;
+      if (cart[idx].quantity <= 0) cart.splice(idx, 1);
+      updateBolsaUI();
+    }
+
+    function removerItemBolsa(idx) {
+      playTactileTick(600);
+      cart.splice(idx, 1);
+      updateBolsaUI();
+    }
+
+    function toggleBolsa(forceOpen = false) {
+      playTactileTick(1000);
+      const d = document.getElementById('bolsa-drawer');
+      const c = document.getElementById('bolsa-content');
+      const isOpen = !d.classList.contains('pointer-events-none');
+
+      if (isOpen && !forceOpen) {
+        d.classList.add('opacity-0', 'pointer-events-none');
+        c.classList.add('translate-x-full');
+      } else {
+        d.classList.remove('opacity-0', 'pointer-events-none');
+        c.classList.remove('translate-x-full');
+      }
+    }
+
+    // ── 8. CHECKOUT (ATH MÓVIL BUSINESS + STRIPE) ───────────────────────────
+    function abrirCheckout() {
+      if (!cart.length) { alert('Su bolsa está vacía.'); return; }
+      toggleBolsa(false);
+      playTactileTick(1200);
+
+      const subtotal = cart.reduce((a, b) => a + (b.price * b.quantity), 0);
+      const total = subtotal * 1.115;
+      document.getElementById('chk-btn-text').innerText = `Pagar $${total.toFixed(2)} USD vía ATH Móvil`;
+
+      const m = document.getElementById('checkout-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function cerrarCheckout() {
+      const m = document.getElementById('checkout-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function togglePaymentFields(type) {
+      playTactileTick(900);
+      const ath = document.getElementById('ath-fields');
+      const card = document.getElementById('card-fields');
+      const btn = document.getElementById('chk-btn-text');
+      const subtotal = cart.reduce((a, b) => a + (b.price * b.quantity), 0);
+      const total = subtotal * 1.115;
+
+      if (type === 'ath') {
+        ath.classList.remove('hidden');
+        card.classList.add('hidden');
+        btn.innerText = `Pagar $${total.toFixed(2)} USD vía ATH Móvil`;
+      } else {
+        ath.classList.add('hidden');
+        card.classList.remove('hidden');
+        btn.innerText = `Pagar $${total.toFixed(2)} USD con Tarjeta`;
+      }
+    }
+
+    function procesarPago(e) {
+      e.preventDefault();
+      playTactileTick(1500);
+
+      const name = document.getElementById('chk-name').value;
+      const phone = document.getElementById('chk-phone').value;
+      const orderId = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
+
+      const subtotal = cart.reduce((a, b) => a + (b.price * b.quantity), 0);
+      const total = subtotal * 1.115;
+      const itemsList = cart.map(i => `• ${i.name} (${i.variant}) x${i.quantity} - $${(i.price * i.quantity).toLocaleString()}`).join('%0A');
+
+      const waMsg = `*NUEVA ORDEN — TOP JEWELRY PR*%0A%0A*Orden:* ${orderId}%0A*Cliente:* ${encodeURIComponent(name)}%0A*Teléfono:* ${encodeURIComponent(phone)}%0A%0A*Piezas:*%0A${itemsList}%0A%0A*Total con IVU (11.5%):* $${total.toFixed(2)} USD%0A%0AHe realizado el envío por ATH Móvil a /topjewelrypr. Adjunto comprobante.`;
+
+      document.getElementById('success-order-id').innerText = `ORDEN #${orderId} · CLIENTE: ${name.toUpperCase()}`;
+      document.getElementById('success-whatsapp-btn').href = `https://wa.me/17879428812?text=${waMsg}`;
+
+      cerrarCheckout();
+      cart = [];
+      updateBolsaUI();
+
+      const succ = document.getElementById('success-modal');
+      succ.classList.remove('hidden');
+      succ.classList.add('flex');
+    }
+
+    function cerrarSuccessModal() {
+      const succ = document.getElementById('success-modal');
+      succ.classList.add('hidden');
+      succ.classList.remove('flex');
+    }
+
+    // ── 9. LABORATORIO DE ORO (SIMULADOR DE GRAMAJE) ────────────────────────
+    let labPurity = '14k';
+
+    function setLabPurity(purity) {
+      labPurity = purity;
+      playTactileTick(1000);
+      const b14 = document.getElementById('lab-p-14k');
+      const b10 = document.getElementById('lab-p-10k');
+      if (purity === '14k') {
+        b14.className = 'px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[#E0662D] bg-[#E0662D] text-[#080604] font-bold';
+        b10.className = 'px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]';
+      } else {
+        b10.className = 'px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[#E0662D] bg-[#E0662D] text-[#080604] font-bold';
+        b14.className = 'px-5 py-2.5 text-[10px] font-mono tracking-wider uppercase border border-[rgba(140,110,80,0.35)] text-[#B8ADA1] hover:text-[#FFF9F2]';
+      }
+      updateLab();
+    }
+
+    function updateLab() {
+      const slider = document.getElementById('lab-slider');
+      if (!slider) return;
+      const grams = parseFloat(slider.value);
+
+      // Barra slider progress
+      const pct = ((grams - 15) / (120 - 15)) * 100;
+      slider.style.backgroundSize = pct + '% 100%';
+
+      document.getElementById('lab-grams-val').innerText = `${grams.toFixed(1)} g`;
+
+      const mmWidth = Math.min(12, Math.max(3.2, 3.2 + (grams - 15) * 0.075));
+      document.getElementById('lab-width-val').innerText = `${mmWidth.toFixed(1)} mm`;
+
+      const ratio = labPurity === '14k' ? 0.585 : 0.417;
+      const pureGrams = grams * ratio;
+      document.getElementById('lab-pure-val').innerText = `${pureGrams.toFixed(1)} g Au`;
+
+      const rate = labPurity === '14k' ? 50.50 : 36.80;
+      const price = Math.round(grams * rate);
+      document.getElementById('lab-price-val').innerText = `$${price.toLocaleString()}.00 USD`;
+
+      const pText = labPurity === '14k' ? 'Oro 14K Plumb (58.5%)' : 'Oro 10K Macizo (41.7%)';
+      const msg = encodeURIComponent(`Hola TOP JEWELRY PR, estuve en su calculador de bóveda y deseo cotizar una Cadena Cubana de ${grams.toFixed(1)}g (${mmWidth.toFixed(1)}mm) en ${pText}.`);
+      document.getElementById('lab-whatsapp-btn').href = `https://wa.me/17879428812?text=${msg}`;
+    }
+
+    // ── 10. PANEL DE ADMINISTRACIÓN ─────────────────────────────────────────
+    function abrirAdminModal() {
+      playTactileTick(1100);
+      const list = document.getElementById('admin-items-list');
+      if (!list) return;
+
+      list.innerHTML = PRODUCTS.map(p => `
+        <div class="flex items-center justify-between p-3 bg-[#080604] border border-[rgba(140,110,80,0.25)] text-xs">
+          <div>
+            <div class="font-bold text-[#FFF9F2]">${p.name}</div>
+            <div class="text-[9.5px] font-mono text-[#8C8278]">${p.purity} · ${p.weight} · $${p.price.toLocaleString()}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full ${p.stock > 0 ? 'bg-emerald-500' : 'bg-red-500'}"></span>
+            <span class="text-[10px] font-mono text-[#E0662D]">${p.stock} en bóveda</span>
+          </div>
+        </div>
+      `).join('');
+
+      const m = document.getElementById('admin-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function cerrarAdminModal() {
+      const m = document.getElementById('admin-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        cerrarQuickView();
+        cerrarCheckout();
+        cerrarSuccessModal();
+        cerrarAdminModal();
+        toggleBolsa(false);
+      }
+    });
+
+    // INICIALIZACIÓN GENERAL
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroThreeFX();
+      renderProducts();
+      updateBolsaUI();
+      updateLab();
+    });
+  </script>
+</body>
+</html>

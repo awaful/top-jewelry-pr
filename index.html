@@ -175,7 +175,30 @@
     }
   </style>
 </head>
-<body class="bg-[#080604] text-[#FFF9F2] font-sans antialiased overflow-x-hidden selection:bg-[#E0662D] selection:text-[#080604]">
+<body class="bg-[#050403] text-[#FFF9F2] font-sans antialiased overflow-x-hidden selection:bg-[#E0662D] selection:text-[#080604]">
+
+  <!-- ========================================================================= -->
+  <!-- 00. CURSOR CINEMÁTICO HALO LÍQUIDO (ESTILO ORYZO.AI)                      -->
+  <!-- ========================================================================= -->
+  <div id="cursor-dot" class="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#E0662D] pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 hidden md:block"></div>
+  <div id="cursor-halo" class="fixed top-0 left-0 w-10 h-10 rounded-full border border-[rgba(224,102,45,0.45)] pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,background-color] duration-300 ease-out hidden md:block"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 00. PRELOADER CINEMATOGRÁFICO DE APERTURA DE BÓVEDA (ORYZO INTRO)         -->
+  <!-- ========================================================================= -->
+  <div id="vault-loader" class="fixed inset-0 z-[100] bg-[#050403] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+    <div class="flex flex-col items-center gap-5 text-center px-6">
+      <img src="/logo-transparent.png" alt="Top Jewelry PR Sello" class="h-14 md:h-16 w-auto object-contain filter drop-shadow-[0_0_30px_rgba(224,102,45,0.7)]">
+      <div class="font-mono text-[9px] tracking-[0.38em] uppercase text-[#E0662D]">ATELIER DE ALTA ORFEBRERÍA · SAN JUAN</div>
+      <div class="w-48 h-[1.5px] bg-[rgba(140,110,80,0.25)] mt-2 overflow-hidden relative rounded-full">
+        <div id="loader-bar" class="absolute inset-y-0 left-0 bg-[#E0662D] w-0 transition-all duration-200"></div>
+      </div>
+      <div class="flex items-center gap-3 font-mono text-[10px] text-[#8C8278] tracking-widest mt-1">
+        <span>INICIANDO BÓVEDA</span>
+        <span class="text-[#E0662D] font-bold" id="loader-counter">0%</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================================= -->
   <!-- BARRA DE NAVEGACIÓN IDÉNTICA A LA REFERENCIA                              -->
@@ -196,9 +219,9 @@
       <!-- MENÚ DE NAVEGACIÓN Y BOLSA (Exacto como en la referencia) -->
       <div class="flex items-center gap-8 md:gap-12">
         <nav class="hidden md:flex items-center gap-8 text-[11px] font-sans font-medium tracking-[0.2em] uppercase text-[#FFF9F2]">
-          <a href="#coleccion" class="hover:text-[#E0662D] transition-colors">Colección</a>
-          <a href="#piezas" class="hover:text-[#E0662D] transition-colors">Piezas</a>
-          <a href="#nosotros" class="hover:text-[#E0662D] transition-colors">Nosotros</a>
+          <a href="#coleccion" class="hover:text-[#E0662D] transition-colors nav-link">Colección</a>
+          <a href="#piezas" class="hover:text-[#E0662D] transition-colors nav-link">Piezas</a>
+          <a href="#nosotros" class="hover:text-[#E0662D] transition-colors nav-link">Nosotros</a>
         </nav>
 
         <!-- Toggle Sonido Procedural -->
@@ -226,21 +249,25 @@
   </header>
 
   <!-- ========================================================================= -->
-  <!-- SECCIÓN 01: HERO PRINCIPAL (REPRODUCCIÓN EXACTA DE LA REFERENCIA)         -->
+  <!-- SECCIÓN 01: HERO PRINCIPAL (NIVEL ORYZO.AI — PROFUNDIDAD & PARALLAX 3D)   -->
   <!-- ========================================================================= -->
-  <section class="relative min-h-[90vh] md:min-h-[92vh] flex items-center overflow-hidden border-dashed-divider">
+  <section id="hero-section" class="relative min-h-[92vh] md:min-h-[95vh] flex items-center overflow-hidden border-dashed-divider select-none">
     
-    <!-- FONDO FOTOGRÁFICO DE ALTA RESOLUCIÓN EXTRAÍDO DE LA REFERENCIA (Joyería y Roca Basáltica) -->
-    <div class="absolute inset-0 z-0 pointer-events-none">
-      <!-- Imagen original en alta fidelidad colocada a la derecha con degradado de fusión a la izquierda -->
-      <img 
-        src="/hero-clean-bg.jpg" 
-        alt="Cadena Miami Cuban con Diamantes y Pulsera Tennis sobre roca volcánica — TOP JEWELRY PR" 
-        class="w-full h-full object-cover object-right md:object-center filter brightness-[0.92] contrast-[1.05]"
-      >
-      <!-- Capa de sombra lateral izquierda para garantizar 100% legibilidad y pureza editorial -->
-      <div class="absolute inset-0 bg-gradient-to-r from-[#080604] via-[#080604]/80 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#080604] via-transparent to-transparent"></div>
+    <!-- FONDO FOTOGRÁFICO DE ALTA RESOLUCIÓN CON PARALLAX Y TILT MULTICAPA INTERACTIVO -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <!-- Capa de imagen en contenedor Parallax reactivo al cursor -->
+      <div id="hero-parallax-container" class="w-full h-full transform scale-105 will-change-transform transition-transform duration-700 ease-out">
+        <img 
+          src="/hero-clean-bg.jpg" 
+          alt="Cadena Miami Cuban con Diamantes y Pulsera Tennis sobre roca volcánica — TOP JEWELRY PR" 
+          class="w-full h-full object-cover object-right md:object-center filter brightness-[0.94] contrast-[1.06]"
+        >
+      </div>
+      <!-- Gradientes de fusión cinemáticos calculados para máxima pureza editorial -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/85 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent"></div>
+      <!-- Resplandor ambiental de luz ámbar de orfebrería -->
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-[#E0662D]/10 filter blur-[100px] pointer-events-none"></div>
     </div>
 
     <!-- CANVAS 3D INTERACTIVO PARA EFECTOS DE LUZ AMBIENTAL Y POLVO DE ORO -->
@@ -252,58 +279,71 @@
       <span class="font-sans text-[10px] tracking-[0.3em] uppercase text-[#FFF9F2] opacity-80 font-medium">TOP JEWELRY PR</span>
     </div>
 
-    <!-- CONTENIDO EDITORIAL HERO (Izquierda) -->
+    <!-- CONTENIDO EDITORIAL HERO CON MÁSCARAS DE TEXTO (TEXT REVEAL MASKS ORYZO) -->
     <div class="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 w-full py-16 md:py-24">
       <div class="max-w-2xl">
         
         <!-- Etiqueta superior exacta: JOYERÍA CONTEMPORÁNEA · PUERTO RICO -->
-        <div class="text-[10px] md:text-[11px] font-sans font-medium tracking-[0.24em] uppercase text-[#8C8278] mb-6 flex items-center gap-2">
+        <div class="hero-stagger opacity-0 transform translate-y-4 text-[10px] md:text-[11px] font-mono font-medium tracking-[0.28em] uppercase text-[#8C8278] mb-6 flex items-center gap-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#E0662D]"></span>
           <span>JOYERÍA CONTEMPORÁNEA</span>
-          <span class="w-1 h-1 rounded-full bg-[#E0662D]"></span>
+          <span class="text-[#E0662D]">·</span>
           <span>PUERTO RICO</span>
         </div>
 
-        <!-- Titular monumental exacto con punto naranja característico -->
-        <h1 class="font-headline font-extrabold text-[46px] sm:text-[62px] md:text-[76px] lg:text-[86px] leading-[0.93] tracking-[-0.03em] text-[#FFF9F2] uppercase mb-8">
-          EL VALOR<br>
-          ESTÁ EN LOS<br>
-          DETALLES<span class="text-[#E0662D]">.</span>
+        <!-- Titular monumental con máscara de revelado por línea (Oryzo split mask) -->
+        <h1 class="font-headline font-extrabold text-[48px] sm:text-[66px] md:text-[80px] lg:text-[92px] leading-[0.92] tracking-[-0.035em] text-[#FFF9F2] uppercase mb-8">
+          <div class="overflow-hidden py-0.5">
+            <span class="hero-title-line block transform translate-y-[110%] will-change-transform">EL VALOR</span>
+          </div>
+          <div class="overflow-hidden py-0.5">
+            <span class="hero-title-line block transform translate-y-[110%] will-change-transform">ESTÁ EN LOS</span>
+          </div>
+          <div class="overflow-hidden py-0.5">
+            <span class="hero-title-line block transform translate-y-[110%] will-change-transform">DETALLES<span class="text-[#E0662D]">.</span></span>
+          </div>
         </h1>
 
-        <!-- Subtítulo exacto -->
-        <p class="font-sans text-[#B8ADA1] text-sm sm:text-base md:text-[17px] font-light leading-relaxed max-w-lg mb-10">
+        <!-- Subtítulo cinemático -->
+        <p class="hero-stagger opacity-0 transform translate-y-6 font-sans text-[#B8ADA1] text-sm sm:text-base md:text-[17px] font-light leading-relaxed max-w-lg mb-10">
           Diseños exclusivos, calidad incomparable<br class="hidden sm:inline">
           y un estilo que trasciende.
         </p>
 
-        <!-- Botón CTA con subrayado naranja y flecha exactos -->
-        <div>
+        <!-- Botón CTA magnético con subrayado reactivo -->
+        <div class="hero-stagger opacity-0 transform translate-y-6">
           <a 
-            href="#piezas" 
-            class="group inline-flex items-center gap-3 text-[11px] md:text-xs font-sans font-semibold tracking-[0.22em] uppercase text-[#FFF9F2] border-b-2 border-[#E0662D] pb-1.5 transition-all duration-300 hover:text-[#E0662D]"
+            href="#coleccion" 
+            id="hero-cta-btn"
+            class="group inline-flex items-center gap-3.5 text-[11px] md:text-xs font-sans font-semibold tracking-[0.24em] uppercase text-[#FFF9F2] pb-2 relative transition-all duration-300 hover:text-[#E0662D]"
           >
             <span>EXPLORAR COLECCIÓN</span>
-            <span class="transform transition-transform duration-300 group-hover:translate-x-1.5 text-base leading-none">→</span>
+            <span class="transform transition-transform duration-300 group-hover:translate-x-2 text-base leading-none text-[#E0662D]">→</span>
+            <!-- Línea de subrayado dinámica -->
+            <span id="hero-cta-line" class="absolute bottom-0 left-0 w-full h-[2px] bg-[#E0662D] transform origin-left scale-x-100 transition-transform duration-500 ease-out"></span>
           </a>
         </div>
 
       </div>
     </div>
 
-    <!-- TARJETA FLOTANTE INFERIOR DERECHA (Idéntica a la referencia: CADENA CUBANA / ORO 14K · 12MM / barra de progreso) -->
-    <div class="absolute bottom-8 right-6 md:right-16 z-20 hidden sm:block">
-      <div class="bg-[#140E0A]/80 backdrop-blur-md border border-[rgba(140,110,80,0.25)] rounded-lg px-5 py-3.5 shadow-2xl min-w-[200px]">
-        <div class="text-[10px] font-sans font-bold tracking-[0.16em] uppercase text-[#FFF9F2]">
-          CADENA CUBANA
+    <!-- TARJETA FLOTANTE INFERIOR DERECHA (Idéntica a la referencia con Tilt 3D) -->
+    <div id="hero-floating-card" class="hero-stagger opacity-0 transform translate-y-8 absolute bottom-8 right-6 md:right-16 z-20 hidden sm:block will-change-transform">
+      <div class="bg-[#140E0A]/85 backdrop-blur-md border border-[rgba(140,110,80,0.3)] rounded-lg px-5 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.8)] min-w-[210px] group cursor-pointer" onclick="abrirQuickView('prod-cuban-14k-solid')">
+        <div class="flex items-center justify-between">
+          <div class="text-[10px] font-sans font-bold tracking-[0.18em] uppercase text-[#FFF9F2] group-hover:text-[#E0662D] transition-colors">
+            CADENA CUBANA
+          </div>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#E0662D] group-hover:scale-150 transition-transform"></span>
         </div>
-        <div class="text-[9px] font-mono tracking-wider text-[#8C8278] mt-0.5">
+        <div class="text-[9px] font-mono tracking-wider text-[#8C8278] mt-1">
           ORO 14K · 12MM
         </div>
         <!-- Indicador de slider activo -->
-        <div class="flex items-center gap-1.5 mt-2.5">
-          <span class="w-2 h-2 rounded-full bg-[#E0662D]"></span>
-          <div class="h-[1.5px] w-20 bg-[rgba(140,110,80,0.35)] rounded-full overflow-hidden">
-            <div class="h-full w-2/5 bg-[#E0662D]"></div>
+        <div class="flex items-center gap-1.5 mt-3">
+          <span class="w-2 h-2 rounded-full bg-[#E0662D] animate-pulse"></span>
+          <div class="h-[1.5px] w-24 bg-[rgba(140,110,80,0.35)] rounded-full overflow-hidden">
+            <div class="h-full w-2/5 bg-[#E0662D] transition-all duration-500"></div>
           </div>
         </div>
       </div>
@@ -1724,9 +1764,142 @@
       }
     });
 
+    // ── 11. ORYZO.AI ENGINE: TIMELINES COORDENADOS, CURSOR Y PARALLAX ──────
+    function initOryzoEngine() {
+      // 1. Cursor cinemático de halo líquido
+      const dot = document.getElementById('cursor-dot');
+      const halo = document.getElementById('cursor-halo');
+      
+      if (dot && halo && window.innerWidth > 768) {
+        window.addEventListener('mousemove', (e) => {
+          dot.style.left = `${e.clientX}px`;
+          dot.style.top = `${e.clientY}px`;
+          gsap.to(halo, {
+            left: e.clientX,
+            top: e.clientY,
+            duration: 0.22,
+            ease: 'power2.out'
+          });
+        });
+
+        // Expansión magnética en elementos interactivos
+        document.querySelectorAll('a, button, .cursor-pointer, input').forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            gsap.to(halo, {
+              scale: 1.7,
+              borderColor: '#E0662D',
+              backgroundColor: 'rgba(224, 102, 45, 0.12)',
+              duration: 0.3
+            });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(halo, {
+              scale: 1,
+              borderColor: 'rgba(224, 102, 45, 0.45)',
+              backgroundColor: 'transparent',
+              duration: 0.3
+            });
+          });
+        });
+      }
+
+      // 2. Parallax 3D interactivo en el Hero
+      const heroParallax = document.getElementById('hero-parallax-container');
+      const heroCard = document.getElementById('hero-floating-card');
+      const heroSection = document.getElementById('hero-section');
+
+      if (heroSection) {
+        heroSection.addEventListener('mousemove', (e) => {
+          const rect = heroSection.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+
+          if (heroParallax) {
+            gsap.to(heroParallax, {
+              x: nx * 35,
+              y: ny * 25,
+              duration: 1.6,
+              ease: 'power2.out'
+            });
+          }
+
+          if (heroCard) {
+            gsap.to(heroCard, {
+              x: -nx * 20,
+              y: -ny * 15,
+              rotateY: nx * 12,
+              rotateX: -ny * 12,
+              duration: 1.4,
+              ease: 'power2.out'
+            });
+          }
+        });
+      }
+
+      // 3. Apertura cinemática de bóveda (Preloader a Hero Timeline)
+      const loader = document.getElementById('vault-loader');
+      const counterEl = document.getElementById('loader-counter');
+      const barEl = document.getElementById('loader-bar');
+
+      const loadTl = gsap.timeline({
+        onComplete: () => {
+          gsap.to(loader, {
+            yPercent: -100,
+            duration: 1.1,
+            ease: 'power4.inOut',
+            onComplete: () => {
+              loader.style.display = 'none';
+              startHeroCinematicReveal();
+            }
+          });
+        }
+      });
+
+      let countObj = { val: 0 };
+      loadTl.to(countObj, {
+        val: 100,
+        duration: 1.2,
+        ease: 'power2.inOut',
+        onUpdate: () => {
+          const v = Math.round(countObj.val);
+          if (counterEl) counterEl.innerText = `${v}%`;
+          if (barEl) barEl.style.width = `${v}%`;
+        }
+      });
+    }
+
+    function startHeroCinematicReveal() {
+      playTactileTick(1200);
+      const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+      // Revelado de líneas del titular con máscara
+      heroTl.to('.hero-title-line', {
+        y: '0%',
+        duration: 1.5,
+        stagger: 0.16,
+        delay: 0.1
+      });
+
+      // Entrada suave de los elementos secundarios
+      heroTl.to('.hero-stagger', {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        stagger: 0.12
+      }, '-=1.1');
+
+      // Animación de subrayado del botón CTA
+      heroTl.fromTo('#hero-cta-line', 
+        { scaleX: 0 }, 
+        { scaleX: 1, duration: 1.1, ease: 'power3.inOut' },
+        '-=0.8'
+      );
+    }
+
     // INICIALIZACIÓN GENERAL
     document.addEventListener('DOMContentLoaded', () => {
       initHeroThreeFX();
+      initOryzoEngine();
       renderProducts();
       updateBolsaUI();
       updateLab();

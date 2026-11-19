@@ -211,7 +211,7 @@
   <!-- ========================================================================= -->
   <!-- 02. NAVEGACIÓN EDITORIAL ASIMÉTRICA INTEGRADA EN LA COMPOSICIÓN           -->
   <!-- ========================================================================= -->
-  <header id="hero-nav" class="fixed top-0 inset-x-0 z-50 px-6 md:px-12 lg:px-16 pt-6 pb-4 flex items-center justify-between opacity-0 transition-opacity duration-700">
+  <header id="hero-nav" class="fixed top-0 inset-x-0 z-50 px-6 md:px-12 lg:px-16 py-4 md:py-5 flex items-center justify-between opacity-0 transition-all duration-500 bg-[#050403]/85 backdrop-blur-md border-b border-[rgba(181,138,75,0.12)]">
     
     <!-- Logotipo Oficial con Corona de Oro y Tipografía Arquitectónica -->
     <a href="#" class="flex items-center gap-3.5 group magnetic-target" aria-label="TOP JEWELRY PR — Inicio">
@@ -267,7 +267,7 @@
           <path d="M6 7h12l1.5 13H4.5L6 7z"/>
           <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
         </svg>
-        <span class="absolute 1 right-1 w-3.5 h-3.5 rounded-full bg-[#B58A4B] text-[#050403] text-[8px] font-mono font-bold flex items-center justify-center" aria-hidden="true">0</span>
+        <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#B58A4B] text-[#050403] text-[8px] font-mono font-bold flex items-center justify-center" aria-hidden="true">0</span>
       </button>
 
     </div>
@@ -285,14 +285,14 @@
     <div id="hero-jewelry-layer" class="absolute inset-0 z-10 pointer-events-none overflow-hidden will-change-transform">
       <div id="hero-jewelry-inner" class="w-full h-full transform scale-105 will-change-transform">
         <img 
-          src="/hero-clean-bg.jpg" 
-          alt="Cadena Miami Cuban con Diamantes y Pulsera Tennis sobre roca basáltica — TOP JEWELRY PR" 
-          class="w-full h-full object-cover object-[84%_center] md:object-[80%_center] lg:object-[78%_center] filter brightness-[0.98] contrast-[1.14] saturate-[1.12]"
+          src="/hero-campaign.jpg" 
+          alt="Alta Joyería: Cadena Miami Cuban y Pulsera Tennis sobre roca basáltica — TOP JEWELRY PR" 
+          class="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-[70%_center] filter brightness-[0.98] contrast-[1.12] saturate-[1.08]"
         >
       </div>
 
       <!-- Fusión cinematográfica editorial que conecta tipografía y fotografía armónicamente -->
-      <div class="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/80 via-45% to-transparent pointer-events-none"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/80 via-40% to-transparent pointer-events-none"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent pointer-events-none"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-[#050403]/70 via-transparent to-transparent pointer-events-none"></div>
 
@@ -301,12 +301,12 @@
     </div>
 
     <!-- CAPA 2: CONTENIDO EDITORIAL DE GRAN FORMATO (TEXT REVEAL MASKS) -->
-    <div class="relative z-20 max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16 w-full flex flex-col justify-between h-full pt-24 pb-8 md:pt-28 md:pb-10 pointer-events-none">
+    <div class="relative z-20 max-w-[1520px] mx-auto px-6 md:px-12 lg:px-16 w-full flex flex-col justify-between h-full pt-24 pb-6 md:pt-32 md:pb-10 pointer-events-none">
       
       <!-- Top Micro-Tag de Atelier (Sin puntos rojos accidentales) -->
       <div class="flex items-center justify-between w-full">
         <div id="hero-kicker" class="reveal-mask">
-          <div class="reveal-line flex items-center gap-3 text-[11px] md:text-[12px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
+          <div class="reveal-line flex items-center gap-3 text-[10.5px] md:text-[12px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
             <span class="w-3.5 h-[1.5px] bg-[#B58A4B] inline-block"></span>
             <span>JOYERÍA CONTEMPORÁNEA</span>
             <span class="text-[#B58A4B]">·</span>
@@ -321,35 +321,31 @@
         </div>
       </div>
 
-      <!-- BLOQUE CENTRAL: TITULAR MONUMENTAL (Ajustado a escala áurea sin cortes en 100vh) -->
-      <div class="max-w-3xl my-auto">
-        <h1 class="font-headline font-extrabold text-[40px] sm:text-[54px] md:text-[70px] lg:text-[82px] xl:text-[90px] leading-[0.93] tracking-[-0.035em] uppercase select-none text-[#FFF9F2]">
+      <!-- BLOQUE CENTRAL: TITULAR MONUMENTAL (2 líneas equilibradas y proporcionadas) -->
+      <div class="max-w-4xl my-auto py-2">
+        <h1 class="font-headline font-extrabold text-[32px] sm:text-[44px] md:text-[58px] lg:text-[72px] xl:text-[82px] leading-[1.03] tracking-[-0.03em] uppercase select-none text-[#FFF9F2]">
           
           <div class="reveal-mask">
-            <span class="reveal-line block will-change-transform shimmer-gold">EL VALOR</span>
-          </div>
-
-          <div class="reveal-mask">
-            <span class="reveal-line block will-change-transform">ESTÁ EN LOS</span>
+            <span class="reveal-line block will-change-transform shimmer-gold">EL VALOR ESTÁ</span>
           </div>
 
           <div class="reveal-mask">
             <span class="reveal-line block will-change-transform">
-              DETALLES<span class="text-[#B58A4B]">.</span>
+              EN LOS DETALLES<span class="text-[#B58A4B]">.</span>
             </span>
           </div>
 
         </h1>
 
         <!-- Subtítulo Poético & Editorial -->
-        <div class="reveal-mask mt-6 max-w-lg">
-          <p class="reveal-line rl-body font-sans text-xs sm:text-sm md:text-[15.5px] font-light text-[#D6BD91] leading-relaxed">
+        <div class="reveal-mask mt-4 md:mt-6 max-w-lg">
+          <p class="reveal-line rl-body font-sans text-xs sm:text-sm md:text-[15px] font-light text-[#D6BD91] leading-relaxed">
             Diseños exclusivos con presencia inconfundible y un estilo que trasciende cualquier momento.
           </p>
         </div>
 
         <!-- Botón de Exploración Magnético con Subrayado Reactivo -->
-        <div class="reveal-mask mt-8 md:mt-9 pointer-events-auto">
+        <div class="reveal-mask mt-6 md:mt-8 pointer-events-auto">
           <div class="reveal-line rl-body">
             <a 
               href="#colecciones" 
@@ -367,11 +363,11 @@
       </div>
 
       <!-- BLOQUE INFERIOR: METADATOS Y TARJETA TÉCNICA -->
-      <div class="flex items-end justify-between w-full pt-5 border-t border-[rgba(181,138,75,0.18)]">
+      <div class="flex items-end justify-between w-full pt-4 md:pt-5 border-t border-[rgba(181,138,75,0.18)]">
         
         <!-- Identificador Oficial de Marca -->
         <div class="reveal-mask">
-          <div class="reveal-line rl-footer font-mono text-[10px] md:text-[11px] tracking-[0.22em] uppercase text-[#82786D] space-y-0.5">
+          <div class="reveal-line rl-footer font-mono text-[9.5px] md:text-[11px] tracking-[0.22em] uppercase text-[#82786D] space-y-0.5">
             <div class="text-[#E8E0D2]/90 font-medium">TOP JEWELRY PR</div>
             <div class="text-[#D6BD91]">JOYERÍA CONTEMPORÁNEA · ESTILO INCONFUNDIBLE</div>
           </div>
@@ -387,10 +383,10 @@
           </div>
         </div>
 
-        <!-- Tarjeta Flotante Técnica con Tilt 3D (CADENA CUBANA · ORO 14K · 12MM) -->
-        <div id="hero-spec-card" class="pointer-events-auto" style="perspective: 600px;">
+        <!-- Tarjeta Flotante Técnica con Tilt 3D (Oculta en móviles para evitar colapso vertical) -->
+        <div id="hero-spec-card" class="pointer-events-auto hidden sm:block mr-1 md:mr-4 mb-1" style="perspective: 600px;">
           <div class="reveal-line rl-footer">
-            <div class="bg-[#090806]/90 backdrop-blur-md border technical-border rounded-lg px-4 py-3 shadow-[0_20px_45px_rgba(0,0,0,0.85)] min-w-[210px] group transition-all duration-300 hover:border-[#B58A4B]">
+            <div class="bg-[#090806]/90 backdrop-blur-md border technical-border rounded-lg px-4 py-3 shadow-[0_20px_45px_rgba(0,0,0,0.85)] min-w-[200px] group transition-all duration-300 hover:border-[#B58A4B]">
               <div class="flex items-center justify-between text-[11px] font-sans font-bold tracking-[0.18em] uppercase text-[#FFF9F2] group-hover:text-[#D6BD91] transition-colors">
                 <span>CADENA CUBANA</span>
                 <span class="w-2.5 h-[1.5px] bg-[#B58A4B]"></span>
@@ -417,139 +413,116 @@
   <!-- ========================================================================= -->
   <!-- 04. SECCIÓN 02: BRAND STATEMENT & EXPERIENCIA EDITORIAL (MANIFIESTO)       -->
   <!-- ========================================================================= -->
-  <section id="historia" class="relative w-full bg-[#050403] text-[#E8E0D2] pt-12 md:pt-16 pb-20 md:pb-28 px-6 md:px-12 lg:px-16 overflow-hidden">
+  <section id="historia" class="relative w-full bg-[#050403] text-[#E8E0D2] pt-20 md:pt-28 pb-24 md:pb-36 px-6 md:px-12 lg:px-16 overflow-hidden">
     
     <!-- Atmósfera luminosa suave y orgánica con degradado rasante -->
     <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[radial-gradient(ellipse,rgba(181,138,75,0.06)_0%,transparent_70%)] filter blur-3xl"></div>
-      <div class="absolute bottom-0 right-1/4 w-[500px] h-[350px] bg-[radial-gradient(circle,rgba(214,189,145,0.04)_0%,transparent_70%)] filter blur-3xl"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse,rgba(181,138,75,0.05)_0%,transparent_70%)] filter blur-3xl"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[400px] bg-[radial-gradient(circle,rgba(214,189,145,0.03)_0%,transparent_70%)] filter blur-3xl"></div>
     </div>
 
     <div class="relative z-10 max-w-[1440px] mx-auto">
       
       <!-- LÍNEA SUTIL DE TRANSICIÓN Y NOTA EDITORIAL -->
-      <div class="flex items-center justify-between border-t border-[rgba(181,138,75,0.15)] pt-6 mb-12 md:mb-16">
-        <div class="flex items-center gap-3 text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#D6BD91]">
-          <span class="w-6 h-[1.5px] bg-[#B58A4B]"></span>
+      <div class="flex items-center justify-between border-t border-[rgba(181,138,75,0.14)] pt-8 mb-16 md:mb-24">
+        <div class="flex items-center gap-3.5 text-[11px] font-mono tracking-[0.28em] uppercase text-[#D6BD91]">
+          <span class="w-7 h-[1px] bg-[#B58A4B]"></span>
           <span>DECLARACIÓN EDITORIAL</span>
           <span class="text-[#82786D]">·</span>
           <span class="text-[#82786D]">TOP JEWELRY PR</span>
         </div>
-        <div class="font-mono text-[10px] tracking-[0.22em] text-[#82786D] uppercase">
-          JOYERÍA CONTEMPORÁNEA
+        <div class="hidden sm:block font-mono text-[10px] tracking-[0.24em] text-[#82786D] uppercase">
+          ALTA CURADURÍA
         </div>
       </div>
 
-      <!-- COMPOSICIÓN EDITORIAL 1: TITULAR MONUMENTAL CON TIPOGRAFÍA CINZEL REFINADA -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-16 md:mb-24">
+      <!-- COMPOSICIÓN EDITORIAL 1: TITULAR MONUMENTAL Y NARRATIVA ASIMÉTRICA -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-20 md:mb-28">
         
         <!-- Columna Izquierda: Titular en Cinzel (Serif Noble de Alta Joyería) -->
         <div class="lg:col-span-7">
-          <span class="font-mono text-[10.5px] tracking-[0.3em] uppercase text-[#B58A4B] block mb-3 font-medium">IDENTIDAD DE MARCA</span>
-          <h2 class="font-cinzel font-bold text-[32px] sm:text-[44px] md:text-[52px] lg:text-[60px] leading-[1.05] tracking-[-0.01em] uppercase text-[#FFF9F2]">
+          <span class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#B58A4B] block mb-4 font-medium">IDENTIDAD DE MARCA</span>
+          <h2 class="font-cinzel font-bold text-[34px] sm:text-[46px] md:text-[56px] lg:text-[66px] leading-[1.08] tracking-[-0.01em] uppercase text-[#FFF9F2]">
             <span class="block">MÁS QUE JOYAS,</span>
             <span class="block text-[#D6BD91] font-light italic">UN ESTILO</span>
             <span class="block">DE VIDA<span class="text-[#B58A4B]">.</span></span>
           </h2>
         </div>
 
-        <!-- Columna Derecha: Texto Editorial Limpio y Proporcional -->
-        <div class="lg:col-span-5 flex flex-col justify-between h-full pt-1 lg:pt-3 lg:pl-8 lg:border-l lg:border-[rgba(181,138,75,0.14)]">
-          <div class="space-y-4">
-            <p class="font-sans text-[14.5px] md:text-[15.5px] font-light text-[#E8E0D2]/95 leading-relaxed">
-              En Top Jewelry PR, cada pieza cuenta una historia: la tuya. Diseños concebidos con presencia inconfundible, combinando la fuerza de la joyería clásica con una visión contemporánea y acabados de alta calidad.
+        <!-- Columna Derecha: Texto Editorial Limpio con Espacio Negativo Generoso -->
+        <div class="lg:col-span-5 flex flex-col justify-between h-full pt-2 lg:pt-6 lg:pl-10 space-y-6 lg:border-l lg:border-[rgba(181,138,75,0.12)]">
+          <div class="space-y-5">
+            <p class="font-sans text-[15px] md:text-[16.5px] font-light text-[#E8E0D2] leading-relaxed">
+              En TOP JEWELRY PR, cada pieza es una prolongación de tu presencia. Diseños concebidos con carácter inconfundible, fusionando la potencia de la joyería monumental con una visión contemporánea.
             </p>
             <p class="font-sans text-xs md:text-sm font-light text-[#82786D] leading-relaxed">
-              El verdadero valor se refleja en el equilibrio de proporciones, en el brillo de cada superficie y en la confianza de portar una pieza que trasciende cualquier momento efímero.
+              El verdadero lujo no compite por atención: se impone con serenidad a través de la pureza de sus proporciones, la calidez de sus reflejos y la certeza de portar una pieza que trasciende el tiempo.
             </p>
           </div>
 
-          <div class="pt-5 mt-6 border-t border-[rgba(181,138,75,0.12)] flex items-center justify-between font-mono text-[9.5px] tracking-[0.2em] uppercase text-[#82786D]">
+          <div class="pt-6 border-t border-[rgba(181,138,75,0.10)] flex items-center justify-between font-mono text-[10px] tracking-[0.24em] uppercase text-[#82786D]">
             <span>COLECCIÓN EXCLUSIVA</span>
-            <span class="text-[#D6BD91]">DISEÑO DISTINTIVO</span>
+            <span class="text-[#D6BD91]">DISEÑO DE AUTOR</span>
           </div>
         </div>
 
       </div>
 
-      <!-- COMPOSICIÓN EDITORIAL 2: FOTOGRAFÍA CINEMATOGRÁFICA + 3 PILARES EN DIÁLOGO ASIMÉTRICO -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16 md:mb-24">
+      <!-- COMPOSICIÓN EDITORIAL 2: GRAN FORMATO FOTOGRÁFICO DE CAMPAÑA (PROTAGONISTA ABSOLUTO) -->
+      <div class="statement-image-mask relative overflow-hidden rounded-sm aspect-[16/9] md:aspect-[21/9] bg-[#090806] border border-[rgba(181,138,75,0.18)] shadow-[0_30px_70px_rgba(0,0,0,0.9)] mb-20 md:mb-28 group">
+        <img 
+          src="/sec2-campaign.jpg" 
+          alt="Campaña Editorial: Pulsera Miami Cuban en oro y anillo solitario con diamante — TOP JEWELRY PR" 
+          class="statement-img-parallax w-full h-full object-cover filter brightness-[0.98] contrast-[1.10] scale-105 will-change-transform transition-transform duration-1000 group-hover:scale-110"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent opacity-50 pointer-events-none"></div>
+        <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between font-mono text-[10px] md:text-[11px] tracking-[0.24em] uppercase text-[#E8E0D2]/90 pointer-events-none">
+          <span class="bg-[#050403]/80 backdrop-blur-md px-4 py-2 border border-[rgba(181,138,75,0.25)]">CAMPAÑA EDITORIAL</span>
+          <span class="text-[#D6BD91]">ALTA ORFEBRERÍA</span>
+        </div>
+      </div>
+
+      <!-- COMPOSICIÓN EDITORIAL 3: TRÍPTICO DE PRINCIPIOS TIPOGRÁFICOS (SIN CAJAS, PURO ESPACIO NEGATIVO) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 pt-4 pb-14 statement-secondary-wrap">
         
-        <!-- Columna Izquierda: Gran Formato Editorial de Joyería (7 cols) -->
-        <div class="lg:col-span-7 relative">
-          <div class="statement-image-mask overflow-hidden rounded-sm relative aspect-[16/10] bg-[#090806] border border-[rgba(181,138,75,0.22)] shadow-[0_25px_60px_rgba(0,0,0,0.85)]">
-            <img 
-              src="/ref-hero-jewels.jpg" 
-              alt="Detalle macro de joyería — TOP JEWELRY PR" 
-              class="statement-img-parallax w-full h-full object-cover filter brightness-[0.95] contrast-[1.15] scale-105 will-change-transform"
-            >
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent opacity-40 pointer-events-none"></div>
-            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[9px] md:text-[10px] tracking-[0.22em] uppercase text-[#E8E0D2]">
-              <span class="bg-[#050403]/85 px-3 py-1.5 border border-[rgba(181,138,75,0.3)]">COLECCIÓN EDITORIAL</span>
-              <span class="text-[#D6BD91]">ESTILO INALTERABLE</span>
-            </div>
-          </div>
+        <!-- Principio 01 -->
+        <div class="pilar-card space-y-3">
+          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">01 · PRESENCIA</div>
+          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Carácter Inconfundible</h3>
+          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
+            Cada joya posee una masa y un porte calculados para definir un estilo propio y magnético sin concesiones.
+          </p>
         </div>
 
-        <!-- Columna Derecha: Pilares de Identidad de TOP JEWELRY PR (5 cols) -->
-        <div class="lg:col-span-5 statement-secondary-wrap flex flex-col justify-between space-y-6 lg:pl-4">
-          
-          <!-- Pilar 01: Presencia -->
-          <div class="pilar-card p-5 rounded-sm bg-[#090806]/40 border border-[rgba(181,138,75,0.14)] hover:border-[#B58A4B]/40 transition-colors duration-300">
-            <div class="flex items-center gap-3 text-[#B58A4B] mb-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-              </svg>
-              <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] font-medium">IDENTIDAD 01</span>
-            </div>
-            <h3 class="font-headline font-bold text-base text-[#FFF9F2] uppercase tracking-wide mb-1.5">Presencia Inconfundible</h3>
-            <p class="font-sans text-xs md:text-[13px] text-[#82786D] leading-relaxed">
-              Cada pieza está concebida para definir un porte. Un universo estético donde el detalle determina la diferencia.
-            </p>
-          </div>
+        <!-- Principio 02 -->
+        <div class="pilar-card space-y-3">
+          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">02 · PROPORCIÓN</div>
+          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Equilibrio Escultural</h3>
+          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
+            Composiciones donde la fuerza de los eslabones clásicos convive en armonía con la pureza y brillo de cada faceta.
+          </p>
+        </div>
 
-          <!-- Pilar 02: Diseño -->
-          <div class="pilar-card p-5 rounded-sm bg-[#090806]/40 border border-[rgba(181,138,75,0.14)] hover:border-[#B58A4B]/40 transition-colors duration-300">
-            <div class="flex items-center gap-3 text-[#B58A4B] mb-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
-              <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] font-medium">IDENTIDAD 02</span>
-            </div>
-            <h3 class="font-headline font-bold text-base text-[#FFF9F2] uppercase tracking-wide mb-1.5">Diseño Distintivo</h3>
-            <p class="font-sans text-xs md:text-[13px] text-[#82786D] leading-relaxed">
-              Colecciones concebidas con visión contemporánea. Composiciones que equilibran la fuerza clásica con una expresión actual.
-            </p>
-          </div>
-
-          <!-- Pilar 03: Estilo -->
-          <div class="pilar-card p-5 rounded-sm bg-[#090806]/40 border border-[rgba(181,138,75,0.14)] hover:border-[#B58A4B]/40 transition-colors duration-300">
-            <div class="flex items-center gap-3 text-[#B58A4B] mb-2">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-              </svg>
-              <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] font-medium">IDENTIDAD 03</span>
-            </div>
-            <h3 class="font-headline font-bold text-base text-[#FFF9F2] uppercase tracking-wide mb-1.5">Un Estilo de Vida</h3>
-            <p class="font-sans text-xs md:text-[13px] text-[#82786D] leading-relaxed">
-              TOP JEWELRY PR es más que una joyería. Es una forma de expresar quién eres a través de cada pieza que portas.
-            </p>
-          </div>
-
+        <!-- Principio 03 -->
+        <div class="pilar-card space-y-3">
+          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">03 · IDENTIDAD</div>
+          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Un Estilo de Vida</h3>
+          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
+            Más que un accesorio efímero: una declaración duradera de quién eres, cómo te proyectas y hacia dónde te diriges.
+          </p>
         </div>
 
       </div>
 
       <!-- TRANSICIÓN SOBRIA HACIA COLECCIONES -->
-      <div class="flex flex-col items-center justify-center text-center pt-4">
+      <div class="flex flex-col items-center justify-center text-center pt-6">
         <a 
           href="#colecciones" 
           data-atelier-action="colecciones"
-          class="group inline-flex items-center gap-3 text-[10.5px] font-mono tracking-[0.28em] uppercase text-[#82786D] hover:text-[#D6BD91] transition-colors duration-300 magnetic-target"
+          class="group inline-flex items-center gap-3 text-[11px] font-mono tracking-[0.3em] uppercase text-[#82786D] hover:text-[#D6BD91] transition-colors duration-300 magnetic-target py-2"
         >
           <span>DESCUBRIR COLECCIONES</span>
-          <span class="text-[#B58A4B] text-xs transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+          <span class="text-[#B58A4B] text-xs transition-transform duration-300 group-hover:translate-y-1">↓</span>
         </a>
       </div>
 
@@ -833,11 +806,11 @@
 
       const master = gsap.timeline({ defaults: { overwrite: 'auto' } });
 
-      master.to(beam, { height: '58vh', duration: 0.9, ease: 'power4.inOut' })
-      .to(brandIntro, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+      master.to(beam, { height: '54vh', duration: 0.6, ease: 'power4.inOut' })
+      .to(brandIntro, { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' }, '-=0.2')
       .to({ val: 0 }, {
         val: 100,
-        duration: 1.1,
+        duration: 0.8,
         ease: 'power2.inOut',
         onUpdate: function() {
           const v = Math.round(this.targets()[0].val);
@@ -847,25 +820,25 @@
       })
       .to(stage, {
         yPercent: -100,
-        duration: 1.2,
+        duration: 0.9,
         ease: 'expo.inOut',
         onComplete: () => {
           stage.style.display = 'none';
           document.body.classList.remove('curtain-locked');
           if (window.lenisInstance) window.lenisInstance.start();
         }
-      }, '+=0.1')
+      }, '+=0.05')
       .fromTo('#hero-jewelry-inner',
-        { scale: 1.18, filter: 'brightness(0.65) contrast(1.2) saturate(0.8)' },
-        { scale: 1.05, filter: 'brightness(0.98) contrast(1.14) saturate(1.12)', duration: 2.4, ease: 'power3.out' },
-        '-=1.1'
+        { scale: 1.15, filter: 'brightness(0.7) contrast(1.15) saturate(0.9)' },
+        { scale: 1.05, filter: 'brightness(0.98) contrast(1.12) saturate(1.08)', duration: 1.6, ease: 'power3.out' },
+        '-=0.8'
       )
-      .to(nav, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.6')
-      .to(kickerLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power4.out' }, '-=1.0')
-      .to(headlineLines, { y: '0%', duration: 1.5, stagger: 0.14, ease: 'power4.out' }, '-=0.6')
-      .to(bodyLines, { y: '0%', duration: 1.1, stagger: 0.1, ease: 'power3.out' }, '-=0.7')
-      .to(subtitleLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power3.out' }, '-=0.5')
-      .to(ctaLine, { scaleX: 1, duration: 1.2, ease: 'power3.inOut' }, '-=0.8');
+      .to(nav, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=1.1')
+      .to(kickerLines, { y: '0%', duration: 0.7, stagger: 0.06, ease: 'power4.out' }, '-=0.8')
+      .to(headlineLines, { y: '0%', duration: 0.9, stagger: 0.1, ease: 'power4.out' }, '-=0.5')
+      .to(bodyLines, { y: '0%', duration: 0.8, stagger: 0.08, ease: 'power3.out' }, '-=0.5')
+      .to(subtitleLines, { y: '0%', duration: 0.7, stagger: 0.06, ease: 'power3.out' }, '-=0.4')
+      .to(ctaLine, { scaleX: 1, duration: 0.8, ease: 'power3.inOut' }, '-=0.5');
     }
 
     // ── 06. GESTIÓN DE ACCIONES Y ENLACES (ATELIER NOTIFIER) ─────────────────

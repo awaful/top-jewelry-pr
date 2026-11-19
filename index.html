@@ -98,7 +98,7 @@
 
     .reveal-line {
       display: block;
-      transform: translateY(115%);
+      /* Estado inicial controlado completamente por GSAP via gsap.set() */
       will-change: transform;
     }
 
@@ -312,14 +312,14 @@
 
         <!-- Subtítulo Poético & Editorial -->
         <div class="reveal-mask mt-6 max-w-lg">
-          <p class="reveal-line font-sans text-xs sm:text-sm md:text-[15.5px] font-light text-[#D6BD91] leading-relaxed">
+          <p class="reveal-line rl-body font-sans text-xs sm:text-sm md:text-[15.5px] font-light text-[#D6BD91] leading-relaxed">
             Diseños exclusivos forjados a mano con densidad inalterable, calidad incomparable y un estilo que trasciende generaciones.
           </p>
         </div>
 
         <!-- Botón de Exploración Magnético con Subrayado Reactivo -->
         <div class="reveal-mask mt-8 md:mt-9 pointer-events-auto">
-          <div class="reveal-line">
+          <div class="reveal-line rl-body">
             <a 
               href="#colecciones" 
               id="hero-cta"
@@ -327,8 +327,7 @@
             >
               <span class="relative z-10 transition-transform duration-300 group-hover:translate-x-1.5">EXPLORAR LA COLECCIÓN</span>
               <span class="relative z-10 text-base leading-none text-[#B58A4B] transition-transform duration-300 group-hover:translate-x-3">→</span>
-              <!-- Línea dorada de subrayado animada -->
-              <span id="hero-cta-underline" class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#B58A4B] transform origin-left scale-x-0 transition-transform duration-500 ease-out"></span>
+              <span id="hero-cta-underline" class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#B58A4B]" style="transform-origin: left center; transform: scaleX(0);"></span>
             </a>
           </div>
         </div>
@@ -339,7 +338,7 @@
         
         <!-- Coordenadas Geográficas y Atelier -->
         <div class="reveal-mask">
-          <div class="reveal-line font-mono text-[9px] md:text-[9.5px] tracking-[0.24em] uppercase text-[#82786D] space-y-0.5">
+          <div class="reveal-line rl-footer font-mono text-[9px] md:text-[9.5px] tracking-[0.24em] uppercase text-[#82786D] space-y-0.5">
             <div>ATELIER: CALLE DEL CRISTO, VIEJO SAN JUAN</div>
             <div class="text-[#B58A4B]">LAT 18.4655° N · LON 66.1057° W</div>
           </div>
@@ -347,7 +346,7 @@
 
         <!-- Indicador de Scroll Cinemático -->
         <div class="reveal-mask hidden sm:flex flex-col items-center gap-2">
-          <div class="reveal-line flex flex-col items-center gap-1.5 text-[8.5px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
+          <div class="reveal-line rl-footer flex flex-col items-center gap-1.5 text-[8.5px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
             <span>DESPLAZAR</span>
             <div class="w-[1px] h-7 bg-[rgba(181,138,75,0.35)] relative overflow-hidden">
               <div class="w-full h-1/2 bg-[#B58A4B] animate-bounce"></div>
@@ -356,8 +355,8 @@
         </div>
 
         <!-- Tarjeta Flotante Técnica con Tilt 3D (CADENA CUBANA · ORO 14K · 12MM) -->
-        <div id="hero-spec-card" class="reveal-mask pointer-events-auto">
-          <div class="reveal-line">
+        <div id="hero-spec-card" class="pointer-events-auto" style="perspective: 600px;">
+          <div class="reveal-line rl-footer">
             <div class="bg-[#090806]/90 backdrop-blur-md border technical-border rounded-lg px-4 py-3 shadow-[0_20px_45px_rgba(0,0,0,0.85)] min-w-[210px] group transition-all duration-300 hover:border-[#B58A4B]">
               <div class="flex items-center justify-between text-[10px] font-sans font-bold tracking-[0.18em] uppercase text-[#FFF9F2] group-hover:text-[#D6BD91] transition-colors">
                 <span>CADENA CUBANA</span>
@@ -395,7 +394,7 @@
   <script>
     // ── 01. AUDIO TÁCTIL PROCEDURAL (OFF POR DEFECTO · ACTIVACIÓN VOLUNTARIA) ─
     let audioContext = null;
-    let audioActive = false; // Desactivado automáticamente al entrar (Requisito 7)
+    let audioActive = false;
 
     function playHapticTick(freq = 1100, duration = 0.025) {
       if (!audioActive) return;
@@ -425,7 +424,9 @@
         statusEl.className = audioActive ? 'text-[#D6BD91]' : 'text-[#82786D]';
       }
       if (indEl) {
-        indEl.className = audioActive ? 'w-1.5 h-1.5 rounded-full bg-[#B58A4B] inline-block animate-pulse' : 'w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block';
+        indEl.className = audioActive
+          ? 'w-1.5 h-1.5 rounded-full bg-[#B58A4B] inline-block animate-pulse'
+          : 'w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block';
       }
       if (audioActive) playHapticTick(1400);
     }
@@ -435,7 +436,7 @@
 
     function initHeroThreeScene() {
       const canvas = document.getElementById('hero-three-canvas');
-      if (!canvas) return;
+      if (!canvas || typeof THREE === 'undefined') return;
 
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -444,15 +445,19 @@
       camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
       camera.position.z = 6;
 
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: 'high-performance'
+      });
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-      // Partículas discretas de polvo de oro suspendido (Oryzo subtle particles)
       const count = 120;
       const positions = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i += 3) {
-        positions[i] = (Math.random() - 0.5) * 12;
+        positions[i]     = (Math.random() - 0.5) * 12;
         positions[i + 1] = (Math.random() - 0.5) * 8;
         positions[i + 2] = (Math.random() - 0.5) * 6;
       }
@@ -471,219 +476,184 @@
       goldDust = new THREE.Points(geometry, material);
       scene.add(goldDust);
 
-      // Foco dinámico de iluminación que baña la joyería según la posición del cursor
       dynamicLight = new THREE.PointLight(0xffdfa8, 2.0, 12);
       dynamicLight.position.set(2, 1, 3);
       scene.add(dynamicLight);
 
-      // Render Loop
-      function animate() {
+      (function animate() {
         requestAnimationFrame(animate);
         if (goldDust) {
           goldDust.rotation.y += 0.0003;
           goldDust.rotation.x += 0.00015;
         }
         renderer.render(scene, camera);
-      }
-      animate();
+      })();
 
       window.addEventListener('resize', () => {
-        const nw = window.innerWidth;
-        const nh = window.innerHeight;
-        camera.aspect = nw / nh;
+        camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(nw, nh);
+        renderer.setSize(window.innerWidth, window.innerHeight);
       });
     }
 
     // ── 03. CURSOR CINEMÁTICO HALO LÍQUIDO & MICRO-FÍSICA MAGNÉTICA ─────────
     function initCursorAndMagnets() {
-      const dot = document.getElementById('cursor-point');
+      const dot  = document.getElementById('cursor-point');
       const halo = document.getElementById('cursor-halo');
       if (!dot || !halo || window.innerWidth <= 768) return;
 
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
+      // Posición inicial centrada para evitar salto desde (0,0)
+      gsap.set([dot, halo], { left: window.innerWidth / 2, top: window.innerHeight / 2 });
 
       window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        dot.style.left = `${mouseX}px`;
-        dot.style.top = `${mouseY}px`;
+        dot.style.left = e.clientX + 'px';
+        dot.style.top  = e.clientY + 'px';
 
         gsap.to(halo, {
-          left: mouseX,
-          top: mouseY,
+          left: e.clientX,
+          top: e.clientY,
           duration: 0.22,
           ease: 'power2.out'
         });
 
-        // Actualizar luz dinámica Three.js
         if (dynamicLight) {
-          const nx = (mouseX / window.innerWidth - 0.5) * 5;
-          const ny = -(mouseY / window.innerHeight - 0.5) * 3.5;
+          const nx = (e.clientX / window.innerWidth  - 0.5) * 5;
+          const ny = -(e.clientY / window.innerHeight - 0.5) * 3.5;
           dynamicLight.position.x += (nx - dynamicLight.position.x) * 0.08;
           dynamicLight.position.y += (ny - dynamicLight.position.y) * 0.08;
         }
       });
 
-      // Efecto magnético sobre elementos interactivos
       document.querySelectorAll('.magnetic-target').forEach(el => {
         el.addEventListener('mouseenter', () => {
           gsap.to(halo, {
             scale: 1.5,
             borderColor: '#B58A4B',
-            backgroundColor: 'rgba(181, 138, 75, 0.12)',
+            backgroundColor: 'rgba(181,138,75,0.12)',
             duration: 0.3
           });
         });
-
         el.addEventListener('mousemove', (e) => {
           const rect = el.getBoundingClientRect();
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const dx = (e.clientX - cx) * 0.22;
-          const dy = (e.clientY - cy) * 0.22;
-
-          gsap.to(el, {
-            x: dx,
-            y: dy,
-            duration: 0.3,
-            ease: 'power1.out'
-          });
+          const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.22;
+          const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.22;
+          gsap.to(el, { x: dx, y: dy, duration: 0.3, ease: 'power1.out' });
         });
-
         el.addEventListener('mouseleave', () => {
           gsap.to(halo, {
             scale: 1,
-            borderColor: 'rgba(214, 189, 145, 0.4)',
+            borderColor: 'rgba(214,189,145,0.4)',
             backgroundColor: 'transparent',
             duration: 0.3
           });
-          gsap.to(el, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: 'elastic.out(1, 0.3)'
-          });
+          gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.3)' });
         });
       });
     }
 
-    // ── 04. CINEMATIC PARALLAX MULTICAPA CALIBRADO (SIN DESPLAZAMIENTOS INCÓMODOS) ─
+    // ── 04. CINEMATIC PARALLAX MULTICAPA ────────────────────────────────────
     function initCinematicParallax() {
       const jewelryInner = document.getElementById('hero-jewelry-inner');
-      const specCard = document.getElementById('hero-spec-card');
+      const specCard      = document.getElementById('hero-spec-card');
 
       window.addEventListener('mousemove', (e) => {
-        const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+        const nx = (e.clientX / window.innerWidth  - 0.5) * 2;
         const ny = (e.clientY / window.innerHeight - 0.5) * 2;
 
-        // Desplazamiento inercial suave y elegante (Requisito 10)
         if (jewelryInner) {
-          gsap.to(jewelryInner, {
-            x: nx * 18,
-            y: ny * 12,
-            duration: 1.8,
-            ease: 'power2.out'
-          });
+          gsap.to(jewelryInner, { x: nx * 18, y: ny * 12, duration: 1.8, ease: 'power2.out' });
         }
-
-        // Tilt angular tridimensional sutil en la tarjeta técnica
         if (specCard) {
           gsap.to(specCard, {
-            x: -nx * 8,
-            y: -ny * 6,
-            rotateY: nx * 6,
-            rotateX: -ny * 6,
-            duration: 1.2,
-            ease: 'power2.out'
+            x: -nx * 8, y: -ny * 6,
+            rotateY: nx * 6, rotateX: -ny * 6,
+            duration: 1.2, ease: 'power2.out'
           });
         }
       });
     }
 
-    // ── 05. CURTAIN ENTRANCE MASTER TIMELINE (FLUIDO Y CONTINUO) ───────────
+    // ── 05. CURTAIN ENTRANCE MASTER TIMELINE ────────────────────────────────
     function initCurtainEntrance() {
-      const stage = document.getElementById('curtain-stage');
-      const beam = document.getElementById('curtain-gold-beam');
+      const stage      = document.getElementById('curtain-stage');
+      const beam       = document.getElementById('curtain-gold-beam');
       const brandIntro = document.getElementById('curtain-brand-intro');
-      const progress = document.getElementById('curtain-progress');
-      const counter = document.getElementById('curtain-counter');
-      const nav = document.getElementById('hero-nav');
-      const ctaUnderline = document.getElementById('hero-cta-underline');
+      const progress   = document.getElementById('curtain-progress');
+      const counter    = document.getElementById('curtain-counter');
+      const nav        = document.getElementById('hero-nav');
+      const ctaLine    = document.getElementById('hero-cta-underline');
 
-      const master = gsap.timeline();
+      // Selectores por grupo narrativo para stagger independiente y controlado
+      const kickerLines   = document.querySelectorAll('#hero-kicker .reveal-line, #hero-edition-tag .reveal-line');
+      const headlineLines = document.querySelectorAll('h1 .reveal-line');
+      const subtitleLines = document.querySelectorAll('.rl-footer');
+      const bodyLines     = document.querySelectorAll('.reveal-line.rl-body');
 
-      // Fase 1: La línea dorada aparece y se extiende verticalmente
-      master.to(beam, {
-        height: '55vh',
-        duration: 0.85,
-        ease: 'power4.inOut'
-      })
-      // Fase 2: El haz se expande y se revela el monograma de atelier
-      .to(brandIntro, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.55,
-        ease: 'power3.out'
-      }, '-=0.35')
-      // Fase 3: Simulador de calibración de bóveda 0% -> 100%
+      // Estado inicial explícito — evita saltos y conflictos con clases CSS
+      gsap.set(nav, { opacity: 0, y: -16 });
+      gsap.set(kickerLines, { y: '115%' });
+      gsap.set(headlineLines, { y: '115%' });
+      gsap.set(subtitleLines, { y: '115%' });
+      gsap.set(bodyLines, { y: '115%' });
+      gsap.set(ctaLine, { scaleX: 0, transformOrigin: 'left center' });
+
+      const master = gsap.timeline({ defaults: { overwrite: 'auto' } });
+
+      // — Fase 1: Rayo de luz dorada que corta la oscuridad
+      master.to(beam, { height: '58vh', duration: 0.9, ease: 'power4.inOut' })
+
+      // — Fase 2: Monograma del atelier emerge
+      .to(brandIntro, { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+
+      // — Fase 3: Contador de calibración 0→100%
       .to({ val: 0 }, {
         val: 100,
-        duration: 1.0,
+        duration: 1.1,
         ease: 'power2.inOut',
         onUpdate: function() {
           const v = Math.round(this.targets()[0].val);
-          if (counter) counter.innerText = `${v < 10 ? '0' + v : v}%`;
-          if (progress) progress.style.width = `${v}%`;
+          if (counter) counter.innerText = (v < 10 ? '0' : '') + v + '%';
+          if (progress) progress.style.width = v + '%';
         }
       })
-      // Fase 4: La cortina se retira suavemente en fade y slide
+
+      // — Fase 4: Cortina asciende — el mundo se revela
       .to(stage, {
         yPercent: -100,
-        duration: 1.15,
-        ease: 'power4.inOut',
-        onComplete: () => {
-          stage.style.display = 'none';
-        }
-      }, '+=0.15')
-      // Fase 4b: Revelado cinematográfico de la joyería con zoom inercial y luz rasante
-      .fromTo('#hero-jewelry-inner', {
-        scale: 1.18,
-        filter: 'brightness(0.75) contrast(1.15)'
-      }, {
-        scale: 1.05,
-        filter: 'brightness(0.98) contrast(1.14)',
-        duration: 2.2,
-        ease: 'power3.out'
-      }, '-=1.05')
-      // Fase 5: Entrada de la navegación minimalista
-      .to(nav, {
-        opacity: 1,
-        y: 0,
-        duration: 0.85,
-        ease: 'power3.out'
-      }, '-=1.4')
-      // Fase 6: Revelado de líneas del titular monumental (Split Mask Reveal)
-      .to('.reveal-line', {
-        y: '0%',
-        duration: 1.4,
-        stagger: 0.12,
-        ease: 'power4.out'
-      }, '-=0.8')
-      // Fase 7: Dibujo dinámico de la línea de subrayado del botón
-      .to(ctaUnderline, {
-        scaleX: 1,
-        duration: 1.1,
-        ease: 'power3.inOut'
-      }, '-=0.5');
+        duration: 1.2,
+        ease: 'expo.inOut',
+        onComplete: () => { stage.style.display = 'none'; }
+      }, '+=0.1')
+
+      // — Fase 4b: Joyería emerge con zoom inercial y normalización lumínica
+      .fromTo('#hero-jewelry-inner',
+        { scale: 1.18, filter: 'brightness(0.65) contrast(1.2) saturate(0.8)' },
+        { scale: 1.05, filter: 'brightness(0.98) contrast(1.14) saturate(1.12)', duration: 2.4, ease: 'power3.out' },
+        '-=1.1'
+      )
+
+      // — Fase 5: Navegación desciende suavemente
+      .to(nav, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out' }, '-=1.6')
+
+      // — Fase 6a: Micro-tags del atelier (kicker + edition)
+      .to(kickerLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power4.out' }, '-=1.0')
+
+      // — Fase 6b: Titular monumental por líneas — el momento dominante
+      .to(headlineLines, { y: '0%', duration: 1.5, stagger: 0.14, ease: 'power4.out' }, '-=0.6')
+
+      // — Fase 6c: Subtítulo y botón CTA — el cierre narrativo
+      .to(bodyLines, { y: '0%', duration: 1.1, stagger: 0.1, ease: 'power3.out' }, '-=0.7')
+
+      // — Fase 6d: Metadatos y bloque inferior — el epílogo técnico
+      .to(subtitleLines, { y: '0%', duration: 1.0, stagger: 0.08, ease: 'power3.out' }, '-=0.5')
+
+      // — Fase 7: Línea dorada del CTA se traza de izquierda a derecha
+      .to(ctaLine, { scaleX: 1, duration: 1.2, ease: 'power3.inOut' }, '-=0.8');
     }
 
     // ── 06. INICIALIZACIÓN GENERAL ──────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-      // Sincronización oficial de Lenis Smooth Scroll con GSAP ticker
+      // Lenis sincronizado con GSAP ticker (protocolo oficial)
       try {
         const lenis = new Lenis({
           duration: 1.2,
@@ -692,9 +662,7 @@
           smoothWheel: true
         });
         lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
+        gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
       } catch(e) {}
 

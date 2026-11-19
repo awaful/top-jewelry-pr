@@ -10,8 +10,8 @@
 **TOP JEWELRY PR** transforma la presencia comercial de Instagram en una tienda de comercio electrónico de clase mundial con el estándar de un desarrollo profesional valorado en **US$1,000 o más**.
 
 La plataforma permite a los clientes:
-- Explorar el catálogo completo de piezas de alta orfebrería con filtros por categoría, material y precio.
-- Conocer la pureza metálica (Oro 10K, Oro 14K, Plata Italiana 925), pesos estimados en gramos y dimensiones.
+- Explorar el catálogo completo de piezas de joyería con filtros por categoría y precio.
+- Conocer las características de cada pieza según la información oficial de la tienda.
 - Comprar directamente mediante un carrito dinámico con cálculo automático del **IVU de Puerto Rico (11.5%)** y envío asegurado **USPS Priority Mail**.
 - Realizar pagos directos con tarjeta mediante **Stripe Checkout** o coordinar pagos en Puerto Rico mediante **ATH Móvil** y **WhatsApp Concierge VIP**.
 - Disponer de un **Panel Administrativo Privado (/admin)** para gestionar productos, actualizar precios, controlar inventario y administrar pedidos sin requerir conocimientos de programación.
@@ -207,7 +207,7 @@ node preview-server.js
 
 ### A. Gestión de Catálogo desde `/admin`
 - Accede a `/admin` e introduce el PIN de seguridad (por defecto: `2025`).
-- **Añadir Pieza**: Haz clic en *"Nueva Pieza"*. Define el nombre, precio en USD, precio anterior (para mostrar descuento), material (Oro 10K, 14K, Plata 925), peso aproximado en gramos, stock y URLs de fotografías.
+- **Añadir Pieza**: Haz clic en *"Nueva Pieza"*. Define el nombre, precio en USD, precio anterior (para mostrar descuento), material (según especificaciones del producto), stock y URLs de fotografías.
 - **Control de Inventario**: Si el stock de una pieza llega a `0`, la plataforma automáticamente muestra la etiqueta *"Agotado"* y desactiva el botón de añadir a la bolsa.
 
 ### B. Gestión de Pedidos y Despacho

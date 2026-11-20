@@ -4,25 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>TOP JEWELRY PR — Digital Flagship · The Ring in the O</title>
+<title>TOP JEWELRY PR — Digital Flagship · Living Metal & Haute Joaillerie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Cinzel:wght@400;500;600;700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 /* ==========================================================================
-   DISEÑO DE MARCA DE ALTA JOYERÍA: TOP CON ANILLO INTEGRADO EN LA "O"
+   SISTEMA DE DISEÑO: DIRECTION ARTISTIQUE · LIVING METAL & HAUTE JOAILLERIE
    ========================================================================== */
 :root {
-  --ink: #070607;
+  --ink: #050405;
+  --ink-deep: #020202;
   --bone: #F5EFEB;
   --cream: #FAF6EF;
   --gold-champagne: #F1DDA0;
   --gold-primary: #D4AF37;
-  --gold-glow: rgba(241, 221, 160, 0.35);
-  --coral: var(--gold-champagne);
-  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  --gold-glow: rgba(241, 221, 160, 0.4);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(212, 175, 55, 0.35);
+  
+  --font-brand: "Cinzel", Georgia, serif;
+  --font-serif-sub: "Bodoni Moda", Georgia, serif;
+  --mono: "DM Mono", ui-monospace, Menlo, monospace;
   --sans: "Plus Jakarta Sans", -apple-system, sans-serif;
+  
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -59,16 +65,46 @@ body {
   inset: 0;
 }
 
-/* Fondo Volumétrico con Iluminación Cinemática */
-#spot {
-  background: radial-gradient(48vmax 48vmax at var(--x, 50%) var(--y, 45%), rgba(212, 175, 55, 0.28), rgba(241, 221, 160, 0.08) 42%, transparent 72%);
+/* ==========================================================================
+   FONDO LIVING METAL (CANVAS WEBGL SHADER DE METAL LÍQUIDO OSCURO)
+   Superficie fluida de metal líquido con reflejos de cromo y oro de estudio
+   ========================================================================== */
+#livingMetalCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Viñeta de Oclusión Lumínica para Favorecer la Lectura de TOP */
+.stage-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: 
+    radial-gradient(circle at 50% 48%, rgba(5, 4, 5, 0.45) 0%, rgba(5, 4, 5, 0.85) 60%, rgba(2, 2, 2, 0.98) 100%),
+    linear-gradient(to top, rgba(5, 4, 5, 0.9) 0%, transparent 25%),
+    linear-gradient(to bottom, rgba(5, 4, 5, 0.9) 0%, transparent 20%);
   pointer-events: none;
 }
 
+/* Resplandor Volumétrico Interactivo que Conecta Fondo y Anillo */
+#spotGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(45vmax 45vmax at var(--x, 50%) var(--y, 45%), rgba(212, 175, 55, 0.22) 0%, rgba(241, 221, 160, 0.06) 40%, transparent 75%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+
 /* ==========================================================================
-   EL CONCEPTO CENTRAL: "TOP" MONUMENTAL CON EL ANILLO INTEGRADO EN LA "O"
+   LA IDENTIDAD TOP MONUMENTAL: CINZEL + ANILLO DE ALTA JOYERÍA EN LA "O"
    ========================================================================== */
 .top-lockup-wrapper {
   position: absolute;
@@ -87,33 +123,36 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 400 min(42vw, 54vh) / 0.8 var(--serif);
+  font-family: var(--font-brand);
+  font-size: clamp(5.5rem, 15vw, 14.5rem);
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  color: #120e0c;
-  -webkit-text-stroke: 1px rgba(241, 221, 160, 0.45);
+  letter-spacing: 0.05em;
+  color: #0e0c0d;
+  -webkit-text-stroke: 1.2px rgba(241, 221, 160, 0.65);
   white-space: nowrap;
   user-select: none;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.8));
-  gap: 0.02em;
+  filter: drop-shadow(0 25px 60px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 40px rgba(212, 175, 55, 0.2));
+  line-height: 0.8;
 }
 
 .letter-t, .letter-p {
   display: inline-block;
   will-change: transform, opacity;
+  position: relative;
 }
 
-/* Contenedor del Anillo Integrado como la letra "O" */
+/* La Letra "O" ES el Anillo de Alta Joyería */
 .letter-ring-o {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: min(40vw, 50vh);
-  height: min(40vw, 50vh);
-  margin: 0 -0.04em;
+  width: clamp(5.8rem, 15.5vw, 15rem);
+  height: clamp(5.8rem, 15.5vw, 15rem);
+  margin: 0 0.02em;
   vertical-align: middle;
-  perspective: 1200px;
+  perspective: 1400px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
 }
@@ -134,27 +173,27 @@ body {
   height: 100%;
   object-fit: contain;
   filter: 
-    drop-shadow(0 25px 60px rgba(0, 0, 0, 0.95)) 
-    drop-shadow(0 0 45px rgba(212, 175, 55, 0.3));
+    drop-shadow(0 30px 70px rgba(0, 0, 0, 0.98)) 
+    drop-shadow(0 0 50px rgba(212, 175, 55, 0.35));
   user-select: none;
   -webkit-user-drag: none;
   mask-image: radial-gradient(circle at 50% 50%, black 66%, transparent 74%);
   -webkit-mask-image: radial-gradient(circle at 50% 50%, black 66%, transparent 74%);
 }
 
-/* Destello Refractivo sobre la Corona del Diamante en el tope de la "O" */
+/* Destello Refractivo sobre la Corona del Diamante Solitario */
 .diamond-crown-glint {
   position: absolute;
-  top: 14%;
+  top: 13.5%;
   left: 50%;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  background: radial-gradient(circle, #ffffff 0%, rgba(241, 221, 160, 0.95) 30%, rgba(212, 175, 55, 0.35) 60%, transparent 80%);
+  background: radial-gradient(circle, #ffffff 0%, rgba(241, 221, 160, 0.98) 25%, rgba(212, 175, 55, 0.4) 55%, transparent 75%);
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: glintShimmer 3.8s ease-in-out infinite alternate;
+  animation: glintShimmer 4s ease-in-out infinite alternate;
 }
 
 .diamond-crown-glint::before {
@@ -162,9 +201,9 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 46px;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  width: 52px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.98), transparent);
   transform: translate(-50%, -50%);
 }
 
@@ -173,61 +212,68 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1.5px;
-  height: 46px;
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.98), transparent);
   transform: translate(-50%, -50%);
 }
 
 @keyframes glintShimmer {
-  0% { transform: translate(-50%, -50%) scale(0.65) rotate(0deg); opacity: 0.35; }
+  0% { transform: translate(-50%, -50%) scale(0.6) rotate(0deg); opacity: 0.35; }
   50% { transform: translate(-50%, -50%) scale(1.3) rotate(45deg); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(0.75) rotate(90deg); opacity: 0.45; }
+  100% { transform: translate(-50%, -50%) scale(0.7) rotate(90deg); opacity: 0.45; }
 }
 
 /* ==========================================================================
-   CAPA DELANTERA: "JEWELRY [PR]" (COMPOSICIÓN EDITORIAL DE CLAUDE)
+   CAPA DELANTERA: "JEWELRY [PR]" (COMPOSICIÓN EDITORIAL DE ALTA COSTURA)
    ========================================================================== */
 .frontw {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: calc(6vh + env(safe-area-inset-bottom, 0px));
+  bottom: calc(7vh + env(safe-area-inset-bottom, 0px));
   text-align: center;
   z-index: 4;
   pointer-events: none;
 }
 
 .frontw-in {
-  font: italic 400 min(19vw, 22vh) / 0.9 var(--serif);
+  font-family: var(--font-serif-sub);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  font-weight: 400;
+  letter-spacing: 0.22em;
   color: var(--cream);
   white-space: nowrap;
   user-select: none;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
 .pr {
   display: inline-block;
-  font: 400 0.3em / 1 var(--serif);
+  font-family: var(--font-brand);
   font-style: normal;
-  letter-spacing: 0.08em;
+  font-size: 0.45em;
+  letter-spacing: 0.15em;
   color: var(--gold-champagne);
-  vertical-align: top;
-  margin-left: 0.35em;
-  margin-top: 0.35em;
+  vertical-align: middle;
+  margin-left: 0.6em;
   border: 1px solid rgba(241, 221, 160, 0.7);
-  background: rgba(12, 10, 9, 0.5);
-  backdrop-filter: blur(10px);
+  background: rgba(10, 8, 9, 0.65);
+  backdrop-filter: blur(12px);
   border-radius: 99px;
-  padding: 0.22em 0.65em;
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+  padding: 0.22em 0.7em;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
 }
 
 @media (max-aspect-ratio: 1/1) {
-  .frontw { bottom: calc(15vh + env(safe-area-inset-bottom, 0px)); }
-  .frontw-in { font-size: min(25vw, 18vh); }
+  .frontw { bottom: calc(14vh + env(safe-area-inset-bottom, 0px)); }
+  .top-brand-monument {
+    font-size: clamp(3.8rem, 15vw, 7rem);
+  }
   .letter-ring-o {
-    width: min(52vw, 42vh);
-    height: min(52vw, 42vh);
+    width: clamp(4.2rem, 16vw, 7.5rem);
+    height: clamp(4.2rem, 16vw, 7.5rem);
   }
 }
 
@@ -265,23 +311,26 @@ body {
 }
 
 .s2w {
-  font: 400 min(30vw, 38vh) / 0.85 var(--serif);
-  letter-spacing: -0.02em;
+  font-family: var(--font-brand);
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   color: #120e0b;
+  text-transform: uppercase;
 }
 
 .s2-sub {
-  max-width: 38ch;
-  margin: 3.5vh 0 0;
-  font: 400 12.5px / 1.75 var(--mono);
-  letter-spacing: 0.08em;
-  color: #3b322c;
+  max-width: 42ch;
+  margin: 3vh 0 0;
+  font: 400 12px / 1.8 var(--mono);
+  letter-spacing: 0.12em;
+  color: #453c35;
   text-transform: uppercase;
 }
 
 .s2-btns {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 3.5vh;
@@ -289,9 +338,9 @@ body {
 
 .btn {
   font: 400 11px / 1 var(--mono);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 16px 26px;
+  padding: 16px 28px;
   border: 1px solid #14100d;
   border-radius: 99px;
   color: #14100d;
@@ -318,17 +367,17 @@ body {
   transform: translateY(-2px);
 }
 
-/* Textura Grano Fino Analógico */
+/* Grano Cinematográfico Analógico */
 #grain {
   z-index: 15;
   pointer-events: none;
-  opacity: 0.12;
+  opacity: 0.10;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ==========================================================================
-   UI MINIMALISTA CON MODO DIFFERENCE (ORIGINAL DE CLAUDE)
+   UI MINIMALISTA HUD CON MODO DIFFERENCE
    ========================================================================== */
 .ui {
   position: absolute;
@@ -338,7 +387,7 @@ body {
   mix-blend-mode: difference;
   color: #fff;
   font: 400 11px / 1.2 var(--mono);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -355,7 +404,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 clamp(16px, 3.5vw, 44px);
+  padding: 0 clamp(16px, 3.5vw, 48px);
 }
 
 .bar.t {
@@ -368,11 +417,11 @@ body {
 
 .nav {
   display: flex;
-  gap: 26px;
+  gap: 28px;
 }
 
 .nav a:hover {
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .cnt {
@@ -415,12 +464,12 @@ body {
   bottom: calc(52px + env(safe-area-inset-bottom, 0px));
   text-align: center;
   opacity: 0.55;
-  font-size: 9.5px;
+  font-size: 9px;
   letter-spacing: 0.2em;
 }
 
 /* ==========================================================================
-   LOADER CINEMATOGRÁFICO DE CLAUDE: CONTADOR 000 -> 100 Y CORTINA
+   LOADER CINEMATOGRÁFICO DE CLAUDE
    ========================================================================== */
 #loader {
   position: fixed;
@@ -431,25 +480,25 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px clamp(16px, 3.5vw, 44px);
+  padding: 24px clamp(16px, 3.5vw, 48px);
   box-sizing: border-box;
 }
 
 #loader .lbl {
   font: 400 11px var(--mono);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.22em;
   color: var(--gold-champagne);
   text-transform: uppercase;
 }
 
 #cnt {
   align-self: flex-end;
-  font: italic 400 min(24vw, 30vh) / 0.8 var(--serif);
+  font: italic 400 min(24vw, 30vh) / 0.8 var(--font-serif-sub);
   color: var(--cream);
 }
 
 /* ==========================================================================
-   SECCIÓN SIGUIENTE: CONTINUACIÓN EDITORIAL
+   SECCIÓN SIGUIENTE: ARCHIVO Y CATÁLOGO EDITORIAL
    ========================================================================== */
 #next {
   background: var(--bone);
@@ -468,18 +517,18 @@ body {
   box-sizing: border-box;
 }
 
-.next-gallery-row {
+.next-triad-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
 
-.next-card {
+.next-triad-card {
   background: #ffffff;
-  border: 1px solid rgba(18, 14, 11, 0.08);
+  border: 1px solid rgba(20, 16, 13, 0.08);
   border-radius: 6px;
   overflow: hidden;
   padding: 1.25rem;
@@ -487,10 +536,10 @@ body {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
-.next-card img {
+.next-triad-card img {
   width: 100%;
   height: 240px;
   object-fit: cover;
@@ -498,13 +547,12 @@ body {
   margin-bottom: 1rem;
 }
 
-.next-card-title {
-  font-family: var(--serif);
-  font-size: 1.3rem;
+.card-title {
+  font-family: var(--font-brand);
+  font-size: 1.15rem;
   color: #120e0b;
   margin-bottom: 0.35rem;
-  letter-spacing: normal;
-  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -524,9 +572,13 @@ body {
      ESCENARIO PRINCIPAL (STAGE PINNEADO A +=320%)
      ========================================================================= -->
 <section id="stage">
-  <div class="layer" id="spot"></div>
   
-  <!-- CONCEPTO CENTRAL: "TOP" CON EL ANILLO DE ALTA JOYERÍA EN LA "O" -->
+  <!-- FONDO LIVING METAL: METAL LÍQUIDO OSCURO CON ILUMINACIÓN DE ESTUDIO -->
+  <canvas id="livingMetalCanvas" class="layer"></canvas>
+  <div class="stage-vignette"></div>
+  <div class="layer" id="spotGlow"></div>
+
+  <!-- CONCEPTO CENTRAL: "TOP" MONUMENTAL CON EL ANILLO DE ALTA JOYERÍA EN LA "O" -->
   <div class="top-lockup-wrapper">
     <div class="top-brand-monument">
       <span class="letter-t ln"><span>T</span></span>
@@ -593,33 +645,247 @@ body {
 
 <!-- Continuación Editorial de la Siguiente Escena -->
 <section id="next">
-  <span style="font-size: 0.85rem; letter-spacing: 0.22em; color: var(--gold-primary);">Catálogo Curado 2026</span>
-  <h2 style="font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); text-transform: none; letter-spacing: normal; margin: 0;">Selección Exclusiva de Atelier</h2>
+  <span style="font-size: 0.8rem; letter-spacing: 0.24em; color: var(--gold-primary);">Colección 2026</span>
+  <h2 style="font-family: var(--font-brand); font-size: clamp(2rem, 3.5vw, 3rem); text-transform: uppercase; letter-spacing: 0.08em; margin: 0;">Selección de Atelier</h2>
   
-  <div class="next-gallery-row">
-    <div class="next-card">
+  <div class="next-triad-grid">
+    <div class="next-triad-card">
       <img src="solitaire-ring.jpg" alt="Sortija Solitaire">
-      <span class="next-card-title">Solitaire Atelier Ring</span>
-      <span style="font-size: 0.7rem; color: #665b53;">Oro 18k · Diamante Talla Brillante</span>
+      <span class="card-title">Solitaire Atelier Ring</span>
+      <span style="font-size: 0.72rem; color: #665b53;">Oro 18k · Diamante Talla Brillante</span>
     </div>
-    <div class="next-card">
+    <div class="next-triad-card">
       <img src="vault-hero.jpg" alt="Cadena Cubana y Brazalete Tennis">
-      <span class="next-card-title">Cadena Cubana & Tennis</span>
-      <span style="font-size: 0.7rem; color: #665b53;">Oro Macizo · Pedestal Obsidiana</span>
+      <span class="card-title">Cadena Cubana & Tennis</span>
+      <span style="font-size: 0.72rem; color: #665b53;">Oro Macizo · Pedestal Obsidiana</span>
     </div>
-    <div class="next-card">
+    <div class="next-triad-card">
       <img src="sec2-campaign.jpg" alt="Detalle Sortija de Diamantes">
-      <span class="next-card-title">Sortija Pavé Solitaire</span>
-      <span style="font-size: 0.7rem; color: #665b53;">Selección de Gemas de Autor</span>
+      <span class="card-title">Sortija Pavé Solitaire</span>
+      <span style="font-size: 0.72rem; color: #665b53;">Selección de Gemas de Autor</span>
     </div>
   </div>
 </section>
 
-<!-- Librerías Originales: GSAP, ScrollTrigger y Lenis -->
+<!-- Librerías: GSAP, ScrollTrigger y Lenis -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
+<!-- =========================================================================
+     SHADER GLSL: LIVING METAL (SUPERFICIE DE METAL LÍQUIDO OSCURO)
+     ========================================================================= -->
+<script>
+class LivingMetalShader {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.gl = canvas.getContext('webgl', { antialias: true, powerPreference: 'high-performance' });
+    if (!this.gl) return;
+    this.mouse = { x: 0.5, y: 0.45, targetX: 0.5, targetY: 0.45 };
+    this.time = 0;
+    this.scrollProgress = 0;
+    this.init();
+  }
+
+  init() {
+    const gl = this.gl;
+    const vsSource = `
+      attribute vec2 position;
+      void main() {
+        gl_Position = vec4(position, 0.0, 1.0);
+      }
+    `;
+
+    // Fragment Shader PBR de Metal Líquido Oscuro con Iluminación de Estudio
+    const fsSource = `
+      precision highp float;
+      uniform vec2 u_resolution;
+      uniform float u_time;
+      uniform vec2 u_mouse;
+      uniform float u_scroll;
+
+      // Simplex noise procedural para fluidez orgánica
+      vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+      vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+      float snoise(vec3 v) {
+        const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+        const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+        vec3 i  = floor(v + dot(v, C.yyy));
+        vec3 x0 = v - i + dot(i, C.xxx);
+        vec3 g = step(x0.yzx, x0.xyz);
+        vec3 l = 1.0 - g;
+        vec3 i1 = min(g.xyz, l.zxy);
+        vec3 i2 = max(g.xyz, l.zxy);
+        vec3 x1 = x0 - i1 + C.xxx;
+        vec3 x2 = x0 - i2 + C.yyy;
+        vec3 x3 = x0 - D.yyy;
+        i = mod289(i);
+        vec4 p = permute(permute(permute(
+                  i.z + vec4(0.0, i1.z, i2.z, 1.0))
+                + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+                + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+        float n_ = 0.142857142857;
+        vec3  ns = n_ * D.wyz - D.xzx;
+        vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+        vec4 x_ = floor(j * ns.z);
+        vec4 y_ = floor(j - 7.0 * x_);
+        vec4 x = x_ *ns.x + ns.yyyy;
+        vec4 y = y_ *ns.x + ns.yyyy;
+        vec4 h = 1.0 - abs(x) - abs(y);
+        vec4 b0 = vec4(x.xy, y.xy);
+        vec4 b1 = vec4(x.zw, y.zw);
+        vec4 s0 = floor(b0)*2.0 + 1.0;
+        vec4 s1 = floor(b1)*2.0 + 1.0;
+        vec4 sh = -step(h, vec4(0.0));
+        vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+        vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+        vec3 p0 = vec3(a0.xy, h.x);
+        vec3 p1 = vec3(a0.zw, h.y);
+        vec3 p2 = vec3(a1.xy, h.z);
+        vec3 p3 = vec3(a1.zw, h.w);
+        vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+        p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+        vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+        m = m * m;
+        return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+      }
+
+      // Campo de altura para olas de metal fundido viscoso
+      float getMetalHeight(vec2 p, float t) {
+        float h = 0.0;
+        h += snoise(vec3(p * 0.75, t * 0.18)) * 0.55;
+        h += snoise(vec3(p * 1.6 - t * 0.12, t * 0.22)) * 0.28;
+        h += snoise(vec3(p * 3.2 + t * 0.15, t * 0.35)) * 0.12;
+        return h;
+      }
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+        vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+
+        // Movimiento lento y continuo de metal líquido
+        float t = u_time * 0.45;
+
+        // Cálculo de normales por diferencias finitas
+        float eps = 0.008;
+        float hC = getMetalHeight(p, t);
+        float hR = getMetalHeight(p + vec2(eps, 0.0), t);
+        float hT = getMetalHeight(p + vec2(0.0, eps), t);
+
+        vec3 normal = normalize(vec3((hC - hR) / eps, (hC - hT) / eps, 1.25));
+
+        // Iluminación de Estudio de Alta Joyería
+        // Luz Clave Dorada (Key Light Champagne Gold) reactiva al mouse
+        vec3 lightPos1 = vec3(u_mouse.x * 2.0 - 1.0 + 0.4, -(u_mouse.y * 2.0 - 1.0) + 0.6, 1.5);
+        vec3 lightDir1 = normalize(lightPos1 - vec3(p, hC * 0.2));
+
+        // Luz de Relleno Platino (Rim Light Chrome)
+        vec3 lightPos2 = vec3(-0.9, -0.6, 1.1);
+        vec3 lightDir2 = normalize(lightPos2 - vec3(p, hC * 0.2));
+
+        vec3 viewDir = vec3(0.0, 0.0, 1.0);
+
+        // Reflexión y Especular Cook-Torrance aproximado
+        vec3 halfDir1 = normalize(lightDir1 + viewDir);
+        float spec1 = pow(max(dot(normal, halfDir1), 0.0), 38.0);
+        float diff1 = max(dot(normal, lightDir1), 0.0);
+
+        vec3 halfDir2 = normalize(lightDir2 + viewDir);
+        float spec2 = pow(max(dot(normal, halfDir2), 0.0), 48.0);
+        float diff2 = max(dot(normal, lightDir2), 0.0);
+
+        // Efecto Fresnel para refracción rasante
+        float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.2);
+
+        // Colorimetría: Obsidiana Profunda (#070607) con reflejos Oro Champagne (#E8C872) y Cromo Satinado
+        vec3 baseObsidian = vec3(0.024, 0.020, 0.025);
+        vec3 goldColor = vec3(0.94, 0.82, 0.52);
+        vec3 chromeColor = vec3(0.72, 0.78, 0.88);
+
+        vec3 color = baseObsidian;
+        color += diff1 * goldColor * 0.18;
+        color += spec1 * goldColor * (0.85 + u_scroll * 0.4);
+        color += diff2 * chromeColor * 0.12;
+        color += spec2 * chromeColor * 0.55;
+        color += fresnel * goldColor * 0.25;
+
+        // Amortiguación sutil hacia los bordes
+        float vignette = smoothstep(1.4, 0.3, length(p));
+        color *= vignette;
+
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `;
+
+    const createShader = (type, source) => {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return shader;
+    };
+
+    const program = gl.createProgram();
+    gl.attachShader(program, createShader(gl.VERTEX_SHADER, vsSource));
+    gl.attachShader(program, createShader(gl.FRAGMENT_SHADER, fsSource));
+    gl.linkProgram(program);
+    gl.useProgram(program);
+    this.program = program;
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1, 1, -1, -1, 1,
+      -1, 1, 1, -1, 1, 1
+    ]), gl.STATIC_DRAW);
+
+    const posAttr = gl.getAttribLocation(program, 'position');
+    gl.enableVertexAttribArray(posAttr);
+    gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
+
+    this.uRes = gl.getUniformLocation(program, 'u_resolution');
+    this.uTime = gl.getUniformLocation(program, 'u_time');
+    this.uMouse = gl.getUniformLocation(program, 'u_mouse');
+    this.uScroll = gl.getUniformLocation(program, 'u_scroll');
+
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+    window.addEventListener('pointermove', e => {
+      this.mouse.targetX = e.clientX / window.innerWidth;
+      this.mouse.targetY = e.clientY / window.innerHeight;
+    });
+  }
+
+  resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    this.canvas.width = window.innerWidth * dpr;
+    this.canvas.height = window.innerHeight * dpr;
+    if (this.gl) {
+      this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+      this.gl.uniform2f(this.uRes, this.canvas.width, this.canvas.height);
+    }
+  }
+
+  render(time, scroll) {
+    if (!this.gl) return;
+    this.time = time;
+    this.scrollProgress = scroll || 0;
+    this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
+    this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
+
+    this.gl.uniform1f(this.uTime, this.time);
+    this.gl.uniform2f(this.uMouse, this.mouse.x, this.mouse.y);
+    this.gl.uniform1f(this.uScroll, this.scrollProgress);
+    this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+  }
+}
+</script>
+
+<!-- =========================================================================
+     SCRIPTS: ANIMACIONES, GSAP SCROLL & CONTROL DEL LIVING METAL
+     ========================================================================= -->
 <script>
 (()=>{
 const $ = s => document.querySelector(s);
@@ -633,9 +899,18 @@ $$('[data-split]').forEach(el => {
 const stage = $('#stage');
 const ringBox = $('#ringBox');
 const mask = $('#scene2');
-const spot = $('#spot');
+const spotGlow = $('#spotGlow');
+const livingCanvas = $('#livingMetalCanvas');
 
-// Estado y variables físicas de escena de Claude
+// Inicializar shader de Living Metal
+let livingMetal = null;
+try {
+  livingMetal = new LivingMetalShader(livingCanvas);
+} catch (e) {
+  console.warn("WebGL Shader no disponible:", e);
+}
+
+// Variables de estado físico y escena idénticas a Claude
 const S = {
   base: 0.2,
   q: 0,
@@ -658,43 +933,49 @@ function size() {
   CY = H * (W < H ? 0.44 : 0.46);
 }
 
-// Bucle de física y render de frame idéntico al prototipo de Claude
+// Bucle de física y render continuo
 function frame() {
   const t = performance.now() / 1000;
   S.mx += (S.tx - S.mx) * 0.06;
   S.my += (S.ty - S.my) * 0.06;
   const free = 1 - S.q;
 
-  // Inclinación (tilt) y rotación (yaw) en 3D sobre el anillo integrado en la "O"
-  const tiltDeg = ((S.base - 0.2) * 20 + (S.my * 12 + Math.sin(t * 0.7) * 2.5)) * free + (S.q * 16);
-  const yawDeg = (S.mx * 16 + Math.sin(t * 0.45) * 3) * free;
+  // Renderizar Metal Líquido con reactividad física
+  if (livingMetal) {
+    livingMetal.render(t, S.q);
+  }
+
+  // Inclinación 3D del anillo en la O
+  const tiltDeg = ((S.base - 0.2) * 18 + (S.my * 10 + Math.sin(t * 0.7) * 2.2)) * free + (S.q * 16);
+  const yawDeg = (S.mx * 15 + Math.sin(t * 0.45) * 2.8) * free;
   const scale = S.zoom * S.entry;
 
   if (ringBox) {
-    ringBox.style.transform = `perspective(1200px) rotateX(${tiltDeg.toFixed(2)}deg) rotateY(${yawDeg.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+    ringBox.style.transform = `perspective(1400px) rotateX(${tiltDeg.toFixed(2)}deg) rotateY(${yawDeg.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
     ringBox.style.opacity = S.alpha;
   }
 
-  // Apertura de la máscara elíptica de Claude exactamente a través del centro de la "O" (el anillo)
+  // Apertura de la máscara elíptica de Claude a través del orificio del anillo
   const baseRadius = Math.min(W, H) * (W < H ? 0.16 : 0.18);
   const rx = baseRadius * S.zoom * S.m;
   const ry = rx * Math.max(0.72, Math.abs(Math.sin(S.base + (Math.PI / 2 - S.base) * S.q)));
   mask.style.clipPath = mask.style.webkitClipPath = `ellipse(${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${CX}px ${CY}px)`;
 
-  // Posición dinámica del haz de luz de fondo
-  spot.style.setProperty('--x', (50 + S.mx * 18) + '%');
-  spot.style.setProperty('--y', (CY / H * 100 + S.my * 14) + '%');
+  // Posición dinámica del halo dorado
+  spotGlow.style.setProperty('--x', (50 + S.mx * 16) + '%');
+  spotGlow.style.setProperty('--y', (CY / H * 100 + S.my * 12) + '%');
 }
 
 size();
 addEventListener('resize', size);
 
-// Comprobación de GSAP / ScrollTrigger
+// Comprobación de librerías
 if (!window.gsap || !window.ScrollTrigger) {
   const l = $('#loader');
   if (l) l.remove();
   Object.assign(S, { alpha: 1, entry: 1, base: 1 });
-  spot.style.opacity = 1;
+  if (livingCanvas) livingCanvas.style.opacity = '1';
+  spotGlow.style.opacity = '1';
   (function f() { frame(); requestAnimationFrame(f); })();
   return;
 }
@@ -720,7 +1001,7 @@ gsap.set('.pr', { scale: 0, opacity: 0 });
 gsap.set('.ui', { opacity: 0 });
 gsap.set('.s2-sub, .s2-btns', { opacity: 0, y: 24 });
 
-// QuickTo reactivo al cursor exacto de Claude
+// QuickTo reactivo al cursor
 const qt = gsap.quickTo('.letter-t', 'x', { duration: 1, ease: 'power3' });
 const qp = gsap.quickTo('.letter-p', 'x', { duration: 1, ease: 'power3' });
 const qf = gsap.quickTo('.frontw-in', 'x', { duration: 1, ease: 'power3' });
@@ -730,13 +1011,13 @@ addEventListener('pointermove', e => {
   const ny = e.clientY / innerHeight - 0.5;
   S.tx = nx * 2;
   S.ty = ny * 2;
-  qt(-nx * 25);
-  qp(-nx * 25);
-  qf(nx * 36);
+  qt(-nx * 22);
+  qp(-nx * 22);
+  qf(nx * 32);
 });
 
 // =========================================================================
-// TIMELINE DE SCROLL EXACTO DE CLAUDE (Stage Pinneado +=320%)
+// TIMELINE DE SCROLL EXACTO DE CLAUDE (Stage Pinneado a +=320%)
 // La "T" y la "P" se separan lateralmente, el anillo "O" se expande hacia la cámara
 // y la máscara del portal se abre desde el centro hacia la Escena 2
 // =========================================================================
@@ -767,8 +1048,7 @@ tl.to(S, { q: 1, duration: 0.45, ease: 'power2.inOut' }, 0)
   .to('.s2-sub, .s2-btns', { opacity: 1, y: 0, stagger: 0.05, duration: 0.15 }, 0.78);
 
 // =========================================================================
-// TIMELINE DE ENTRADA EXACTO DE CLAUDE
-// Contador 000 -> 100, cortina, foco de luz y elevación de la palabra TOP
+// TIMELINE DE ENTRADA CINEMATOGRÁFICA
 // =========================================================================
 const it = gsap.timeline({
   paused: true,
@@ -778,7 +1058,8 @@ const it = gsap.timeline({
   }
 });
 
-it.to('#spot', { opacity: 1, duration: 2 }, 0)
+it.to('#livingMetalCanvas', { opacity: 1, duration: 2.2 }, 0)
+  .to('#spotGlow', { opacity: 1, duration: 2 }, 0)
   .to(S, { alpha: 1, duration: 0.8 }, 0)
   .to(S, { entry: 1, duration: 2.2, ease: 'expo.out' }, 0)
   .to(S, { base: 1, duration: 2.4, ease: 'expo.out' }, 0)

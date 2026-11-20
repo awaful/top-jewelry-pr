@@ -175,7 +175,7 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Líneas técnicas de orfebrería con guiones */
+    /* Líneas técnicas de borde dorado */
     .technical-border {
       border-color: rgba(181, 138, 75, 0.22);
     }
@@ -200,7 +200,7 @@
     <!-- Monograma central y medidor de calibración -->
     <div id="curtain-brand-intro" class="relative z-10 flex flex-col items-center gap-4 text-center opacity-0 transform scale-95">
       <img src="/logo-transparent.png" alt="Top Jewelry PR Insignia" class="h-16 w-auto object-contain filter drop-shadow-[0_0_35px_rgba(181,138,75,0.7)]">
-      <div class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#D6BD91]">JOYERÍA CONTEMPORÁNEA · PUERTO RICO</div>
+      <div class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#D6BD91]">TOP JEWELRY PR</div>
       <div class="w-36 h-[1px] bg-[rgba(181,138,75,0.3)] relative overflow-hidden mt-1">
         <div id="curtain-progress" class="absolute inset-y-0 left-0 bg-[#B58A4B] w-0"></div>
       </div>
@@ -224,22 +224,22 @@
           <span class="font-headline font-extrabold text-xl tracking-[0.1em] text-[#FFF9F2] uppercase">TOP</span>
           <span class="font-sans font-normal text-xs tracking-[0.3em] text-[#D6BD91] uppercase">JEWELRY PR</span>
         </div>
-        <span class="font-mono text-[9.5px] tracking-[0.22em] text-[#82786D] uppercase">PUERTO RICO</span>
+        <span class="font-mono text-[9.5px] tracking-[0.22em] text-[#82786D] uppercase">JOYERÍA</span>
       </div>
     </a>
 
     <!-- Enlaces Editoriales Minimalistas -->
     <nav class="hidden lg:flex items-center gap-10 text-[10.5px] font-sans tracking-[0.22em] uppercase text-[#E8E0D2]/90">
-      <a href="#colecciones" data-atelier-action="colecciones" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Explorar Colecciones del Atelier">
+      <a href="#colecciones" data-nav-action="colecciones" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Explorar Colecciones">
         <span>Colecciones</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
-      <a href="#historia" data-atelier-action="historia" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Conocer Nuestra Historia">
+      <a href="#historia" data-nav-action="historia" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Conocer Nuestra Historia">
         <span>Nuestra Historia</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
-      <a href="#contacto" data-atelier-action="contacto" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Contacto con el Atelier y Bóveda">
-        <span>Contacto & Bóveda</span>
+      <a href="#contacto" data-nav-action="contacto" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Contacto">
+        <span>Contacto</span>
         <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
       </a>
     </nav>
@@ -254,7 +254,7 @@
       </button>
 
       <!-- Ícono de Búsqueda Minimalista -->
-      <button type="button" data-atelier-action="buscar" class="text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Buscar pieza en la Bóveda de Top Jewelry PR">
+      <button type="button" data-nav-action="buscar" class="text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Buscar en el catálogo">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="7"/>
           <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -262,7 +262,7 @@
       </button>
 
       <!-- Ícono de Bolsa Editorial con Badge Micro -->
-      <button type="button" data-atelier-action="bolsa" class="relative text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Ver Bolsa de Adquisiciones. 0 piezas actuales">
+      <button type="button" data-nav-action="bolsa" class="relative text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Ver Bolsa de compras">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M6 7h12l1.5 13H4.5L6 7z"/>
           <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
@@ -303,14 +303,12 @@
     <!-- CAPA 2: CONTENIDO EDITORIAL DE GRAN FORMATO (TEXT REVEAL MASKS) -->
     <div class="relative z-20 max-w-[1520px] mx-auto px-5 md:px-12 lg:px-16 w-full flex flex-col justify-between h-full pt-20 pb-5 md:pt-32 md:pb-10 pointer-events-none">
       
-      <!-- Top Micro-Tag de Atelier (Sin puntos rojos accidentales) -->
+      <!-- Top Micro-Tag -->
       <div class="flex items-center justify-between w-full">
         <div id="hero-kicker" class="reveal-mask">
           <div class="reveal-line flex items-center gap-3 text-[10px] md:text-[12px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
             <span class="w-3.5 h-[1.5px] bg-[#B58A4B] inline-block"></span>
             <span>JOYERÍA CONTEMPORÁNEA</span>
-            <span class="text-[#B58A4B]">·</span>
-            <span>PUERTO RICO</span>
           </div>
         </div>
       </div>
@@ -344,7 +342,7 @@
             <a 
               href="#colecciones" 
               id="hero-cta"
-              data-atelier-action="colecciones"
+              data-nav-action="colecciones"
               class="group inline-flex items-center gap-4 text-xs font-sans font-semibold tracking-[0.28em] uppercase text-[#FFF9F2] pb-2 relative magnetic-target transition-colors duration-300 hover:text-[#D6BD91]"
               aria-label="Explorar Colección de Joyas Exclusivas"
             >
@@ -386,7 +384,7 @@
                 <span class="w-2.5 h-[1.5px] bg-[#B58A4B]"></span>
               </div>
               <div class="text-[10px] font-mono tracking-widest text-[#D6BD91] mt-1">
-                ORO 14K · 12MM
+                CADENA CUBANA
               </div>
             </div>
           </div>
@@ -502,7 +500,7 @@
       <div class="flex flex-col items-center justify-center text-center pt-6">
         <a 
           href="#colecciones" 
-          data-atelier-action="colecciones"
+          data-nav-action="colecciones"
           class="group inline-flex items-center gap-3 text-[11px] font-mono tracking-[0.3em] uppercase text-[#82786D] hover:text-[#D6BD91] transition-colors duration-300 magnetic-target py-2"
         >
           <span>DESCUBRIR COLECCIONES</span>
@@ -514,10 +512,10 @@
 
   </section>
 
-  <!-- Notificación de Atelier para Interacciones de Enlaces/Bóveda (Cero Destinos Rotos) -->
-  <aside id="atelier-toast" role="status" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] pointer-events-none opacity-0 transform translate-y-3 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] bg-[#090806]/95 border border-[rgba(181,138,75,0.35)] px-5 py-2.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.8)] backdrop-blur-md flex items-center gap-2.5">
+  <!-- Notificación para Interacciones de Enlaces (Cero Destinos Rotos) -->
+  <aside id="status-toast" role="status" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] pointer-events-none opacity-0 transform translate-y-3 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] bg-[#090806]/95 border border-[rgba(181,138,75,0.35)] px-5 py-2.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.8)] backdrop-blur-md flex items-center gap-2.5">
     <span class="w-1.5 h-1.5 rounded-full bg-[#B58A4B] animate-pulse" aria-hidden="true"></span>
-    <span id="atelier-toast-text">TOP JEWELRY PR</span>
+    <span id="status-toast-text">TOP JEWELRY PR</span>
   </aside>
 
   <!-- ========================================================================= -->
@@ -825,10 +823,10 @@
       .to(ctaLine, { scaleX: 1, duration: 0.8, ease: 'power3.inOut' }, '-=0.5');
     }
 
-    // ── 06. GESTIÓN DE ACCIONES Y ENLACES (ATELIER NOTIFIER) ─────────────────
-    function notifyAtelier(msg) {
-      const toast = document.getElementById('atelier-toast');
-      const text = document.getElementById('atelier-toast-text');
+    // ── 06. GESTIÓN DE ACCIONES Y ENLACES (STATUS NOTIFIER) ─────────────────
+    function notifyStatus(msg) {
+      const toast = document.getElementById('status-toast');
+      const text = document.getElementById('status-toast-text');
       if (!toast || !text) return;
       text.innerText = msg;
       gsap.killTweensOf(toast);
@@ -837,18 +835,18 @@
         .to(toast, { opacity: 0, y: 10, duration: 0.4, delay: 2.2, ease: 'power2.in' });
     }
 
-    function initAtelierActions() {
+    function initNavActions() {
       const actionMap = {
-        'colecciones': 'BÓVEDA DE COLECCIONES · FASE DE ALTA CURADURÍA',
-        'contacto': 'BÓVEDA & CONCIERGE · SERVICIO PRIVADO DISPONIBLE',
-        'buscar': 'CATÁLOGO GENERAL · BÚSQUEDA DISPONIBLE EN FASE 02',
-        'bolsa': 'BOLSA DE ADQUISICIONES · 0 PIEZAS SELECCIONADAS'
+        'colecciones': 'COLECCIONES · EN PREPARACIÓN',
+        'contacto': 'ATENCIÓN Y CONSULTAS · PRÓXIMAMENTE',
+        'buscar': 'CATÁLOGO · BÚSQUEDA PRÓXIMAMENTE',
+        'bolsa': 'BOLSA DE COMPRAS · 0 PIEZAS SELECCIONADAS'
       };
 
-      document.querySelectorAll('[data-atelier-action]').forEach(el => {
+      document.querySelectorAll('[data-nav-action]').forEach(el => {
         el.addEventListener('click', (e) => {
           e.preventDefault();
-          const action = el.getAttribute('data-atelier-action');
+          const action = el.getAttribute('data-nav-action');
 
           // Smooth scroll hacia la Sección 02 si la acción es "historia"
           if (action === 'historia') {
@@ -861,7 +859,7 @@
           }
 
           const msg = actionMap[action] || 'TOP JEWELRY PR · DIGITAL FLAGSHIP';
-          notifyAtelier(msg);
+          notifyStatus(msg);
           if (audioActive) playHapticTick(1600, 0.02);
         });
       });
@@ -939,7 +937,7 @@
       initCursorAndMagnets();
       initCinematicParallax();
       initCurtainEntrance();
-      initAtelierActions();
+      initNavActions();
       initStatementScrollStorytelling();
     });
   </script>

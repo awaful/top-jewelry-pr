@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>TOP JEWELRY PR — Clean Luxury 3D Flagship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #070606;
+  --bone: #f5efe6;
+  --cream: #faf5ed;
+  --gold-primary: #e5c388;
+  --gold-bright: #fcf1d8;
+  --gold-deep: #a88448;
+  --gold-glow: rgba(229, 195, 136, 0.35);
+  --coral: #e4603c;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-gold: rgba(229, 195, 136, 0.22);
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--ink); scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base Stage */
+#stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+}
+.layer { position: absolute; inset: 0; }
+
+/* Clean Studio Lighting & Background */
+#bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#spot {
+  mix-blend-mode: screen;
+  background: radial-gradient(ellipse 65vmax 48vmax at var(--x, 50%) var(--y, 45%), rgba(229, 195, 136, 0.28), rgba(228, 96, 60, 0.06) 42%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+}
+#ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 520px at var(--cx, 50%) var(--cy, 45%), rgba(229, 195, 136, 0.18), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/* Hairline Grid Overlay (Docmo Agency Clean Architectural Lines) */
+.docmo-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid var(--hairline);
+  margin: clamp(14px, 2.5vw, 36px);
+  opacity: 0;
+}
+.docmo-crosshair {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+.docmo-crosshair::before, .docmo-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(229, 195, 136, 0.6);
+}
+.docmo-crosshair::before { top: 4px; left: 0; right: 0; height: 1px; }
+.docmo-crosshair::after { left: 4px; top: 0; bottom: 0; width: 1px; }
+.cross-tl { top: -5px; left: -5px; }
+.cross-tr { top: -5px; right: -5px; }
+.cross-bl { bottom: -5px; left: -5px; }
+.cross-br { bottom: -5px; right: -5px; }
+
+/* Monumental TOP Typography (Sculpted Luxury Metal) */
+.topw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.topw-in {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: min(56vw, 88vh);
+  font-size: min(56vw, 88svh);
+  line-height: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: -0.05em;
+  white-space: nowrap;
+  color: #120e0b;
+  -webkit-text-stroke: 1.5px rgba(229, 195, 136, 0.65);
+  text-shadow: 
+    0 0 40px rgba(229, 195, 136, 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+/* Three.js 3D Ring Canvas (Integrated inside the 'o') */
+#ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Front Text: "Jewelry PR" */
+.frontw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--jb, 8vh) + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  z-index: 5;
+}
+.frontw-in {
+  font: italic 400 min(17vw, 22vh)/0.9 var(--serif);
+  color: var(--cream);
+  white-space: nowrap;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+.pr {
+  display: inline-block;
+  font: 400 0.3em/1 var(--serif);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+  vertical-align: top;
+  margin-left: 0.35em;
+  margin-top: 0.35em;
+  border: 1px solid rgba(229, 195, 136, 0.6);
+  background: rgba(229, 195, 136, 0.06);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  padding: 0.22em 0.65em;
+  box-shadow: 0 0 15px rgba(229, 195, 136, 0.15);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .frontw-in { font-size: min(25vw, 18vh); }
+  .topw { height: 98%; }
+  .topw-in {
+    font-size: min(61vw, 88vh);
+    font-size: min(61vw, 88svh);
+    letter-spacing: 0.02em;
+    margin-right: -0.02em;
+  }
+}
+
+/* Clean Editorial Side Markings */
+.edit {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.14em;
+  color: rgba(229, 195, 136, 0.7);
+  text-transform: uppercase;
+}
+.edit i {
+  display: block;
+  width: 1px;
+  background: linear-gradient(rgba(229, 195, 136, 0), rgba(229, 195, 136, 0.6) 30%, rgba(229, 195, 136, 0.6) 70%, rgba(229, 195, 136, 0));
+}
+.side {
+  position: absolute;
+  top: var(--cy, 45%);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.side i { height: 68px; }
+.side span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 10px; }
+.side.l { left: clamp(24px, 4vw, 56px); }
+.side.r { right: clamp(24px, 4vw, 56px); }
+.plumb {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% - var(--cy, 45%) + var(--rw, 240px)*0.5 + 34px);
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.plumb i { height: 60px; }
+@media (max-width: 1099px), (max-aspect-ratio: 1/1) { .side { display: none; } }
+@media (max-aspect-ratio: 1/1) { .plumb { display: flex; } }
+
+/* Floating Clean Spec Badges (Subtle Editorial Depth) */
+.docmo-badge {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  background: rgba(14, 12, 11, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline-gold);
+  border-radius: 4px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+.badge-left {
+  left: clamp(24px, 4.5vw, 64px);
+  bottom: clamp(60px, 9vh, 90px);
+}
+.badge-right {
+  right: clamp(24px, 4.5vw, 64px);
+  top: clamp(80px, 12vh, 120px);
+}
+.docmo-badge .num {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--gold-bright);
+}
+.docmo-badge .desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--bone);
+  white-space: nowrap;
+}
+@media (max-width: 900px) { .docmo-badge { display: none; } }
+
+/* Split Text wrappers */
+.ln {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.14em 0.2em;
+  margin: -0.14em -0.2em;
+}
+.ln > span { display: inline-block; }
+
+/* Scene 2: Architectural Gallery Reveal through the Ring */
+.scene2 {
+  z-index: 10;
+  background: var(--bone);
+  color: #14100d;
+  clip-path: ellipse(0px 0px at 50% 45%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.15);
+}
+.s2in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+.s2-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7d7063;
+  margin-bottom: 2vh;
+}
+.s2w {
+  font: 400 min(30vw, 38vh)/0.85 var(--serif);
+  letter-spacing: -0.02em;
+  color: #120e0b;
+}
+.s2-sub {
+  max-width: 36ch;
+  margin: 3vh 0 0;
+  font: 400 12px/1.8 var(--mono);
+  letter-spacing: 0.06em;
+  color: #4a4138;
+}
+.s2-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4vh;
+}
+.btn {
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  border: 1px solid #14100d;
+  border-radius: 99px;
+  color: #14100d;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn.fill {
+  background: #14100d;
+  color: var(--bone);
+  box-shadow: 0 4px 16px rgba(20, 16, 13, 0.2);
+}
+.btn:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(228, 96, 60, 0.3);
+}
+
+/* Fine Film Grain */
+#grain {
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Clean Editorial UI HUD */
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #fff;
+  font: 400 11px/1.2 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.ui a { pointer-events: auto; color: inherit; text-decoration: none; transition: opacity 0.2s; }
+.ui a:hover { opacity: 0.7; }
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+.bar.t { top: calc(20px + env(safe-area-inset-top, 0px)); }
+.bar.b { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+.nav { display: flex; gap: 26px; }
+.cnt { display: grid; }
+.cnt span { grid-area: 1/1; }
+.c2 { opacity: 0; }
+.cue { display: flex; align-items: center; gap: 12px; }
+.cue i {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: #fff;
+  transform-origin: top;
+  animation: cue 2s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+@keyframes cue {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+.note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(22px + env(safe-area-inset-top, 0px));
+  text-align: center;
+  opacity: 0.45;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+@media (max-aspect-ratio: 1/1), (max-width: 1000px) {
+  .note { top: auto; bottom: calc(56px + env(safe-area-inset-bottom, 0px)); padding: 0 16px; }
+}
+
+/* Minimal Luxury Preloader */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--ink);
+  clip-path: inset(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px clamp(20px, 4vw, 56px);
+  box-sizing: border-box;
+}
+#loader .lbl {
+  font: 400 11px var(--mono);
+  letter-spacing: 0.22em;
+  color: var(--gold-bright);
+}
+#cnt {
+  align-self: flex-end;
+  font: italic 400 min(24vw, 30vh)/0.8 var(--serif);
+  color: var(--cream);
+  text-shadow: 0 0 30px rgba(229, 195, 136, 0.25);
+}
+
+/* Next Section (Catalog) */
+#next {
+  background: var(--bone);
+  color: #14100d;
+  min-height: 70vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 14px;
+  font: 400 11px/1.8 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue i { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <span class="lbl">TOP JEWELRY PR · ATELIER</span>
+  <b id="cnt">000</b>
+</div>
+
+<section id="stage">
+  <!-- Clean Silky Studio Background -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="layer" id="spot"></div>
+  <div class="layer" id="ambient-glow"></div>
+
+  <!-- Docmo Architectural Grid -->
+  <div class="docmo-grid">
+    <div class="docmo-crosshair cross-tl"></div>
+    <div class="docmo-crosshair cross-tr"></div>
+    <div class="docmo-crosshair cross-bl"></div>
+    <div class="docmo-crosshair cross-br"></div>
+  </div>
+
+  <!-- Primary Identity: TOP -->
+  <div class="topw"><div class="topw-in" data-split>Top</div></div>
+
+  <!-- Three.js 3D Ring Canvas (renders authentically anchored in the 'o') -->
+  <canvas id="ring"></canvas>
+
+  <!-- Front Editorial Complement: Jewelry PR -->
+  <div class="frontw">
+    <div class="frontw-in">
+      <span data-split>Jewelry</span><span class="pr">PR</span>
+    </div>
+  </div>
+
+  <!-- Clean Editorial Side Markings -->
+  <div class="edit" aria-hidden="true">
+    <div class="side l"><i></i><span>Atelier San Juan</span><i></i></div>
+    <div class="side r"><i></i><span>Haute Joaillerie</span><i></i></div>
+    <div class="plumb"><span>Alta Joyería PR</span><i></i></div>
+  </div>
+
+  <!-- Subtle Editorial Micro-Data Cards -->
+  <div class="docmo-badge badge-left">
+    <span class="num">[ 01 // D-FLAWLESS ]</span>
+    <span class="desc">Solitario 18K Oro & Diamante 3D</span>
+  </div>
+  <div class="docmo-badge badge-right">
+    <span class="num">[ ATELIER PUERTO RICO ]</span>
+    <span class="desc">18°27'55" N · 66°06'20" W</span>
+  </div>
+
+  <!-- Scene 2: Architectural Gallery Reveal Through the Ring -->
+  <div class="layer scene2" id="scene2">
+    <div class="s2in">
+      <div class="s2-tag">Colección Exclusiva · 2026</div>
+      <div class="s2w" data-split>Piezas</div>
+      <p class="s2-sub">Explora el catálogo de alta orfebrería, consulta disponibilidad y solicita tu cita privada con nuestro atelier.</p>
+      <div class="s2-btns">
+        <a class="btn fill" href="#next">Explorar piezas</a>
+        <a class="btn" href="#next">Cita privada</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="layer" id="grain"></div>
+
+  <!-- Clean UI HUD -->
+  <div class="ui">
+    <div class="bar t">
+      <span>Top Jewelry PR</span>
+      <nav class="nav">
+        <a href="#next">Catálogo</a>
+        <a href="#next">Colección</a>
+        <a href="#next">Cita</a>
+      </nav>
+    </div>
+    <div class="note">Digital Flagship · Experiencia Cinematográfica de Alta Joyería</div>
+    <div class="bar b">
+      <div class="cnt">
+        <span class="c1">(01) Inicio</span>
+        <span class="c2">(02) Piezas</span>
+      </div>
+      <div class="cue"><span>Scroll</span><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <span>Catálogo Editorial</span>
+  <span>Piezas únicas de alta orfebrería</span>
+</section>
+
+<!-- Three.js + GSAP + ScrollTrigger + Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+// Split text
+$$('[data-split]').forEach(el=>{
+  el.innerHTML=[...el.textContent].map(c=>`<span class="ln"><span>${c}</span></span>`).join('');
+});
+
+const stage=$('#stage'),cv=$('#ring'),mask=$('#scene2'),spot=$('#spot'),ambient=$('#ambient-glow');
+const R=100,r=28;
+let PX=50;
+const S={base:0.2,q:0,m:0,zoom:1,entry:0.5,alpha:0,mx:0,my:0,tx:0,ty:0};
+let W,H,DPR,K,CX,CY;
+
+/* ========================================================
+   CONFIGURACIÓN DE THREE.JS: MOTOR 3D REAL DE ALTA JOYERÍA
+   ======================================================== */
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(38, 1, 10, 5000);
+camera.position.set(0, 0, 1000);
+
+const renderer=new THREE.WebGLRenderer({
+  canvas: cv,
+  alpha: true,
+  antialias: true,
+  powerPreference: 'high-performance'
+});
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.35;
+renderer.setClearColor(0x000000, 0);
+
+// Generador de Environment Map de Estudio Fotográfico de Lujo
+const pmremGenerator=new THREE.PMREMGenerator(renderer);
+pmremGenerator.compileEquirectangularShader();
+
+const envCanvas=document.createElement('canvas');
+envCanvas.width=512;envCanvas.height=256;
+const eg=envCanvas.getContext('2d');
+// Fondo degradado de estudio
+const gr=eg.createLinearGradient(0, 0, 0, 256);
+gr.addColorStop(0, '#100c0a');
+gr.addColorStop(0.5, '#241b14');
+gr.addColorStop(1, '#080605');
+eg.fillStyle=gr;
+eg.fillRect(0, 0, 512, 256);
+
+// Softbox cenital principal
+const sb1=eg.createRadialGradient(256, 40, 0, 256, 40, 140);
+sb1.addColorStop(0, 'rgba(255, 245, 225, 1)');
+sb1.addColorStop(0.5, 'rgba(235, 205, 150, 0.6)');
+sb1.addColorStop(1, 'rgba(20, 15, 10, 0)');
+eg.fillStyle=sb1;
+eg.fillRect(100, 0, 312, 120);
+
+// Reflejos laterales de corte (rim softboxes)
+const sb2=eg.createLinearGradient(0, 0, 80, 0);
+sb2.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+sb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
+eg.fillStyle=sb2;
+eg.fillRect(0, 40, 80, 180);
+
+const sb3=eg.createLinearGradient(512, 0, 432, 0);
+sb3.addColorStop(0, 'rgba(255, 230, 180, 0.7)');
+sb3.addColorStop(1, 'rgba(0, 0, 0, 0)');
+eg.fillStyle=sb3;
+eg.fillRect(432, 40, 80, 180);
+
+const envTexture=new THREE.CanvasTexture(envCanvas);
+envTexture.mapping=THREE.EquirectangularReflectionMapping;
+const studioEnvMap=pmremGenerator.fromEquirectangular(envTexture).texture;
+scene.environment=studioEnvMap;
+
+// Luces de Estudio en la Escena 3D
+const keyLight=new THREE.DirectionalLight(0xffedd0, 2.4);
+keyLight.position.set(400, 500, 600);
+scene.add(keyLight);
+
+const fillLight=new THREE.DirectionalLight(0xd5e5ff, 1.2);
+fillLight.position.set(-500, -300, 400);
+scene.add(fillLight);
+
+const rimLight=new THREE.DirectionalLight(0xfff5e0, 3.2);
+rimLight.position.set(0, -600, -400);
+scene.add(rimLight);
+
+const ambientLight=new THREE.AmbientLight(0x2a2018, 0.85);
+scene.add(ambientLight);
+
+// Grupo Raíz del Anillo Tridimensional
+const ringRoot=new THREE.Group();
+scene.add(ringRoot);
+
+/* Material PBR de Oro 18 Quilates Pulido */
+const goldMaterial=new THREE.MeshStandardMaterial({
+  color: 0xf5d194,
+  metalness: 0.94,
+  roughness: 0.12,
+  envMapIntensity: 2.2
+});
+
+/* Geometría 3D Real del Aro (Torus con perfil volumétrico de alta joyería) */
+const torusGeo=new THREE.TorusGeometry(R, r, 32, 128);
+const torusMesh=new THREE.Mesh(torusGeo, goldMaterial);
+ringRoot.add(torusMesh);
+
+/* Geometría y Material PBR de Diamante Facetado de Talla Brillante */
+const diamondMaterial=new THREE.MeshPhysicalMaterial({
+  color: 0xffffff,
+  metalness: 0.04,
+  roughness: 0.0,
+  transmission: 0.92,
+  ior: 2.417, // Índice de refracción físico del diamante puro
+  reflectivity: 0.96,
+  clearcoat: 1.0,
+  clearcoatRoughness: 0.0,
+  transparent: true,
+  opacity: 0.98,
+  envMapIntensity: 2.8
+});
+
+// Construcción geométrica del diamante solitario facetado
+function createBrilliantCutDiamond(radius, height) {
+  const crownHeight = height * 0.38;
+  const pavilionHeight = height * 0.62;
+  const tableRadius = radius * 0.58;
+  const segments = 16;
+  
+  const geo = new THREE.BufferGeometry();
+  const positions = [];
+  
+  // Vértices del table (plano superior)
+  const tableVerts = [];
+  for (let i = 0; i < segments; i++) {
+    const a = (i / segments) * Math.PI * 2;
+    tableVerts.push(new THREE.Vector3(Math.cos(a) * tableRadius, crownHeight, Math.sin(a) * tableRadius));
+  }
+  // Vértices del filet / girdle
+  const girdleVerts = [];
+  for (let i = 0; i < segments; i++) {
+    const a = ((i + 0.5) / segments) * Math.PI * 2;
+    girdleVerts.push(new THREE.Vector3(Math.cos(a) * radius, 0, Math.sin(a) * radius));
+  }
+  // Vértice inferior del culet
+  const culet = new THREE.Vector3(0, -pavilionHeight, 0);
+  const tableCenter = new THREE.Vector3(0, crownHeight, 0);
+  
+  // Facetas del Table (Triángulos superiores)
+  for (let i = 0; i < segments; i++) {
+    const next = (i + 1) % segments;
+    positions.push(tableCenter.x, tableCenter.y, tableCenter.z);
+    positions.push(tableVerts[i].x, tableVerts[i].y, tableVerts[i].z);
+    positions.push(tableVerts[next].x, tableVerts[next].y, tableVerts[next].z);
+  }
+  
+  // Facetas de la Corona (Kite / Star facets)
+  for (let i = 0; i < segments; i++) {
+    const next = (i + 1) % segments;
+    positions.push(tableVerts[i].x, tableVerts[i].y, tableVerts[i].z);
+    positions.push(girdleVerts[i].x, girdleVerts[i].y, girdleVerts[i].z);
+    positions.push(tableVerts[next].x, tableVerts[next].y, tableVerts[next].z);
+    
+    positions.push(tableVerts[next].x, tableVerts[next].y, tableVerts[next].z);
+    positions.push(girdleVerts[i].x, girdleVerts[i].y, girdleVerts[i].z);
+    positions.push(girdleVerts[next].x, girdleVerts[next].y, girdleVerts[next].z);
+  }
+  
+  // Facetas del Pabellón (Hacia el culet)
+  for (let i = 0; i < segments; i++) {
+    const next = (i + 1) % segments;
+    positions.push(girdleVerts[i].x, girdleVerts[i].y, girdleVerts[i].z);
+    positions.push(culet.x, culet.y, culet.z);
+    positions.push(girdleVerts[next].x, girdleVerts[next].y, girdleVerts[next].z);
+  }
+  
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geo.computeVertexNormals();
+  return geo;
+}
+
+const diamondGeo = createBrilliantCutDiamond(r * 1.05, r * 1.55);
+const diamondMesh = new THREE.Mesh(diamondGeo, diamondMaterial);
+diamondMesh.position.set(0, R + r * 0.95, 0);
+diamondMesh.rotation.x = Math.PI; // Mesa mirando hacia afuera
+ringRoot.add(diamondMesh);
+
+/* Garras de Engaste de 4 Puntas en Oro 18K */
+const prongMaterial = goldMaterial;
+const prongGeo = new THREE.CylinderGeometry(2.4, 3.2, r * 1.15, 12);
+for (let p = 0; p < 4; p++) {
+  const angle = (p * Math.PI / 2) + Math.PI / 4;
+  const prong = new THREE.Mesh(prongGeo, prongMaterial);
+  const px = Math.cos(angle) * (r * 0.95);
+  const pz = Math.sin(angle) * (r * 0.95);
+  prong.position.set(px, R + r * 0.65, pz);
+  prong.rotation.z = -Math.cos(angle) * 0.22;
+  prong.rotation.x = Math.sin(angle) * 0.22;
+  ringRoot.add(prong);
+}
+
+// Corona de montaje (cesta inferior de las garras)
+const basketGeo = new THREE.TorusGeometry(r * 0.82, 2.2, 16, 32);
+const basket = new THREE.Mesh(basketGeo, goldMaterial);
+basket.position.set(0, R + r * 0.35, 0);
+basket.rotation.x = Math.PI / 2;
+ringRoot.add(basket);
+
+/* Mapeo del tamaño de pantalla y cálculo de anclaje a la letra O */
+function size(){
+  W=stage.clientWidth;H=stage.clientHeight;
+  DPR=Math.min(window.devicePixelRatio||1, 1.75);
+
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(DPR);
+  camera.aspect=W/H;
+  camera.updateProjectionMatrix();
+
+  // El anillo se ancla matemáticamente al centro y escala de la O
+  const tw=$('.topw'),ti=$('.topw-in'),oL=ti.children[1],fs=parseFloat(getComputedStyle(ti).fontSize),ls=parseFloat(getComputedStyle(ti).letterSpacing)||0;
+  K=fs*(W<H?1.02:.8)/(2*(R+r));
+  CX=tw.offsetLeft+oL.offsetLeft+oL.offsetWidth/2-ls/2;
+  CY=tw.offsetTop+ti.offsetTop+ti.offsetHeight/2-.027*fs;
+  PX=Math.min(50,W*.035);
+
+  stage.style.setProperty('--cy',CY+'px');
+  stage.style.setProperty('--cx',CX+'px');
+  stage.style.setProperty('--rw',(2*(R+r)*K)+'px');
+
+  const jf=parseFloat(getComputedStyle($('.frontw-in')).fontSize);
+  stage.style.setProperty('--jb',(H-CY-.367*fs-.641*jf-jf*(W<H?.24:.02))+'px');
+}
+
+/* Ciclo de Renderizado Tridimensional */
+function frame(){
+  const t=performance.now()/1000;
+  S.mx+=(S.tx-S.mx)*0.06;
+  S.my+=(S.ty-S.my)*0.06;
+
+  const free=1-S.q;
+  // Inclinación 3D del anillo (de S.base hasta PI/2 en scroll completo)
+  const tilt=S.base+(Math.PI/2-S.base)*S.q+(S.my*0.3+Math.sin(t*0.7)*0.07)*free;
+  const yaw=(S.mx*0.55+Math.sin(t*0.45)*0.12)*free;
+
+  const sc=K*S.zoom*S.entry;
+  const hole=(R-r)*sc;
+  const rx=hole*S.m;
+  const ry=rx*Math.abs(Math.sin(tilt));
+
+  // Máscara elíptica hacia la Escena 2
+  mask.style.clipPath=mask.style.webkitClipPath=`ellipse(${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${CX}px ${CY}px)`;
+  spot.style.setProperty('--x',(50+S.mx*18)+'%');
+  spot.style.setProperty('--y',(CY/H*100+S.my*14)+'%');
+
+  if(window.__topCover=rx>Math.hypot(W,H)*0.53) {
+    renderer.clear();
+    return;
+  }
+
+  // Mapeo de coordenadas de pantalla (CX, CY) a coordenadas del espacio 3D de Three.js
+  const vFOV = THREE.MathUtils.degToRad(camera.fov);
+  const visibleHeight = 2 * Math.tan(vFOV / 2) * camera.position.z;
+  const visibleWidth = visibleHeight * camera.aspect;
+
+  const targetX = (CX - W / 2) * (visibleWidth / W);
+  const targetY = -(CY - H / 2) * (visibleHeight / H);
+
+  ringRoot.position.set(targetX, targetY, 0);
+
+  // Escala y rotación tridimensional en tiempo real
+  const baseScale = (K * S.zoom * S.entry) * (visibleHeight / H) * 1.0;
+  ringRoot.scale.set(baseScale, baseScale, baseScale);
+
+  ringRoot.rotation.x = tilt;
+  ringRoot.rotation.y = yaw;
+  ringRoot.rotation.z = (Math.sin(t * 0.3) * 0.04) * free;
+
+  // Opacidad del material durante la entrada
+  goldMaterial.opacity = S.alpha;
+  goldMaterial.transparent = S.alpha < 0.99;
+  diamondMaterial.opacity = S.alpha * 0.98;
+
+  // Las luces se desplazan ligeramente con el cursor para reflejos dinámicos vivos
+  keyLight.position.x = 400 + S.mx * 300;
+  keyLight.position.y = 500 - S.my * 200;
+
+  renderer.render(scene, camera);
+}
+
+size();
+addEventListener('resize',size);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
+
+if(!window.gsap||!window.ScrollTrigger){
+  const l=$('#loader');if(l)l.remove();
+  Object.assign(S,{alpha:1,entry:1,base:1});
+  spot.style.opacity=1;ambient.style.opacity=1;
+  (function f(){frame();requestAnimationFrame(f);})();
+  return;
+}
+
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ignoreMobileResize:true});
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+let lenis=null;
+if(window.Lenis&&!rm){
+  lenis=new Lenis({lerp:0.085});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+}
+gsap.ticker.add(frame);
+
+// Estados iniciales protegidos
+gsap.set('.topw .ln span,.frontw-in .ln span,.s2w .ln span',{yPercent:115});
+gsap.set('.pr',{scale:0,opacity:0});
+gsap.set('.ui,.edit>*,.docmo-grid,.docmo-badge',{opacity:0});
+gsap.set('#bg,#spot,#ambient-glow',{opacity:0});
+gsap.set('.s2-tag,.s2-sub,.s2-btns',{opacity:0,y:24});
+
+// Parallax interactivo sutil (Docmo feeling)
+const qx=gsap.quickTo('.topw-in','x',{duration:1,ease:'power3'});
+const qy=gsap.quickTo('.topw-in','y',{duration:1,ease:'power3'});
+const qf=gsap.quickTo('.frontw-in','x',{duration:1,ease:'power3'});
+const qb1=gsap.quickTo('.badge-left','y',{duration:1.2,ease:'power3'});
+const qb2=gsap.quickTo('.badge-right','y',{duration:1.2,ease:'power3'});
+
+addEventListener('pointermove',e=>{
+  const nx=e.clientX/innerWidth-0.5,ny=e.clientY/innerHeight-0.5;
+  S.tx=nx*2;S.ty=ny*2;
+  qx(-nx*PX);
+  qy(-ny*PX*0.6);
+  qf(nx*PX*0.72);
+  qb1(-ny*18);
+  qb2(ny*18);
+});
+
+// Secuencia de Scroll: El anillo 3D se inclina 90°, la cámara entra y el hueco se abre hacia la Escena 2
+const tl=gsap.timeline({
+  defaults:{ease:'none'},
+  scrollTrigger:{
+    trigger:'#stage',
+    start:'top top',
+    end:'+=320%',
+    scrub:0.9,
+    pin:true,
+    anticipatePin:1,
+    invalidateOnRefresh:true
+  }
+});
+
+tl.to(S,{q:1,duration:0.45,ease:'power2.inOut'},0)
+  .to(S,{zoom:()=>Math.max(6.2,Math.hypot(Math.max(CX,W-CX),Math.max(CY,H-CY))*1.04/((R-r)*K)),duration:1,ease:'power2.in'},0)
+  .to(S,{m:1,duration:0.14,ease:'power1.out'},0.3)
+  .to('.topw',{scale:1.35,autoAlpha:0,duration:0.42},0)
+  .to('.topw .ln:nth-child(1)',{xPercent:-160,duration:0.4},0)
+  .to('.topw .ln:nth-child(3)',{xPercent:160,duration:0.4},0)
+  .to('.topw .ln:nth-child(2)',{scale:2.4,duration:0.4},0)
+  .to('.frontw-in .ln',{y:-90,autoAlpha:0,stagger:0.035,duration:0.25},0)
+  .to('.edit,.docmo-grid,.docmo-badge',{autoAlpha:0,duration:0.18},0)
+  .to('.pr',{x:260,duration:0.4},0)
+  .to('.cue',{autoAlpha:0,duration:0.08},0)
+  .to('.c1',{autoAlpha:0,duration:0.05},0.4)
+  .to('.c2',{autoAlpha:1,duration:0.05},0.45)
+  .fromTo('.s2in',{scale:1.5},{scale:1,duration:0.6,ease:'power2.out'},0.38)
+  .to('.s2-tag',{opacity:1,duration:0.2},0.54)
+  .to('.s2w .ln span',{yPercent:0,stagger:0.03,duration:0.2,ease:'power3.out'},0.58)
+  .to('.s2-sub,.s2-btns',{opacity:1,y:0,stagger:0.05,duration:0.15},0.78);
+
+// Secuencia de Entrada: Contador 000→100, cortina que sube, encendido de estudio y giro del anillo 3D
+const it=gsap.timeline({
+  paused:true,
+  onComplete:()=>{
+    lenis&&lenis.start();
+    ScrollTrigger.refresh();
+  }
+});
+
+it.to('#spot',{opacity:1,duration:2},0)
+  .to('#ambient-glow',{opacity:1,duration:2.4},0)
+  .to('#bg',{opacity:1,duration:2.8,ease:'power2.out'},0)
+  .to(S,{alpha:1,duration:0.8},0)
+  .to(S,{entry:1,duration:2.2,ease:'expo.out'},0)
+  .to(S,{base:1,duration:2.4,ease:'expo.out'},0)
+  .to('.docmo-grid',{opacity:1,duration:1.6},0.1)
+  .to('.topw .ln span',{yPercent:0,duration:1.8,ease:'expo.out',stagger:0.1},0.15)
+  .to('.frontw-in .ln span',{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.05},0.45)
+  .to('.pr',{scale:1,opacity:1,duration:0.8,ease:'back.out(2)'},1)
+  .to('.ui',{opacity:1,duration:1},0.9)
+  .to('.edit>*',{opacity:1,duration:1.6,ease:'power2.out'},1.3)
+  .to('.docmo-badge',{opacity:1,duration:1.4,stagger:0.15},1.5);
+
+const ld=$('#loader');
+if(rm){
+  ld.remove();
+  it.progress(1);
+  ScrollTrigger.refresh();
+} else {
+  const L={n:0},cnt=$('#cnt');
+  gsap.timeline({delay:0.2})
+    .to(L,{n:100,duration:1.3,ease:'power2.inOut',onUpdate:()=>{cnt.textContent=String(Math.round(L.n)).padStart(3,'0');}})
+    .to('#loader .lbl',{opacity:0,duration:0.3})
+    .to(ld,{clipPath:'inset(0 0 100% 0)',duration:1,ease:'expo.inOut'},'>-0.05')
+    .add(()=>it.play(),'<0.35')
+    .set(ld,{display:'none'});
+}
+
+// Desplazamiento suave para todos los botones ancla
+$$('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=$(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      if(lenis)lenis.scrollTo(target,{duration:1.2});
+      else target.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>ScrollTrigger.refresh());
+})();
+</script>
+
+<!-- Clean Silk & Studio Velvet Background WebGL Shader -->
+<script>
+(()=>{
+const cv=document.getElementById('bg'),stage=document.getElementById('stage');
+const gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'high-performance'});
+if(!gl){cv.remove();return;}
+
+const VS='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+const FS=`precision highp float;
+uniform vec2 R;uniform float T;uniform vec2 M;
+
+float hs(vec2 p){
+  vec3 q=fract(vec3(p.xyx)*0.1031);
+  q+=dot(q,q.yzx+33.33);
+  return fract((q.x+q.y)*q.z);
+}
+float vn(vec2 p){
+  vec2 i=floor(p),f=fract(p);
+  f=f*f*f*(f*(f*6.0-15.0)+10.0);
+  return mix(mix(hs(i),hs(i+vec2(1.0,0.0)),f.x),mix(hs(i+vec2(0.0,1.0)),hs(i+1.0),f.x),f.y);
+}
+float fbm(vec2 p){
+  float s=0.0,a=0.5;
+  mat2 m=mat2(1.6,1.2,-1.2,1.6);
+  for(int i=0;i<4;i++){s+=a*vn(p);p=m*p;a*=0.4;}
+  return s;
+}
+
+vec3 studioEnv(vec3 r, vec2 uv){
+  float sw=(sin(T*0.08)*0.7+sin(T*0.04+1.2)*0.4)*0.25;
+  float d=r.x*0.75+r.y*0.6-sw;
+
+  float key=smoothstep(0.4,0.0,abs(d))*0.45+smoothstep(0.08,0.0,abs(d))*0.8;
+  float rim=smoothstep(0.12,0.0,abs(r.y+0.22+0.1*sin(T*0.05)))*0.6;
+  float caust=smoothstep(0.35,0.0,length(r.xy-vec2(0.3+0.1*sin(T*0.04),-0.12)))*0.35;
+
+  vec3 goldKey=vec3(1.0, 0.88, 0.65)*key;
+  vec3 goldRim=vec3(0.95, 0.74, 0.42)*rim;
+  vec3 warmCaust=vec3(0.9, 0.55, 0.3)*caust;
+
+  return goldKey+goldRim+warmCaust;
+}
+
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*R)/R.y;
+  float t=T*0.025;
+
+  vec2 p=vec2(uv.x*0.6,uv.y*1.4)*1.1+M*0.08;
+  vec2 q=vec2(fbm(p*0.5+vec2(t,0.0)),fbm(p*0.5+vec2(3.8,1.9)-vec2(0.0,t)));
+  vec2 w=p+0.8*(q-0.5);
+
+  float f0=fbm(w+vec2(sin(t)*0.2,t*0.3));
+  float e=0.025;
+  vec2 g=vec2(fbm(w+vec2(e,0.0))-f0,fbm(w+vec2(0.0,e))-f0)/e;
+
+  vec3 n=normalize(vec3(-g*0.18, 1.0));
+  vec3 r=reflect(vec3(0.0,0.0,-1.0),n);
+  r.xy+=uv*0.28+M*0.08;
+
+  vec3 col=vec3(0.025, 0.022, 0.02);
+  vec3 envLight=studioEnv(r, uv);
+  col+=envLight*(0.4+0.6*smoothstep(0.2,0.8,f0));
+
+  col*=mix(0.5, 1.0, smoothstep(0.1, 0.85, length(uv*vec2(0.7, 0.95))));
+  col*=1.0-0.75*smoothstep(0.25, 0.98, length(uv*vec2(1.0, 1.1)));
+  col=1.0-exp(-col*1.25);
+  col+=(hs(gl_FragCoord.xy+fract(T))-0.5)*(1.0/255.0);
+
+  gl_FragColor=vec4(col,1.0);
+}
+`;
+
+const sh=(t,c)=>{
+  const o=gl.createShader(t);gl.shaderSource(o,c);gl.compileShader(o);
+  if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(o));return null;}
+  return o;
+};
+
+const vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
+if(!vs||!fs){cv.remove();return;}
+
+const pr=gl.createProgram();
+gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.remove();return;}
+
+gl.useProgram(pr);
+gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+
+const al=gl.getAttribLocation(pr,'a');
+gl.enableVertexAttribArray(al);
+gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
+
+const uR=gl.getUniformLocation(pr,'R'),uT=gl.getUniformLocation(pr,'T'),uM=gl.getUniformLocation(pr,'M');
+const mobile=matchMedia('(pointer:coarse)').matches||innerWidth<700,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+let sc=window.__bgSc||(mobile?0.5:0.6),mx=0,my=0,tx=0,ty=0,last=0,drawn=0,slow=0;
+
+function size(){
+  const w=Math.max(2,Math.round(stage.clientWidth*sc)),h=Math.max(2,Math.round(stage.clientHeight*sc));
+  cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uR,w,h);
+}
+
+function draw(t){
+  mx+=(tx-mx)*0.04;my+=(ty-my)*0.04;
+  gl.uniform1f(uT,t);gl.uniform2f(uM,mx,my);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+}
+
+size();
+addEventListener('resize',()=>{size();if(rm)draw(9);});
+if(rm){draw(9);return;}
+
+addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-0.5;ty=0.5-e.clientY/innerHeight;});
+
+const t0=performance.now()-9000;
+(function loop(now){
+  requestAnimationFrame(loop);
+  if(window.__topCover||window.__bgFreeze)return;
+  if(mobile&&now-drawn<32)return;
+  const dt=now-last;last=now;
+  if(dt>34){if(++slow>45&&sc>0.34){sc*=0.85;size();slow=0;}}else slow=Math.max(0,slow-1);
+  drawn=now;
+  draw(window.__bgTime!==undefined?window.__bgTime:(now-t0)/1000);
+})(0);
+})();
+</script>
+
+</body>
+</html>

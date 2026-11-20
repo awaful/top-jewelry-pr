@@ -27,7 +27,7 @@ let orders = [
     customer_name: 'Cliente Ejemplo',
     customer_email: 'ejemplo@topjewelrypr.com',
     customer_phone: '+1 (787) 000-0000',
-    shipping_address: 'Puerto Rico',
+    shipping_address: 'Dirección Demo',
     items: [{ product_id: 'prod-001', product_name: 'Pieza de Joyería', variant_name: 'Estándar', unit_price: 0, quantity: 1, subtotal: 0 }],
     subtotal: 0,
     shipping_fee: 0,

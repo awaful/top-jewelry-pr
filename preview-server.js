@@ -69,6 +69,16 @@ const server = http.createServer((req, res) => {
     }
   }
 
+  // Servir archivos HTML específicos (ej. prototipo original de Claude)
+  if (pathname === '/claude-original.html' || pathname === '/claude-original') {
+    const claudeFile = path.join(__dirname, 'claude-original.html');
+    if (fs.existsSync(claudeFile)) {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(fs.readFileSync(claudeFile, 'utf-8'));
+      return;
+    }
+  }
+
   // Servir HTML principal
   if (fs.existsSync(HTML_FILE)) {
     const htmlContent = fs.readFileSync(HTML_FILE, 'utf-8');

@@ -69,12 +69,21 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // Servir archivos HTML específicos (ej. prototipo original de Claude)
+  // Servir archivos HTML específicos (ej. prototipo original de Claude y nueva versión Luxury Flagship)
   if (pathname === '/claude-original.html' || pathname === '/claude-original') {
     const claudeFile = path.join(__dirname, 'claude-original.html');
     if (fs.existsSync(claudeFile)) {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(fs.readFileSync(claudeFile, 'utf-8'));
+      return;
+    }
+  }
+
+  if (pathname === '/luxury-flagship.html' || pathname === '/luxury-flagship') {
+    const flagshipFile = path.join(__dirname, 'luxury-flagship.html');
+    if (fs.existsSync(flagshipFile)) {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(fs.readFileSync(flagshipFile, 'utf-8'));
       return;
     }
   }

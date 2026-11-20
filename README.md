@@ -2,6 +2,7 @@
 
 > **Modern Luxury · Timeless Elegance**  
 > Experiencia digital oficial de TOP JEWELRY PR.  
+> Estado: Fase 01 & 02 Completadas · Hero y Brand Statement  
 > Instagram oficial: [https://www.instagram.com/topjewelrypr/](https://www.instagram.com/topjewelrypr/)
 
 ---

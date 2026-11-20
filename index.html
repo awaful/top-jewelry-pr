@@ -1,945 +1,1196 @@
-<!DOCTYPE html>
-<html lang="es" class="bg-[#050403] text-[#E8E0D2] select-none">
+<!doctype html>
+<html lang="es" class="select-none">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TOP JEWELRY PR — Joyería Contemporánea · Digital Flagship</title>
-  <meta name="description" content="Digital Flagship cinematográfico de TOP JEWELRY PR. Joyería contemporánea con presencia inconfundible.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>TOP JEWELRY PR — Digital Flagship</title>
+<meta name="description" content="Digital Flagship cinematográfico de TOP JEWELRY PR. Joyería contemporánea con presencia inconfundible.">
 
-  <!-- Favicon Oficial -->
-  <link rel="icon" type="image/png" href="/logo-transparent.png">
+<!-- Favicon Oficial -->
+<link rel="icon" type="image/png" href="/logo-transparent.png">
 
-  <!-- Google Fonts: Syne + Cinzel + Inter + JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Syne:wght@700;800&family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<!-- Tipografías de Colección: Instrument Serif & DM Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS Framework CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root {
+  --ink: #090605;
+  --ink-deep: #050302;
+  --bone: #ede4d4;
+  --bone-light: #f7f1e6;
+  --bone-dark: #120e0b;
+  --cream: #f4e9d6;
+  --gold-warm: #d4a753;
+  --gold-light: #fbe5b8;
+  --gold-shadow: #2a1b0e;
+  --coral: #e25832;
+  --coral-glow: rgba(226, 88, 50, 0.45);
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
 
-  <!-- GSAP Core + ScrollTrigger + Flip -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+html {
+  background: var(--ink);
+  scroll-behavior: auto;
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
 
-  <!-- Three.js para Escena WebGL y Partículas de Oro -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#050403',
-            deepdark: '#090806',
-            champagne: '#D6BD91',
-            warmgold: '#B58A4B',
-            creme: '#E8E0D2',
-            dimtext: '#82786D',
-            goldline: 'rgba(181, 138, 75, 0.28)',
-            goldbright: '#E0662D'
-          },
-          fontFamily: {
-            cinzel: ['"Cinzel"', 'serif'],
-            headline: ['"Syne"', 'sans-serif'],
-            sans: ['"Inter"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
+/* ========================================================================= */
+/* 01. ESCENARIO 3D INTERACTIVO (STAGE)                                      */
+/* ========================================================================= */
+#stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+}
 
-  <style>
-    /* Estructura base inmersiva */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.layer {
+  position: absolute;
+  inset: 0;
+}
 
-    html {
-      scroll-behavior: initial;
-    }
+/* Resplandor Lumínico de Fondo con Sombra Volumétrica */
+#spot {
+  background: radial-gradient(46vmax 46vmax at var(--x, 50%) var(--y, 45%), rgba(226, 88, 50, 0.32), rgba(212, 167, 83, 0.12) 35%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease-out;
+}
 
-    body {
-      background-color: #050403;
-      color: #E8E0D2;
-      width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+#ambient-glow {
+  background: radial-gradient(60vmax 40vmax at 50% 50%, rgba(212, 167, 83, 0.06), transparent 70%);
+  pointer-events: none;
+}
 
-    /* Durante la cortina cinemática inicial bloqueamos scroll temporalmente */
-    body.curtain-locked {
-      overflow: hidden;
-      height: 100vh;
-    }
+/* Titular Colosal de Fondo: "Top" */
+.topw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
 
-    /* Soporte nativo para Lenis Smooth Scroll */
-    html.lenis, html.lenis body {
-      height: auto;
-    }
-    .lenis.lenis-smooth {
-      scroll-behavior: auto !important;
-    }
-    .lenis.lenis-smooth [data-lenis-prevent] {
-      overscroll-behavior: contain;
-    }
-    .lenis.lenis-stopped {
-      overflow: hidden;
-    }
+.topw-in {
+  font: 400 min(54vw, 64vh) / 0.8 var(--serif);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  color: #120b08;
+  -webkit-text-stroke: 1px rgba(212, 167, 83, 0.35);
+  text-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  user-select: none;
+}
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
+/* Canvas del Anillo 3D con Shading Procedural y Gema */
+#ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
 
-    /* Grano de película de 35mm para profundidad analógica cinematográfica */
-    .film-grain {
-      position: fixed;
-      inset: 0;
-      z-index: 90;
-      pointer-events: none;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 140px 140px;
-      mix-blend-mode: overlay;
-    }
+/* Titular de Primer Plano: "Jewelry PR" */
+.frontw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(5.5vh + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  z-index: 4;
+  pointer-events: none;
+}
 
-    /* Máscara de recorte de cortina de entrada */
-    .curtain-mask {
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
+.frontw-in {
+  font: italic 400 min(19vw, 23vh) / 0.88 var(--serif);
+  color: var(--cream);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  user-select: none;
+}
 
-    /* Contenedor de línea para revelado tipográfico con máscara */
-    .reveal-mask {
-      overflow: hidden;
-      display: block;
-      padding: 0.05em 0;
-    }
+/* Distintivo de Marca: "PR" Píldora Terracota Luxury */
+.pr {
+  display: inline-block;
+  font: 400 0.32em / 1 var(--serif);
+  font-style: normal;
+  letter-spacing: 0.08em;
+  color: var(--coral);
+  vertical-align: top;
+  margin-left: 0.35em;
+  margin-top: 0.32em;
+  border: 1px solid var(--coral);
+  box-shadow: 0 0 25px var(--coral-glow), inset 0 0 10px rgba(226, 88, 50, 0.2);
+  border-radius: 99px;
+  padding: 0.24em 0.65em;
+  background: rgba(13, 9, 8, 0.5);
+  backdrop-blur: 4px;
+}
 
-    .reveal-line {
-      display: block;
-      /* Estado inicial controlado completamente por GSAP via gsap.set() */
-      will-change: transform;
-    }
+@media (max-aspect-ratio: 1/1) {
+  .frontw {
+    bottom: calc(14vh + env(safe-area-inset-bottom, 0px));
+  }
+  .frontw-in {
+    font-size: min(24vw, 17vh);
+  }
+}
 
-    /* Cursor de halo líquido */
-    #cursor-point {
-      width: 6px;
-      height: 6px;
-      background-color: #B58A4B;
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
-    }
+/* Líneas de revelado tipográfico */
+.ln {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.16em 0.08em;
+  margin: -0.16em -0.08em;
+}
 
-    #cursor-halo {
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(214, 189, 145, 0.4);
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                  height 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.3s, 
-                  background-color 0.3s;
-      mix-blend-mode: difference;
-    }
+.ln > span {
+  display: inline-block;
+}
 
-    /* Brillo de refracción metálica en el texto */
-    .shimmer-gold {
-      background: linear-gradient(135deg, #FFF9F2 0%, #E8E0D2 40%, #B58A4B 75%, #D6BD91 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* ========================================================================= */
+/* 02. ESCENA 2: PORTAL CINEMÁTICO INVERTIDO (MARFIL / BONE LUXURY)          */
+/* ========================================================================= */
+.scene2 {
+  z-index: 10;
+  background: var(--bone);
+  color: var(--bone-dark);
+  clip-path: ellipse(0px 0px at 50% 45%);
+  -webkit-clip-path: ellipse(0px 0px at 50% 45%);
+  overflow: hidden;
+}
 
-    /* Líneas técnicas de borde dorado */
-    .technical-border {
-      border-color: rgba(181, 138, 75, 0.22);
-    }
-  </style>
+.s2in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(20px, 4vw, 60px);
+}
+
+.s2-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 10px / 1 var(--mono);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #7a6b5a;
+  margin-bottom: 2vh;
+}
+
+.s2-badge::before,
+.s2-badge::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: #a8947d;
+}
+
+.s2w {
+  font: 400 min(26vw, 36vh) / 0.85 var(--serif);
+  letter-spacing: -0.025em;
+  color: var(--bone-dark);
+}
+
+.s2-sub {
+  max-width: 44ch;
+  margin: 2.5vh auto 0;
+  font: 400 12.5px / 1.75 var(--mono);
+  letter-spacing: 0.04em;
+  color: #3b322a;
+}
+
+/* Botones de Acción Editorial */
+.s2-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3.5vh;
+}
+
+.btn {
+  font: 400 10.5px / 1 var(--mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  border: 1px solid var(--bone-dark);
+  border-radius: 99px;
+  color: var(--bone-dark);
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn.fill {
+  background: var(--bone-dark);
+  color: var(--bone-light);
+  border-color: var(--bone-dark);
+  box-shadow: 0 10px 25px rgba(18, 14, 11, 0.15);
+}
+
+.btn.fill:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px var(--coral-glow);
+}
+
+.btn:not(.fill):hover {
+  background: var(--bone-dark);
+  color: var(--bone-light);
+  transform: translateY(-2px);
+}
+
+/* Grano Analógico Editorial */
+#grain {
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0.13;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ========================================================================= */
+/* 03. INTERFAZ TIPOGRÁFICA FLOTANTE (UI LAYER)                              */
+/* ========================================================================= */
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #fff;
+  font: 400 10.5px / 1.2 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ui a, .ui button {
+  pointer-events: auto;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(18px, 3.5vw, 44px);
+}
+
+.bar.t {
+  top: calc(18px + env(safe-area-inset-top, 0px));
+}
+
+.bar.b {
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+}
+
+.brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+.nav a {
+  position: relative;
+  padding: 4px 0;
+  transition: opacity 0.3s;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.audio-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.audio-toggle:hover {
+  opacity: 1;
+}
+
+.cnt {
+  display: grid;
+}
+
+.cnt span {
+  grid-area: 1 / 1;
+}
+
+.c2 {
+  opacity: 0;
+}
+
+.cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cue i {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: #fff;
+  transform-origin: top;
+  animation: cue 2s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+
+@keyframes cue {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+.note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  opacity: 0.55;
+  font-size: 8.5px;
+  letter-spacing: 0.22em;
+}
+
+/* ========================================================================= */
+/* 04. TOAST DE ESTADO MINIMALISTA (SIN DESTINOS ROTOS)                      */
+/* ========================================================================= */
+#status-toast {
+  position: fixed;
+  bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translate(-50%, 15px);
+  z-index: 150;
+  pointer-events: none;
+  opacity: 0;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-dark);
+  background: rgba(244, 233, 214, 0.96);
+  border: 1px solid rgba(18, 14, 11, 0.25);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  padding: 10px 22px;
+  border-radius: 99px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#status-toast::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+/* ========================================================================= */
+/* 05. INTRODUCING LOADER & CURTAIN (CONTADOR NUMÉRICO)                      */
+/* ========================================================================= */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--ink);
+  clip-path: inset(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px clamp(18px, 3.5vw, 44px);
+  box-sizing: border-box;
+}
+
+#loader .lbl {
+  font: 400 11px var(--mono);
+  letter-spacing: 0.2em;
+  color: var(--cream);
+}
+
+#cnt {
+  align-self: flex-end;
+  font: italic 400 min(25vw, 32vh) / 0.8 var(--serif);
+  color: var(--cream);
+  letter-spacing: -0.02em;
+}
+
+/* ========================================================================= */
+/* 06. SECCIÓN EDITORIAL EXTENDIDA (CURADURÍA & CATÁLOGO)                    */
+/* ========================================================================= */
+#editorial-curation {
+  background: var(--bone);
+  color: var(--bone-dark);
+  padding: clamp(60px, 10vh, 120px) clamp(20px, 4vw, 80px);
+  position: relative;
+  z-index: 10;
+}
+
+.curation-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 6vw, 80px);
+}
+
+@media (min-width: 900px) {
+  .curation-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+
+.editorial-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--ink-deep);
+  box-shadow: 0 30px 60px rgba(18, 14, 11, 0.18);
+}
+
+.editorial-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.editorial-card:hover img {
+  transform: scale(1.04);
+}
+
+.editorial-manifesto {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.manifesto-kicker {
+  font: 400 11px / 1 var(--mono);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #7a6b5a;
+}
+
+.manifesto-title {
+  font: italic 400 clamp(32px, 4.5vw, 56px) / 1.05 var(--serif);
+  letter-spacing: -0.02em;
+  color: var(--bone-dark);
+  margin: 0;
+}
+
+.manifesto-body {
+  font: 400 13px / 1.8 var(--mono);
+  letter-spacing: 0.03em;
+  color: #3b322a;
+  max-width: 52ch;
+  margin: 0;
+}
+
+.manifesto-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 15px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(18, 14, 11, 0.15);
+}
+
+@media (min-width: 600px) {
+  .manifesto-pillars {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pillar-item span {
+  display: block;
+  font: 400 10px / 1.4 var(--mono);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.pillar-item .num {
+  color: var(--coral);
+  margin-bottom: 4px;
+}
+
+.pillar-item .desc {
+  color: #2b241e;
+  font-weight: 500;
+}
+
+/* ========================================================================= */
+/* 07. PIE DE PÁGINA EDITORIAL                                               */
+/* ========================================================================= */
+#editorial-footer {
+  background: var(--bone);
+  color: var(--bone-dark);
+  border-top: 1px solid rgba(18, 14, 11, 0.15);
+  padding: 40px clamp(20px, 4vw, 80px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font: 400 10.5px / 1.6 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue i { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+</style>
 </head>
-<body class="bg-[#050403] text-[#E8E0D2] font-sans antialiased select-none curtain-locked">
+<body>
 
-  <!-- Grano analógico cinematográfico -->
-  <div class="film-grain"></div>
+<!-- Loader con Contador Numérico Itálico -->
+<div id="loader">
+  <span class="lbl">TOP JEWELRY PR</span>
+  <b id="cnt">000</b>
+</div>
 
-  <!-- Cursor cinemático de halo líquido -->
-  <div id="cursor-point" class="hidden md:block"></div>
-  <div id="cursor-halo" class="hidden md:block"></div>
+<!-- Escenario Principal 3D -->
+<section id="stage">
+  <!-- Iluminación Volumétrica y Spotlight Reactivo -->
+  <div class="layer" id="ambient-glow"></div>
+  <div class="layer" id="spot"></div>
 
-  <!-- ========================================================================= -->
-  <!-- 01. CURTAIN ENTRANCE: CORTINA CINEMATOGRÁFICA DE LUZ DORADA               -->
-  <!-- ========================================================================= -->
-  <div id="curtain-stage" class="fixed inset-0 z-[100] bg-[#050403] flex items-center justify-center pointer-events-auto">
-    <!-- Línea de luz dorada inicial que corta la oscuridad -->
-    <div id="curtain-gold-beam" class="absolute w-[2px] h-0 bg-[#B58A4B] shadow-[0_0_20px_#B58A4B,0_0_40px_#D6BD91]"></div>
-    
-    <!-- Monograma central y medidor de calibración -->
-    <div id="curtain-brand-intro" class="relative z-10 flex flex-col items-center gap-4 text-center opacity-0 transform scale-95">
-      <img src="/logo-transparent.png" alt="Top Jewelry PR Insignia" class="h-16 w-auto object-contain filter drop-shadow-[0_0_35px_rgba(181,138,75,0.7)]">
-      <div class="font-mono text-[11px] tracking-[0.3em] uppercase text-[#D6BD91]">TOP JEWELRY PR</div>
-      <div class="w-36 h-[1px] bg-[rgba(181,138,75,0.3)] relative overflow-hidden mt-1">
-        <div id="curtain-progress" class="absolute inset-y-0 left-0 bg-[#B58A4B] w-0"></div>
-      </div>
-      <div id="curtain-counter" class="font-mono text-[10px] tracking-widest text-[#82786D]">00%</div>
+  <!-- Capa 2: Texto Colosal "Top" en Fondo -->
+  <div class="topw"><div class="topw-in" data-split>Top</div></div>
+
+  <!-- Capa 3: Canvas 3D de Anillo con Shading Metálico y Gema -->
+  <canvas id="ring"></canvas>
+
+  <!-- Capa 4: Texto Frontal Itálico "Jewelry PR" con Badge Terracota -->
+  <div class="frontw">
+    <div class="frontw-in">
+      <span data-split>Jewelry</span><span class="pr">PR</span>
     </div>
   </div>
 
-  <!-- ========================================================================= -->
-  <!-- 02. NAVEGACIÓN EDITORIAL ASIMÉTRICA INTEGRADA EN LA COMPOSICIÓN           -->
-  <!-- ========================================================================= -->
-  <header id="hero-nav" class="fixed top-0 inset-x-0 z-50 px-5 md:px-12 lg:px-16 py-3.5 md:py-5 flex items-center justify-between opacity-0 transition-all duration-500 bg-[#050403]/90 backdrop-blur-md border-b border-[rgba(181,138,75,0.12)]">
-    
-    <!-- Logotipo Oficial con Corona de Oro y Tipografía Arquitectónica -->
-    <a href="#" class="flex items-center gap-3.5 group magnetic-target" aria-label="TOP JEWELRY PR — Inicio">
-      <div class="relative flex items-center justify-center">
-        <span class="w-[2.5px] h-7 bg-[#B58A4B] rounded-full inline-block group-hover:scale-y-110 transition-transform duration-300"></span>
-        <img src="/logo-transparent.png" alt="Sello Top Jewelry PR" class="h-10 md:h-11 w-auto object-contain ml-3 filter drop-shadow-[0_2px_16px_rgba(214,189,145,0.45)] group-hover:scale-105 transition-transform duration-500">
-      </div>
-      <div class="hidden sm:flex flex-col">
-        <div class="flex items-baseline gap-2">
-          <span class="font-headline font-extrabold text-xl tracking-[0.1em] text-[#FFF9F2] uppercase">TOP</span>
-          <span class="font-sans font-normal text-xs tracking-[0.3em] text-[#D6BD91] uppercase">JEWELRY PR</span>
-        </div>
-        <span class="font-mono text-[9.5px] tracking-[0.22em] text-[#82786D] uppercase">JOYERÍA</span>
-      </div>
-    </a>
-
-    <!-- Enlaces Editoriales Minimalistas -->
-    <nav class="hidden lg:flex items-center gap-10 text-[10.5px] font-sans tracking-[0.22em] uppercase text-[#E8E0D2]/90">
-      <a href="#colecciones" data-nav-action="colecciones" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Explorar Colecciones">
-        <span>Colecciones</span>
-        <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
-      </a>
-      <a href="#historia" data-nav-action="historia" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Conocer Nuestra Historia">
-        <span>Nuestra Historia</span>
-        <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
-      </a>
-      <a href="#contacto" data-nav-action="contacto" class="hover:text-[#D6BD91] transition-colors duration-300 relative py-1 magnetic-target group" aria-label="Contacto">
-        <span>Contacto</span>
-        <span class="absolute bottom-0 left-0 w-full h-[1px] bg-[#B58A4B] transform origin-right scale-x-0 group-hover:scale-x-100 group-hover:origin-left transition-transform duration-400"></span>
-      </a>
-    </nav>
-
-    <!-- Herramientas: Búsqueda, Sonido (OFF por defecto) y Carrito Minimalista -->
-    <div class="flex items-center gap-5 md:gap-7">
-      
-      <!-- Audio Táctil Procedural (Desactivado por defecto según requerimiento 7) -->
-      <button type="button" onclick="toggleAudio()" class="hidden md:flex items-center gap-2 text-[9px] font-mono tracking-widest text-[#82786D] hover:text-[#E8E0D2] transition-colors magnetic-target min-h-[32px] px-1" id="audio-btn" title="Activar sonido táctil" aria-label="Activar o desactivar sonido táctil háptico">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block" id="audio-indicator" aria-hidden="true"></span>
-        <span>AUDIO: <strong id="audio-status" class="text-[#82786D]">OFF</strong></span>
-      </button>
-
-      <!-- Ícono de Búsqueda Minimalista -->
-      <button type="button" data-nav-action="buscar" class="text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Buscar en el catálogo">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="11" cy="11" r="7"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-
-      <!-- Ícono de Bolsa Editorial con Badge Micro -->
-      <button type="button" data-nav-action="bolsa" class="relative text-[#E8E0D2] hover:text-[#D6BD91] transition-colors magnetic-target p-2 min-w-[36px] min-h-[36px] flex items-center justify-center" aria-label="Ver Bolsa de compras">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 7h12l1.5 13H4.5L6 7z"/>
-          <path d="M9 10V6a3 3 0 0 1 6 0v4"/>
-        </svg>
-        <span class="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#B58A4B] text-[#050403] text-[8px] font-mono font-bold flex items-center justify-center" aria-hidden="true">0</span>
-      </button>
-
-    </div>
-  </header>
-
-  <!-- ========================================================================= -->
-  <!-- 03. COMPOSICIÓN DEL HERO (100% VIEWPORT · ASIMÉTRICA · CINEMÁTICA)        -->
-  <!-- ========================================================================= -->
-  <main id="hero-viewport" class="relative w-full min-h-screen h-screen overflow-hidden flex items-center">
-    
-    <!-- CAPA 0: FONDO WEBGL THREE.JS (POLVO DE ORO VOLUMÉTRICO SUSPENDIDO) -->
-    <canvas id="hero-three-canvas" class="absolute inset-0 z-0 pointer-events-none w-full h-full" aria-hidden="true"></canvas>
-
-    <!-- CAPA 1: ELEMENTO VISUAL PROTAGONISTA — JOYERÍA MONUMENTAL SOBRE ROCA BASÁLTICA -->
-    <div id="hero-jewelry-layer" class="absolute inset-0 z-10 pointer-events-none overflow-hidden will-change-transform">
-      <div id="hero-jewelry-inner" class="w-full h-full transform scale-105 will-change-transform">
-        <img 
-          src="/hero-campaign.jpg" 
-          alt="Alta Joyería: Cadena Miami Cuban y Pulsera Tennis sobre roca basáltica — TOP JEWELRY PR" 
-          class="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-[70%_center] filter brightness-[0.98] contrast-[1.12] saturate-[1.08]"
-        >
-      </div>
-
-      <!-- Fusión cinematográfica editorial que conecta tipografía y fotografía armónicamente -->
-      <div class="absolute inset-0 bg-gradient-to-r from-[#050403] via-[#050403]/80 via-40% to-transparent pointer-events-none"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent pointer-events-none"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-[#050403]/70 via-transparent to-transparent pointer-events-none"></div>
-
-      <!-- Destello de luz cálida de contra (Rim Light interactivo reactivo al cursor) -->
-      <div id="hero-dynamic-rim" class="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(214,189,145,0.18)_0%,rgba(181,138,75,0.06)_45%,transparent_70%)] filter blur-3xl pointer-events-none will-change-transform"></div>
-    </div>
-
-    <!-- CAPA 2: CONTENIDO EDITORIAL DE GRAN FORMATO (TEXT REVEAL MASKS) -->
-    <div class="relative z-20 max-w-[1520px] mx-auto px-5 md:px-12 lg:px-16 w-full flex flex-col justify-between h-full pt-20 pb-5 md:pt-32 md:pb-10 pointer-events-none">
-      
-      <!-- Top Micro-Tag -->
-      <div class="flex items-center justify-between w-full">
-        <div id="hero-kicker" class="reveal-mask">
-          <div class="reveal-line flex items-center gap-3 text-[10px] md:text-[12px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
-            <span class="w-3.5 h-[1.5px] bg-[#B58A4B] inline-block"></span>
-            <span>JOYERÍA CONTEMPORÁNEA</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOQUE CENTRAL: TITULAR MONUMENTAL (2 líneas equilibradas y proporcionadas) -->
-      <div class="max-w-4xl my-auto py-1 md:py-2">
-        <h1 class="font-headline font-extrabold text-[30px] sm:text-[44px] md:text-[58px] lg:text-[72px] xl:text-[82px] leading-[1.04] tracking-[-0.03em] uppercase select-none text-[#FFF9F2]">
-          
-          <div class="reveal-mask">
-            <span class="reveal-line block will-change-transform shimmer-gold">EL VALOR ESTÁ</span>
-          </div>
-
-          <div class="reveal-mask">
-            <span class="reveal-line block will-change-transform">
-              EN LOS DETALLES<span class="text-[#B58A4B]">.</span>
-            </span>
-          </div>
-
-        </h1>
-
-        <!-- Subtítulo Poético & Editorial -->
-        <div class="reveal-mask mt-3 md:mt-6 max-w-lg">
-          <p class="reveal-line rl-body font-sans text-xs sm:text-sm md:text-[15px] font-light text-[#D6BD91] leading-relaxed">
-            Diseños exclusivos con presencia inconfundible y un estilo que trasciende cualquier momento.
-          </p>
-        </div>
-
-        <!-- Botón de Exploración Magnético con Subrayado Reactivo -->
-        <div class="reveal-mask mt-5 md:mt-8 pointer-events-auto">
-          <div class="reveal-line rl-body">
-            <a 
-              href="#colecciones" 
-              id="hero-cta"
-              data-nav-action="colecciones"
-              class="group inline-flex items-center gap-4 text-xs font-sans font-semibold tracking-[0.28em] uppercase text-[#FFF9F2] pb-2 relative magnetic-target transition-colors duration-300 hover:text-[#D6BD91]"
-              aria-label="Explorar Colección de Joyas Exclusivas"
-            >
-              <span class="relative z-10 transition-transform duration-300 group-hover:translate-x-1.5">EXPLORAR LA COLECCIÓN</span>
-              <span class="relative z-10 text-base leading-none text-[#B58A4B] transition-transform duration-300 group-hover:translate-x-3" aria-hidden="true">→</span>
-              <span id="hero-cta-underline" class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#B58A4B]" style="transform-origin: left center; transform: scaleX(0);"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOQUE INFERIOR: METADATOS Y TARJETA TÉCNICA -->
-      <div class="flex items-end justify-between w-full pt-3 md:pt-5 border-t border-[rgba(181,138,75,0.18)]">
-        
-        <!-- Identificador Oficial de Marca -->
-        <div class="reveal-mask">
-          <div class="reveal-line rl-footer font-mono text-[9px] md:text-[11px] tracking-[0.22em] uppercase text-[#82786D] space-y-0.5">
-            <div class="text-[#E8E0D2]/90 font-medium">TOP JEWELRY PR</div>
-            <div class="text-[#D6BD91]">JOYERÍA CONTEMPORÁNEA · ESTILO INCONFUNDIBLE</div>
-          </div>
-        </div>
-
-        <!-- Indicador de Scroll Cinemático -->
-        <div class="reveal-mask hidden sm:flex flex-col items-center gap-2">
-          <div class="reveal-line rl-footer flex flex-col items-center gap-1.5 text-[9px] font-mono tracking-[0.25em] uppercase text-[#82786D]">
-            <span>DESPLAZAR</span>
-            <div class="w-[1px] h-7 bg-[rgba(181,138,75,0.35)] relative overflow-hidden">
-              <div class="w-full h-1/2 bg-[#B58A4B] animate-bounce"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta Flotante Técnica con Tilt 3D (Oculta en móviles para evitar colapso vertical) -->
-        <div id="hero-spec-card" class="pointer-events-auto hidden sm:block mr-1 md:mr-4 mb-1" style="perspective: 600px;">
-          <div class="reveal-line rl-footer">
-            <div class="bg-[#090806]/90 backdrop-blur-md border technical-border rounded-lg px-4 py-3 shadow-[0_20px_45px_rgba(0,0,0,0.85)] min-w-[200px] group transition-all duration-300 hover:border-[#B58A4B]">
-              <div class="flex items-center justify-between text-[11px] font-sans font-bold tracking-[0.18em] uppercase text-[#FFF9F2] group-hover:text-[#D6BD91] transition-colors">
-                <span>CADENA CUBANA</span>
-                <span class="w-2.5 h-[1.5px] bg-[#B58A4B]"></span>
-              </div>
-              <div class="text-[10px] font-mono tracking-widest text-[#D6BD91] mt-1">
-                CADENA CUBANA
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- ========================================================================= -->
-  <!-- 04. SECCIÓN 02: BRAND STATEMENT & EXPERIENCIA EDITORIAL (MANIFIESTO)       -->
-  <!-- ========================================================================= -->
-  <section id="historia" class="relative w-full bg-[#050403] text-[#E8E0D2] pt-14 md:pt-28 pb-20 md:pb-36 px-5 md:px-12 lg:px-16 overflow-hidden">
-    
-    <!-- Atmósfera luminosa suave y orgánica con degradado rasante -->
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[radial-gradient(ellipse,rgba(181,138,75,0.05)_0%,transparent_70%)] filter blur-3xl"></div>
-      <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[400px] bg-[radial-gradient(circle,rgba(214,189,145,0.03)_0%,transparent_70%)] filter blur-3xl"></div>
-    </div>
-
-    <div class="relative z-10 max-w-[1440px] mx-auto">
-      
-      <!-- LÍNEA SUTIL DE TRANSICIÓN Y NOTA EDITORIAL -->
-      <div class="flex items-center justify-between border-t border-[rgba(181,138,75,0.14)] pt-6 md:pt-8 mb-12 md:mb-24">
-        <div class="flex items-center gap-3.5 text-[10.5px] md:text-[11px] font-mono tracking-[0.28em] uppercase text-[#D6BD91]">
-          <span class="w-6 md:w-7 h-[1px] bg-[#B58A4B]"></span>
-          <span>DECLARACIÓN EDITORIAL</span>
-          <span class="text-[#82786D]">·</span>
-          <span class="text-[#82786D]">TOP JEWELRY PR</span>
-        </div>
-        <div class="hidden sm:block font-mono text-[10px] tracking-[0.24em] text-[#82786D] uppercase">
-          ALTA CURADURÍA
-        </div>
-      </div>
-
-      <!-- COMPOSICIÓN EDITORIAL 1: TITULAR MONUMENTAL Y NARRATIVA ASIMÉTRICA -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-14 md:mb-28">
-        
-        <!-- Columna Izquierda: Titular en Cinzel (Serif Noble de Alta Joyería) -->
-        <div class="lg:col-span-7">
-          <span class="font-mono text-[10.5px] md:text-[11px] tracking-[0.3em] uppercase text-[#B58A4B] block mb-3 md:mb-4 font-medium">IDENTIDAD DE MARCA</span>
-          <h2 class="font-cinzel font-bold text-[30px] sm:text-[44px] md:text-[54px] lg:text-[64px] leading-[1.08] tracking-[-0.01em] uppercase text-[#FFF9F2]">
-            <span class="block">MÁS QUE JOYAS,</span>
-            <span class="block text-[#D6BD91] font-light italic">UN ESTILO</span>
-            <span class="block">DE VIDA<span class="text-[#B58A4B]">.</span></span>
-          </h2>
-        </div>
-
-        <!-- Columna Derecha: Texto Editorial Limpio con Espacio Negativo Generoso -->
-        <div class="lg:col-span-5 flex flex-col justify-between h-full pt-1 lg:pt-6 lg:pl-10 space-y-5 lg:border-l lg:border-[rgba(181,138,75,0.12)]">
-          <div class="space-y-4 md:space-y-5">
-            <p class="font-sans text-[14.5px] md:text-[16px] font-light text-[#E8E0D2] leading-relaxed">
-              En TOP JEWELRY PR, cada pieza es una prolongación de tu presencia. Diseños concebidos con carácter inconfundible, fusionando la potencia de la joyería monumental con una visión contemporánea.
-            </p>
-            <p class="font-sans text-xs md:text-sm font-light text-[#82786D] leading-relaxed">
-              El verdadero lujo no compite por atención: se impone con serenidad a través de la pureza de sus proporciones, la calidez de sus reflejos y la certeza de portar una pieza que trasciende el tiempo.
-            </p>
-          </div>
-
-          <div class="pt-5 md:pt-6 border-t border-[rgba(181,138,75,0.10)] flex items-center justify-between font-mono text-[9.5px] md:text-[10px] tracking-[0.24em] uppercase text-[#82786D]">
-            <span>COLECCIÓN EXCLUSIVA</span>
-            <span class="text-[#D6BD91]">DISEÑO DE AUTOR</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- COMPOSICIÓN EDITORIAL 2: GRAN FORMATO FOTOGRÁFICO DE CAMPAÑA (PROTAGONISTA ABSOLUTO) -->
-      <div class="statement-image-mask relative overflow-hidden rounded-sm aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] bg-[#090806] border border-[rgba(181,138,75,0.18)] shadow-[0_30px_70px_rgba(0,0,0,0.9)] mb-14 md:mb-24 group">
-        <img 
-          src="/sec2-campaign.jpg" 
-          alt="Campaña Editorial: Pulsera Miami Cuban en oro y anillo solitario con diamante — TOP JEWELRY PR" 
-          class="statement-img-parallax w-full h-full object-cover filter brightness-[0.98] contrast-[1.10] scale-105 will-change-transform transition-transform duration-1000 group-hover:scale-110"
-        >
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-transparent opacity-40 pointer-events-none"></div>
-      </div>
-
-      <!-- COMPOSICIÓN EDITORIAL 3: TRÍPTICO DE PRINCIPIOS TIPOGRÁFICOS (SIN CAJAS, PURO ESPACIO NEGATIVO) -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 pt-4 pb-14 statement-secondary-wrap">
-        
-        <!-- Principio 01 -->
-        <div class="pilar-card space-y-3">
-          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">01 · PRESENCIA</div>
-          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Carácter Inconfundible</h3>
-          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
-            Cada joya posee una masa y un porte calculados para definir un estilo propio y magnético sin concesiones.
-          </p>
-        </div>
-
-        <!-- Principio 02 -->
-        <div class="pilar-card space-y-3">
-          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">02 · PROPORCIÓN</div>
-          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Equilibrio Escultural</h3>
-          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
-            Composiciones donde la fuerza de los eslabones clásicos convive en armonía con la pureza y brillo de cada faceta.
-          </p>
-        </div>
-
-        <!-- Principio 03 -->
-        <div class="pilar-card space-y-3">
-          <div class="font-mono text-[11px] tracking-[0.28em] text-[#B58A4B] uppercase font-medium">03 · IDENTIDAD</div>
-          <h3 class="font-headline font-bold text-lg text-[#FFF9F2] uppercase tracking-wide">Un Estilo de Vida</h3>
-          <p class="font-sans text-xs md:text-[13.5px] text-[#82786D] leading-relaxed">
-            Más que un accesorio efímero: una declaración duradera de quién eres, cómo te proyectas y hacia dónde te diriges.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- TRANSICIÓN SOBRIA HACIA COLECCIONES -->
-      <div class="flex flex-col items-center justify-center text-center pt-6">
-        <a 
-          href="#colecciones" 
-          data-nav-action="colecciones"
-          class="group inline-flex items-center gap-3 text-[11px] font-mono tracking-[0.3em] uppercase text-[#82786D] hover:text-[#D6BD91] transition-colors duration-300 magnetic-target py-2"
-        >
-          <span>DESCUBRIR COLECCIONES</span>
-          <span class="text-[#B58A4B] text-xs transition-transform duration-300 group-hover:translate-y-1">↓</span>
+  <!-- Capa Invertida: Escena 2 (Portal que emerge del centro del anillo) -->
+  <div class="layer scene2" id="scene2">
+    <div class="s2in">
+      <div class="s2-badge">Universo Editorial</div>
+      <div class="s2w" data-split>Piezas</div>
+      <p class="s2-sub">Diseño monumental y precisión artesanal. Cada creación es una declaración inconfundible de identidad contemporánea.</p>
+      <div class="s2-btns">
+        <a class="btn fill" href="#editorial-curation" data-action="catalogo">
+          <span>Explorar Catálogo</span>
+          <span style="font-size: 1.2em;">→</span>
+        </a>
+        <a class="btn" href="#editorial-curation" data-action="contacto">
+          <span>Atención Privada</span>
         </a>
       </div>
+    </div>
+  </div>
 
+  <!-- Grano Analógico Cinematográfico -->
+  <div class="layer" id="grain"></div>
+
+  <!-- Capa 5: Interfaz Tipográfica Flotante en Modo Diferencia -->
+  <div class="ui">
+    <div class="bar t">
+      <div class="brand-tag">
+        <span class="brand-dot"></span>
+        <a href="#" style="font-weight: 500;">Top Jewelry PR</a>
+      </div>
+      <nav class="nav">
+        <a href="#editorial-curation" data-action="colecciones">Colecciones</a>
+        <a href="#editorial-curation" data-action="historia">Historia</a>
+        <button type="button" class="audio-toggle" id="audio-btn" aria-label="Activar sonido táctil">
+          <span>Audio:</span>
+          <span id="audio-status">OFF</span>
+        </button>
+        <a href="#editorial-curation" data-action="bolsa">Bolsa (0)</a>
+      </nav>
     </div>
 
-  </section>
+    <div class="note">Digital Flagship · Edición Cinematográfica</div>
 
-  <!-- Notificación para Interacciones de Enlaces (Cero Destinos Rotos) -->
-  <aside id="status-toast" role="status" aria-live="polite" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] pointer-events-none opacity-0 transform translate-y-3 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-[#D6BD91] bg-[#090806]/95 border border-[rgba(181,138,75,0.35)] px-5 py-2.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.8)] backdrop-blur-md flex items-center gap-2.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-[#B58A4B] animate-pulse" aria-hidden="true"></span>
-    <span id="status-toast-text">TOP JEWELRY PR</span>
-  </aside>
+    <div class="bar b">
+      <div class="cnt">
+        <span class="c1">(01) Inicio</span>
+        <span class="c2">(02) Piezas</span>
+      </div>
+      <div class="cue">
+        <span>Scroll</span>
+        <i></i>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- ========================================================================= -->
-  <!-- SISTEMA JAVASCRIPT: GSAP ORYZO ENGINE, THREE.JS Y PARALLAX MULTICAPA      -->
-  <!-- ========================================================================= -->
-  <script>
-    // ── 00. REGISTRO OFICIAL DE PLUGINS GSAP Y DETECCIÓN ACCESIBILIDAD ───────
-    if (typeof gsap !== 'undefined') {
-      if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
-      if (typeof Flip !== 'undefined') gsap.registerPlugin(Flip);
+<!-- Notificación de Estado Flotante -->
+<aside id="status-toast" role="status" aria-live="polite">
+  <span id="status-toast-text">TOP JEWELRY PR</span>
+</aside>
+
+<!-- Sección Editorial Extendida: Curaduría y Manifiesto de Marca -->
+<section id="editorial-curation">
+  <div class="curation-grid">
+    <div class="editorial-card">
+      <img src="/sec2-campaign.jpg" alt="Curaduría de Alta Joyería — Top Jewelry PR" loading="lazy">
+    </div>
+
+    <div class="editorial-manifesto">
+      <span class="manifesto-kicker">Filosofía de Creación</span>
+      <h2 class="manifesto-title">El valor reside en el rigor de cada proporción.</h2>
+      <p class="manifesto-body">
+        Trascendemos las convenciones para forjar una estética donde el metal noble y la arquitectura contemporánea dialogan. Piezas concebidas no solo para adornar, sino para definir un porte y una presencia inolvidable.
+      </p>
+
+      <div class="manifesto-pillars">
+        <div class="pillar-item">
+          <span class="num">01 / FORMA</span>
+          <span class="desc">Equilibrio Asimétrico</span>
+        </div>
+        <div class="pillar-item">
+          <span class="num">02 / METAL</span>
+          <span class="desc">Pulido a Espejo</span>
+        </div>
+        <div class="pillar-item">
+          <span class="num">03 / PORTE</span>
+          <span class="desc">Lujo Inconfundible</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <a class="btn fill" href="#" data-action="adquisicion" style="align-self: flex-start;">
+          <span>Solicitar Catálogo Completo</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pie de Página Minimalista -->
+<footer id="editorial-footer">
+  <div>TOP JEWELRY PR · Todos los derechos reservados</div>
+  <div>Edición Digital 2026</div>
+</footer>
+
+<!-- Librerías de Producción: GSAP 3, ScrollTrigger & Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+
+  // ── 00. DIVISIÓN TIPOGRÁFICA CARÁCTER POR CARÁCTER ──────────────────────
+  $$('[data-split]').forEach(el => {
+    el.innerHTML = [...el.textContent].map(c => `<span class="ln"><span>${c}</span></span>`).join('');
+  });
+
+  const stage = $('#stage');
+  const cv = $('#ring');
+  const g = cv.getContext('2d');
+  const mask = $('#scene2');
+  const spot = $('#spot');
+
+  // Parámetros de geometría del anillo 3D
+  const R = 100, r = 28, FOV = 1100, P2 = Math.PI * 2, M = 18;
+  const S = { base: 0.2, q: 0, m: 0, zoom: 1, entry: 0.5, alpha: 0, mx: 0, my: 0, tx: 0, ty: 0 };
+  let W, H, DPR, K, CX, CY, N, cT = [], sT = [];
+  const cP = [], sP = [];
+  for (let j = 0; j < M; j++) {
+    cP.push(Math.cos(j / M * P2));
+    sP.push(Math.sin(j / M * P2));
+  }
+
+  function size() {
+    W = stage.clientWidth;
+    H = stage.clientHeight;
+    DPR = Math.min(window.devicePixelRatio || 1, 1.75);
+    cv.width = W * DPR;
+    cv.height = H * DPR;
+    g.setTransform(DPR, 0, 0, DPR, 0, 0);
+    K = Math.min(W * (W < H ? 0.0037 : 0.0033), H * 0.0026);
+    CX = W / 2;
+    CY = H * (W < H ? 0.43 : 0.45);
+    N = W < 700 ? 100 : 144;
+    cT = [];
+    sT = [];
+    for (let i = 0; i < N; i++) {
+      cT.push(Math.cos(i / N * P2));
+      sT.push(Math.sin(i / N * P2));
     }
+  }
 
-    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let c1, s1, c2, s2, tx, ty, tz;
+  const T = (x, y, z) => {
+    const y1 = y * c1 - z * s1;
+    const z1 = y * s1 + z * c1;
+    tx = x * c2 + z1 * s2;
+    ty = y1;
+    tz = -x * s2 + z1 * c2;
+  };
 
-    // ── 01. AUDIO TÁCTIL PROCEDURAL (OFF POR DEFECTO · ACTIVACIÓN VOLUNTARIA) ─
-    let audioContext = null;
-    let audioActive = false;
+  const gX = new Float32Array(M + 1), gY = new Float32Array(M + 1), gZ = new Float32Array(M + 1), gC = new Array(M + 1);
 
-    function playHapticTick(freq = 1100, duration = 0.025) {
-      if (!audioActive) return;
-      try {
-        if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioContext.state === 'suspended') audioContext.resume();
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, audioContext.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(140, audioContext.currentTime + duration);
-        gain.gain.setValueAtTime(0.04, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-        osc.start();
-        osc.stop(audioContext.currentTime + duration);
-      } catch(e) {}
-    }
-
-    function toggleAudio() {
-      audioActive = !audioActive;
-      const statusEl = document.getElementById('audio-status');
-      const indEl = document.getElementById('audio-indicator');
-      if (statusEl) {
-        statusEl.innerText = audioActive ? 'ON' : 'OFF';
-        statusEl.className = audioActive ? 'text-[#D6BD91]' : 'text-[#82786D]';
+  // Renderizado de sección cilíndrica del cuerpo del anillo de oro
+  function section(i, sc, Lx, Ly, Lz, Hx, Hy, Hz) {
+    const ct = cT[i], st = sT[i];
+    for (let j = 0; j <= M; j++) {
+      const k = j % M, cp = cP[k], sn = sP[k], rr = R + r * cp;
+      T(rr * ct, r * sn, rr * st);
+      const s = FOV / (FOV + tz);
+      gX[j] = CX + tx * s * sc;
+      gY[j] = CY + ty * s * sc;
+      T(cp * ct, sn, cp * st);
+      gZ[j] = tz;
+      if (tz < 0) {
+        const d = Math.max(0, tx * Lx + ty * Ly + tz * Lz);
+        const h = tx * Hx + ty * Hy + tz * Hz;
+        const sp = h > 0 ? Math.pow(h, 28) : 0;
+        // Paleta de oro cálido champagne enriquecida
+        const hue = (38 + d * 8) | 0;
+        const sat = (66 - sp * 45) | 0;
+        const lum = Math.min(96, 7 + d * 45 + sp * 46) | 0;
+        gC[j] = `hsl(${hue} ${sat}% ${lum}%)`;
       }
-      if (indEl) {
-        indEl.className = audioActive
-          ? 'w-1.5 h-1.5 rounded-full bg-[#B58A4B] inline-block animate-pulse'
-          : 'w-1.5 h-1.5 rounded-full bg-[#82786D] inline-block';
+    }
+    g.beginPath();
+    g.moveTo(gX[0], gY[0]);
+    for (let j = 1; j < M; j++) g.lineTo(gX[j], gY[j]);
+    g.closePath();
+    g.fillStyle = '#100a07';
+    g.fill();
+    g.lineWidth = Math.max(1, sc * 2.3);
+    for (let j = 0; j < M; j++) {
+      if (gZ[j] < 0) {
+        g.beginPath();
+        g.moveTo(gX[j], gY[j]);
+        g.lineTo(gX[j + 1], gY[j + 1]);
+        g.strokeStyle = gC[j];
+        g.stroke();
       }
-      if (audioActive) playHapticTick(1400);
     }
+  }
 
-    // ── 02. THREE.JS: POLVO DE ORO VOLUMÉTRICO Y GESTIÓN DE CICLO DE VIDA ────
-    let threeScene, threeCamera, threeRenderer, goldDust;
-    let threeRafId = null;
-    let threeRunning = false;
-
-    function initHeroThreeScene() {
-      const canvas = document.getElementById('hero-three-canvas');
-      if (!canvas || typeof THREE === 'undefined') return;
-
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-
-      threeScene = new THREE.Scene();
-      threeCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-      threeCamera.position.z = 6;
-
-      threeRenderer = new THREE.WebGLRenderer({
-        canvas,
-        alpha: true,
-        antialias: true,
-        powerPreference: 'high-performance'
-      });
-      threeRenderer.setSize(width, height);
-      threeRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-      // 120 micro-partículas de polvo de oro en suspensión
-      const count = 120;
-      const positions = new Float32Array(count * 3);
-      for (let i = 0; i < count * 3; i += 3) {
-        positions[i]     = (Math.random() - 0.5) * 12;
-        positions[i + 1] = (Math.random() - 0.5) * 8;
-        positions[i + 2] = (Math.random() - 0.5) * 6;
-      }
-
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-      const material = new THREE.PointsMaterial({
-        color: 0xD6BD91,
-        size: 0.035,
-        transparent: true,
-        opacity: 0.45,
-        blending: THREE.AdditiveBlending
-      });
-
-      goldDust = new THREE.Points(geometry, material);
-      threeScene.add(goldDust);
-
-      function renderFrame() {
-        if (!threeRunning) return;
-        if (goldDust) {
-          goldDust.rotation.y += 0.0003;
-          goldDust.rotation.x += 0.00015;
-        }
-        threeRenderer.render(threeScene, threeCamera);
-        threeRafId = requestAnimationFrame(renderFrame);
-      }
-
-      threeRunning = true;
-      renderFrame();
-
-      // Pausa automática de render cuando la pestaña pierde el foco (Ahorro GPU/CPU)
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          threeRunning = false;
-          if (threeRafId) cancelAnimationFrame(threeRafId);
-        } else {
-          if (!threeRunning) {
-            threeRunning = true;
-            renderFrame();
-          }
-        }
-      });
-
-      window.addEventListener('resize', onThreeResize);
-      window.addEventListener('beforeunload', cleanupHeroThreeScene);
+  // Renderizado facetado de la gema con destellos prismáticos y flares
+  function gem(t, sc, Lx, Ly, Lz) {
+    const zg = R + r * 1.55, zt = R + r * 2.3, gr = r * 1.1, tr = r * 0.58, A = [], B = [];
+    for (let k = 0; k < 8; k++) {
+      const a = k * Math.PI / 4;
+      T(gr * Math.cos(a), gr * Math.sin(a), zg);
+      A.push([tx, ty, tz]);
+      T(tr * Math.cos(a + Math.PI / 8), tr * Math.sin(a + Math.PI / 8), zt);
+      B.push([tx, ty, tz]);
     }
-
-    function onThreeResize() {
-      if (!threeCamera || !threeRenderer) return;
-      const nw = window.innerWidth;
-      const nh = window.innerHeight;
-      threeCamera.aspect = nw / nh;
-      threeCamera.updateProjectionMatrix();
-      threeRenderer.setSize(nw, nh);
+    T(0, 0, zg);
+    const gc = [tx, ty, tz];
+    const faces = [];
+    for (let k = 0; k < 8; k++) {
+      faces.push([A[k], A[(k + 1) % 8], B[k]]);
+      faces.push([A[k], B[k], B[(k + 7) % 8]]);
     }
-
-    function cleanupHeroThreeScene() {
-      threeRunning = false;
-      if (threeRafId) cancelAnimationFrame(threeRafId);
-      window.removeEventListener('resize', onThreeResize);
-      if (goldDust) {
-        if (goldDust.geometry) goldDust.geometry.dispose();
-        if (goldDust.material) goldDust.material.dispose();
-      }
-      if (threeRenderer) threeRenderer.dispose();
-    }
-
-    // ── 03. CURSOR CINEMÁTICO HALO LÍQUIDO & MICRO-FÍSICA MAGNÉTICA ─────────
-    function initCursorAndMagnets() {
-      const dot  = document.getElementById('cursor-point');
-      const halo = document.getElementById('cursor-halo');
-      if (!dot || !halo || window.innerWidth <= 768) return;
-
-      gsap.set([dot, halo], { left: window.innerWidth / 2, top: window.innerHeight / 2 });
-
-      window.addEventListener('mousemove', (e) => {
-        dot.style.left = e.clientX + 'px';
-        dot.style.top  = e.clientY + 'px';
-
-        gsap.to(halo, {
-          left: e.clientX,
-          top: e.clientY,
-          duration: 0.22,
-          ease: 'power2.out'
-        });
-
-        // Interacción lumínica real en el DOM: desplazamiento del foco especular sobre la joyería
-        const rim = document.getElementById('hero-dynamic-rim');
-        if (rim) {
-          const nx = (e.clientX / window.innerWidth  - 0.5) * 2;
-          const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-          gsap.to(rim, {
-            x: nx * 32,
-            y: ny * 22,
-            duration: 1.4,
-            ease: 'power2.out'
-          });
-        }
+    faces.push(B);
+    faces.forEach((f, idx) => {
+      const a = f[0], b = f[1], c = f[2];
+      let nx = (b[1] - a[1]) * (c[2] - a[2]) - (b[2] - a[2]) * (c[1] - a[1]),
+          ny = (b[2] - a[2]) * (c[0] - a[0]) - (b[0] - a[0]) * (c[2] - a[2]),
+          nz = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+      const mx = (a[0] + b[0] + c[0]) / 3 - gc[0],
+            my = (a[1] + b[1] + c[1]) / 3 - gc[1],
+            mz = (a[2] + b[2] + c[2]) / 3 - gc[2];
+      if (nx * mx + ny * my + nz * mz < 0) { nx = -nx; ny = -ny; nz = -nz; }
+      if (nz >= 0) return;
+      const nl = Math.hypot(nx, ny, nz);
+      nx /= nl; ny /= nl; nz /= nl;
+      const d = Math.max(0, nx * Lx + ny * Ly + nz * Lz);
+      const fl = Math.pow(0.5 + 0.5 * Math.sin(idx * 2.4 + t * 1.3 + S.mx * 3), 4);
+      g.beginPath();
+      f.forEach((p, n) => {
+        const s = FOV / (FOV + p[2]);
+        const X = CX + p[0] * s * sc;
+        const Y = CY + p[1] * s * sc;
+        n ? g.lineTo(X, Y) : g.moveTo(X, Y);
       });
+      g.closePath();
+      // Destello facetado con brillo cálido
+      g.fillStyle = `hsl(${24 + (idx * 14) % 32} ${(25 + fl * 35) | 0}% ${Math.min(97, 28 + d * 32 + fl * 46) | 0}%)`;
+      g.fill();
+      g.lineWidth = Math.max(0.6, sc * 0.32);
+      g.strokeStyle = 'rgba(255, 240, 215, 0.4)';
+      g.stroke();
+    });
 
-      document.querySelectorAll('.magnetic-target').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          gsap.to(halo, {
-            scale: 1.5,
-            borderColor: '#B58A4B',
-            backgroundColor: 'rgba(181,138,75,0.12)',
-            duration: 0.3
-          });
-        });
-        el.addEventListener('mousemove', (e) => {
-          const rect = el.getBoundingClientRect();
-          const dx = (e.clientX - (rect.left + rect.width  / 2)) * 0.22;
-          const dy = (e.clientY - (rect.top  + rect.height / 2)) * 0.22;
-          gsap.to(el, { x: dx, y: dy, duration: 0.3, ease: 'power1.out' });
-        });
-        el.addEventListener('mouseleave', () => {
-          gsap.to(halo, {
-            scale: 1,
-            borderColor: 'rgba(214,189,145,0.4)',
-            backgroundColor: 'transparent',
-            duration: 0.3
-          });
-          gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.3)' });
-        });
-      });
+    T(0, 0, 1);
+    const facing = tz < 0;
+    if (!facing) return;
+    T(0, 0, zt);
+    const s = FOV / (FOV + tz);
+    const X = CX + tx * s * sc;
+    const Y = CY + ty * s * sc;
+    const p = Math.pow(0.5 + 0.5 * Math.sin(t * 2.2), 3);
+    const z = sc * (12 + 36 * p);
+
+    g.save();
+    g.globalCompositeOperation = 'lighter';
+    const rg = g.createRadialGradient(X, Y, 0, X, Y, z);
+    rg.addColorStop(0, `rgba(255, 245, 230, ${0.4 + 0.55 * p})`);
+    rg.addColorStop(0.4, `rgba(212, 167, 83, ${0.25 + 0.3 * p})`);
+    rg.addColorStop(1, 'rgba(226, 88, 50, 0)');
+    g.fillStyle = rg;
+    g.beginPath();
+    g.arc(X, Y, z, 0, P2);
+    g.fill();
+
+    // Cruz de destello estelar (Star flare)
+    g.strokeStyle = `rgba(255, 248, 235, ${0.25 + 0.75 * p})`;
+    g.lineWidth = Math.max(1, sc * 0.55);
+    g.beginPath();
+    g.moveTo(X - z * 2.4, Y);
+    g.lineTo(X + z * 2.4, Y);
+    g.moveTo(X, Y - z * 2.4);
+    g.lineTo(X, Y + z * 2.4);
+    g.stroke();
+    g.restore();
+  }
+
+  function frame() {
+    const t = performance.now() / 1000;
+    S.mx += (S.tx - S.mx) * 0.06;
+    S.my += (S.ty - S.my) * 0.06;
+    const free = 1 - S.q;
+    const tilt = S.base + (Math.PI / 2 - S.base) * S.q + (S.my * 0.3 + Math.sin(t * 0.7) * 0.07) * free;
+    const yaw = (S.mx * 0.55 + Math.sin(t * 0.45) * 0.12) * free;
+    c1 = Math.cos(tilt);
+    s1 = Math.sin(tilt);
+    c2 = Math.cos(yaw);
+    s2 = Math.sin(yaw);
+
+    const sc = K * S.zoom * S.entry;
+    const hole = (R - r) * sc;
+    const rx = hole * S.m;
+    const ry = rx * Math.abs(Math.sin(tilt));
+
+    mask.style.clipPath = mask.style.webkitClipPath = `ellipse(${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${CX}px ${CY}px)`;
+    spot.style.setProperty('--x', (50 + S.mx * 18) + '%');
+    spot.style.setProperty('--y', (CY / H * 100 + S.my * 14) + '%');
+
+    g.clearRect(0, 0, W, H);
+    if (rx > Math.hypot(W, H) * 0.54) return;
+
+    let Lx = -0.35 + S.mx * 1.1, Ly = -0.65 + S.my * 1.1, Lz = -0.8;
+    const ll = Math.hypot(Lx, Ly, Lz);
+    Lx /= ll; Ly /= ll; Lz /= ll;
+
+    let Hx = Lx, Hy = Ly, Hz = Lz - 1;
+    const hl = Math.hypot(Hx, Hy, Hz);
+    Hx /= hl; Hy /= hl; Hz /= hl;
+
+    g.globalAlpha = S.alpha;
+    g.lineJoin = 'round';
+    g.lineCap = 'round';
+
+    const items = [];
+    for (let i = 0; i < N; i++) {
+      T(R * cT[i], 0, R * sT[i]);
+      items.push([tz, i]);
     }
+    T(0, 0, R + r * 2);
+    items.push([tz, -1]);
+    items.sort((a, b) => b[0] - a[0]);
 
-    // ── 04. CINEMATIC PARALLAX MULTICAPA ────────────────────────────────────
-    function initCinematicParallax() {
-      if (prefersReducedMotion) return;
-
-      const jewelryInner = document.getElementById('hero-jewelry-inner');
-      const specCard     = document.getElementById('hero-spec-card');
-
-      window.addEventListener('mousemove', (e) => {
-        const nx = (e.clientX / window.innerWidth  - 0.5) * 2;
-        const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-
-        if (jewelryInner) {
-          gsap.to(jewelryInner, { x: nx * 18, y: ny * 12, duration: 1.8, ease: 'power2.out' });
-        }
-        if (specCard) {
-          gsap.to(specCard, {
-            x: -nx * 8, y: -ny * 6,
-            rotateY: nx * 6, rotateX: -ny * 6,
-            duration: 1.2, ease: 'power2.out'
-          });
-        }
-      });
+    for (const it of items) {
+      it[1] < 0 ? gem(t, sc, Lx, Ly, Lz) : section(it[1], sc, Lx, Ly, Lz, Hx, Hy, Hz);
     }
+    g.globalAlpha = 1;
+  }
 
-    // ── 05. CURTAIN ENTRANCE MASTER TIMELINE ────────────────────────────────
-    function initCurtainEntrance() {
-      const stage      = document.getElementById('curtain-stage');
-      const beam       = document.getElementById('curtain-gold-beam');
-      const brandIntro = document.getElementById('curtain-brand-intro');
-      const progress   = document.getElementById('curtain-progress');
-      const counter    = document.getElementById('curtain-counter');
-      const nav        = document.getElementById('hero-nav');
-      const ctaLine    = document.getElementById('hero-cta-underline');
+  size();
+  addEventListener('resize', size);
 
-      const kickerLines   = document.querySelectorAll('#hero-kicker .reveal-line');
-      const headlineLines = document.querySelectorAll('h1 .reveal-line');
-      const subtitleLines = document.querySelectorAll('.rl-footer');
-      const bodyLines     = document.querySelectorAll('.reveal-line.rl-body');
+  if (!window.gsap || !window.ScrollTrigger) {
+    const l = $('#loader');
+    if (l) l.remove();
+    Object.assign(S, { alpha: 1, entry: 1, base: 1 });
+    spot.style.opacity = 1;
+    (function f() { frame(); requestAnimationFrame(f); })();
+    return;
+  }
 
-      // Mientras la cortina está activa, Lenis pausa el scroll
-      if (window.lenisInstance) window.lenisInstance.stop();
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-      if (prefersReducedMotion) {
-        if (stage) stage.style.display = 'none';
-        document.body.classList.remove('curtain-locked');
-        if (window.lenisInstance) window.lenisInstance.start();
-        gsap.set(nav, { opacity: 1, y: 0 });
-        gsap.set([kickerLines, headlineLines, subtitleLines, bodyLines], { y: '0%' });
-        gsap.set(ctaLine, { scaleX: 1 });
-        return;
-      }
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lenis = null;
+  if (window.Lenis && !rm) {
+    lenis = new Lenis({ lerp: 0.085 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+  gsap.ticker.add(frame);
 
-      gsap.set(nav, { opacity: 0, y: -16 });
-      gsap.set(kickerLines, { y: '115%' });
-      gsap.set(headlineLines, { y: '115%' });
-      gsap.set(subtitleLines, { y: '115%' });
-      gsap.set(bodyLines, { y: '115%' });
-      gsap.set(ctaLine, { scaleX: 0, transformOrigin: 'left center' });
+  // Estados iniciales de elementos para la animación de entrada
+  gsap.set('.topw .ln span, .frontw-in .ln span, .s2w .ln span', { yPercent: 115 });
+  gsap.set('.pr', { scale: 0, opacity: 0 });
+  gsap.set('.ui', { opacity: 0 });
+  gsap.set('.s2-badge, .s2-sub, .s2-btns', { opacity: 0, y: 22 });
 
-      const master = gsap.timeline({ defaults: { overwrite: 'auto' } });
+  // Inercia interactiva con puntero
+  const qx = gsap.quickTo('.topw-in', 'x', { duration: 1, ease: 'power3' });
+  const qy = gsap.quickTo('.topw-in', 'y', { duration: 1, ease: 'power3' });
+  const qf = gsap.quickTo('.frontw-in', 'x', { duration: 1, ease: 'power3' });
 
-      master.to(beam, { height: '54vh', duration: 0.6, ease: 'power4.inOut' })
-      .to(brandIntro, { opacity: 1, scale: 1, duration: 0.4, ease: 'power3.out' }, '-=0.2')
-      .to({ val: 0 }, {
-        val: 100,
-        duration: 0.8,
+  addEventListener('pointermove', e => {
+    const nx = e.clientX / innerWidth - 0.5;
+    const ny = e.clientY / innerHeight - 0.5;
+    S.tx = nx * 2;
+    S.ty = ny * 2;
+    qx(-nx * 48);
+    qy(-ny * 28);
+    qf(nx * 34);
+  });
+
+  // ── TIMELINE PRINCIPAL DE SCROLL STORYTELLING: EL PORTAL DEL ANILLO ──────
+  const tl = gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: '#stage',
+      start: 'top top',
+      end: '+=320%',
+      scrub: 0.9,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+
+  tl.to(S, { q: 1, duration: 0.45, ease: 'power2.inOut' }, 0)
+    .to(S, { zoom: 6.4, duration: 1, ease: 'power2.in' }, 0)
+    .to(S, { m: 1, duration: 0.14, ease: 'power1.out' }, 0.3)
+    .to('.topw', { scale: 1.35, autoAlpha: 0, duration: 0.42 }, 0)
+    .to('.topw .ln:nth-child(1)', { xPercent: -160, duration: 0.4 }, 0)
+    .to('.topw .ln:nth-child(3)', { xPercent: 160, duration: 0.4 }, 0)
+    .to('.topw .ln:nth-child(2)', { scale: 2.4, duration: 0.4 }, 0)
+    .to('.frontw-in .ln', { y: -90, autoAlpha: 0, stagger: 0.035, duration: 0.25 }, 0)
+    .to('.pr', { x: 260, duration: 0.4 }, 0)
+    .to('.cue', { autoAlpha: 0, duration: 0.08 }, 0)
+    .to('.c1', { autoAlpha: 0, duration: 0.05 }, 0.4)
+    .to('.c2', { autoAlpha: 1, duration: 0.05 }, 0.45)
+    .fromTo('.s2in', { scale: 1.45 }, { scale: 1, duration: 0.6, ease: 'power2.out' }, 0.38)
+    .to('.s2w .ln span', { yPercent: 0, stagger: 0.03, duration: 0.2, ease: 'power3.out' }, 0.58)
+    .to('.s2-badge, .s2-sub, .s2-btns', { opacity: 1, y: 0, stagger: 0.05, duration: 0.16 }, 0.76);
+
+  // ── INTRO: CONTADOR NUMÉRICO Y APERTURA DE CORTINA ───────────────────────
+  const it = gsap.timeline({
+    paused: true,
+    onComplete: () => {
+      lenis && lenis.start();
+      ScrollTrigger.refresh();
+    }
+  });
+
+  it.to('#spot', { opacity: 1, duration: 2 }, 0)
+    .to(S, { alpha: 1, duration: 0.8 }, 0)
+    .to(S, { entry: 1, duration: 2.2, ease: 'expo.out' }, 0)
+    .to(S, { base: 1, duration: 2.4, ease: 'expo.out' }, 0)
+    .to('.topw .ln span', { yPercent: 0, duration: 1.4, ease: 'expo.out', stagger: 0.08 }, 0.15)
+    .to('.frontw-in .ln span', { yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: 0.05 }, 0.45)
+    .to('.pr', { scale: 1, opacity: 1, duration: 0.8, ease: 'back.out(2)' }, 1)
+    .to('.ui', { opacity: 1, duration: 1 }, 0.9);
+
+  const ld = $('#loader');
+  if (rm) {
+    ld.remove();
+    it.progress(1);
+  } else {
+    const L = { n: 0 };
+    const cnt = $('#cnt');
+    gsap.timeline({ delay: 0.2 })
+      .to(L, {
+        n: 100,
+        duration: 1.3,
         ease: 'power2.inOut',
-        onUpdate: function() {
-          const v = Math.round(this.targets()[0].val);
-          if (counter) counter.innerText = (v < 10 ? '0' : '') + v + '%';
-          if (progress) progress.style.width = v + '%';
+        onUpdate: () => {
+          cnt.textContent = String(Math.round(L.n)).padStart(3, '0');
         }
       })
-      .to(stage, {
-        yPercent: -100,
-        duration: 0.9,
-        ease: 'expo.inOut',
-        onComplete: () => {
-          stage.style.display = 'none';
-          document.body.classList.remove('curtain-locked');
-          if (window.lenisInstance) window.lenisInstance.start();
-        }
-      }, '+=0.05')
-      .fromTo('#hero-jewelry-inner',
-        { scale: 1.15, filter: 'brightness(0.7) contrast(1.15) saturate(0.9)' },
-        { scale: 1.05, filter: 'brightness(0.98) contrast(1.12) saturate(1.08)', duration: 1.6, ease: 'power3.out' },
-        '-=0.8'
-      )
-      .to(nav, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=1.1')
-      .to(kickerLines, { y: '0%', duration: 0.7, stagger: 0.06, ease: 'power4.out' }, '-=0.8')
-      .to(headlineLines, { y: '0%', duration: 0.9, stagger: 0.1, ease: 'power4.out' }, '-=0.5')
-      .to(bodyLines, { y: '0%', duration: 0.8, stagger: 0.08, ease: 'power3.out' }, '-=0.5')
-      .to(subtitleLines, { y: '0%', duration: 0.7, stagger: 0.06, ease: 'power3.out' }, '-=0.4')
-      .to(ctaLine, { scaleX: 1, duration: 0.8, ease: 'power3.inOut' }, '-=0.5');
-    }
+      .to('#loader .lbl', { opacity: 0, duration: 0.3 })
+      .to(ld, { clipPath: 'inset(0 0 100% 0)', duration: 1, ease: 'expo.inOut' }, '>-0.05')
+      .add(() => it.play(), '<0.35')
+      .set(ld, { display: 'none' });
+  }
 
-    // ── 06. GESTIÓN DE ACCIONES Y ENLACES (STATUS NOTIFIER) ─────────────────
-    function notifyStatus(msg) {
-      const toast = document.getElementById('status-toast');
-      const text = document.getElementById('status-toast-text');
-      if (!toast || !text) return;
-      text.innerText = msg;
-      gsap.killTweensOf(toast);
-      gsap.timeline()
-        .to(toast, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' })
-        .to(toast, { opacity: 0, y: 10, duration: 0.4, delay: 2.2, ease: 'power2.in' });
-    }
+  // ── 07. GESTOR DE AUDIO TÁCTIL PROCEDURAL ────────────────────────────────
+  let audioCtx = null;
+  let audioOn = false;
+  const audioBtn = $('#audio-btn');
+  const audioStatus = $('#audio-status');
 
-    function initNavActions() {
-      const actionMap = {
-        'colecciones': 'COLECCIONES · EN PREPARACIÓN',
-        'contacto': 'ATENCIÓN Y CONSULTAS · PRÓXIMAMENTE',
-        'buscar': 'CATÁLOGO · BÚSQUEDA PRÓXIMAMENTE',
-        'bolsa': 'BOLSA DE COMPRAS · 0 PIEZAS SELECCIONADAS'
-      };
+  function playTick() {
+    if (!audioOn) return;
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1500, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.02);
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.02);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.02);
+    } catch (e) {}
+  }
 
-      document.querySelectorAll('[data-nav-action]').forEach(el => {
-        el.addEventListener('click', (e) => {
-          e.preventDefault();
-          const action = el.getAttribute('data-nav-action');
-
-          // Smooth scroll hacia la Sección 02 si la acción es "historia"
-          if (action === 'historia') {
-            const target = document.getElementById('historia');
-            if (target && window.lenisInstance) {
-              window.lenisInstance.scrollTo(target, { offset: 0, duration: 1.4 });
-              if (audioActive) playHapticTick(1400, 0.02);
-              return;
-            }
-          }
-
-          const msg = actionMap[action] || 'TOP JEWELRY PR · DIGITAL FLAGSHIP';
-          notifyStatus(msg);
-          if (audioActive) playHapticTick(1600, 0.02);
-        });
-      });
-    }
-
-    // ── 07. GSAP SCROLL STORYTELLING: SECCIÓN 02 (BRAND STATEMENT) ───────────
-    function initStatementScrollStorytelling() {
-      if (prefersReducedMotion) return;
-
-      // 1. Revelado cinemático sutil de la imagen al aproximarse al viewport
-      if (document.querySelector('.statement-image-mask')) {
-        gsap.from('.statement-image-mask', {
-          opacity: 0.4,
-          scale: 0.98,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.statement-image-mask',
-            start: 'top 88%',
-            once: true
-          }
-        });
-
-        // 2. Parallax de profundidad sutil en la imagen principal
-        gsap.to('.statement-img-parallax', {
-          yPercent: -8,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.statement-image-mask',
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      }
-
-      // 3. Entrada escalonada de los pilares de la marca
-      if (document.querySelector('.pilar-card')) {
-        gsap.from('.pilar-card', {
-          opacity: 0.3,
-          y: 20,
-          duration: 0.9,
-          stagger: 0.12,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.pilar-card',
-            start: 'top 85%',
-            once: true
-          }
-        });
-      }
-    }
-
-    // ── 08. INICIALIZACIÓN GENERAL ──────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-      // Lenis Smooth Scroll sincronizado con GSAP ScrollTrigger
-      try {
-        window.lenisInstance = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          orientation: 'vertical',
-          smoothWheel: true
-        });
-
-        window.lenisInstance.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          window.lenisInstance.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-      } catch(e) {
-        console.warn('Lenis scroll inicializado con fallback:', e);
-      }
-
-      initHeroThreeScene();
-      initCursorAndMagnets();
-      initCinematicParallax();
-      initCurtainEntrance();
-      initNavActions();
-      initStatementScrollStorytelling();
+  if (audioBtn) {
+    audioBtn.addEventListener('click', () => {
+      audioOn = !audioOn;
+      if (audioStatus) audioStatus.textContent = audioOn ? 'ON' : 'OFF';
+      if (audioOn) playTick();
+      notifyToast(audioOn ? 'Sonido Háptico Activado' : 'Sonido Háptico Desactivado');
     });
-  </script>
+  }
+
+  // ── 08. TOAST NOTIFIER Y MANEJO DE ENLACES ──────────────────────────────
+  const toast = $('#status-toast');
+  const toastText = $('#status-toast-text');
+
+  function notifyToast(msg) {
+    if (!toast || !toastText) return;
+    toastText.innerText = msg;
+    gsap.killTweensOf(toast);
+    gsap.timeline()
+      .to(toast, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' })
+      .to(toast, { opacity: 0, y: 15, duration: 0.4, delay: 2.2, ease: 'power2.in' });
+  }
+
+  const actionMap = {
+    'colecciones': 'Colecciones · En Preparación',
+    'historia': 'Nuestra Historia · Curaduría Editorial',
+    'catalogo': 'Catálogo Oficial · Próximamente',
+    'contacto': 'Atención Privada y Consultas',
+    'adquisicion': 'Bóveda de Adquisiciones · Acceso Privado',
+    'bolsa': 'Bolsa de Compras · 0 Piezas'
+  };
+
+  $$('[data-action]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      const href = el.getAttribute('href');
+      const action = el.getAttribute('data-action');
+
+      if (href && href.startsWith('#') && href !== '#') {
+        const target = $(href);
+        if (target && lenis) {
+          e.preventDefault();
+          lenis.scrollTo(target, { duration: 1.4 });
+          playTick();
+          return;
+        }
+      }
+
+      e.preventDefault();
+      playTick();
+      const msg = actionMap[action] || 'TOP JEWELRY PR';
+      notifyToast(msg);
+    });
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => ScrollTrigger.refresh());
+  }
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>TOP JEWELRY PR — Clean Luxury Flagship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #070606;
+  --bone: #f5efe6;
+  --cream: #faf5ed;
+  --gold-primary: #e5c388;
+  --gold-bright: #fcf1d8;
+  --gold-deep: #a88448;
+  --gold-glow: rgba(229, 195, 136, 0.35);
+  --coral: #e4603c;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-gold: rgba(229, 195, 136, 0.22);
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { background: var(--ink); scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--mono);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base Stage */
+#stage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--ink);
+}
+.layer { position: absolute; inset: 0; }
+
+/* Clean Studio Lighting & Background */
+#bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+#spot {
+  mix-blend-mode: screen;
+  background: radial-gradient(ellipse 65vmax 48vmax at var(--x, 50%) var(--y, 45%), rgba(229, 195, 136, 0.28), rgba(228, 96, 60, 0.06) 42%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+}
+#ambient-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 500px at var(--cx, 50%) var(--cy, 45%), rgba(229, 195, 136, 0.16), transparent 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/* Hairline Grid Overlay (Docmo Agency Clean Architectural Lines) */
+.docmo-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid var(--hairline);
+  margin: clamp(14px, 2.5vw, 36px);
+  opacity: 0;
+}
+.docmo-crosshair {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+.docmo-crosshair::before, .docmo-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(229, 195, 136, 0.6);
+}
+.docmo-crosshair::before { top: 4px; left: 0; right: 0; height: 1px; }
+.docmo-crosshair::after { left: 4px; top: 0; bottom: 0; width: 1px; }
+.cross-tl { top: -5px; left: -5px; }
+.cross-tr { top: -5px; right: -5px; }
+.cross-bl { bottom: -5px; left: -5px; }
+.cross-br { bottom: -5px; right: -5px; }
+
+/* Monumental TOP Typography (Sculpted Luxury Metal) */
+.topw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.topw-in {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: min(56vw, 88vh);
+  font-size: min(56vw, 88svh);
+  line-height: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: -0.05em;
+  white-space: nowrap;
+  color: #120e0b;
+  -webkit-text-stroke: 1.5px rgba(229, 195, 136, 0.65);
+  text-shadow: 
+    0 0 40px rgba(229, 195, 136, 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+/* 3D Ring Canvas (Integrated inside the 'o') */
+#ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+/* Front Text: "Jewelry PR" */
+.frontw {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--jb, 8vh) + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  z-index: 5;
+}
+.frontw-in {
+  font: italic 400 min(17vw, 22vh)/0.9 var(--serif);
+  color: var(--cream);
+  white-space: nowrap;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+.pr {
+  display: inline-block;
+  font: 400 0.3em/1 var(--serif);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--gold-bright);
+  vertical-align: top;
+  margin-left: 0.35em;
+  margin-top: 0.35em;
+  border: 1px solid rgba(229, 195, 136, 0.6);
+  background: rgba(229, 195, 136, 0.06);
+  backdrop-filter: blur(8px);
+  border-radius: 99px;
+  padding: 0.22em 0.65em;
+  box-shadow: 0 0 15px rgba(229, 195, 136, 0.15);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .frontw-in { font-size: min(25vw, 18vh); }
+  .topw { height: 98%; }
+  .topw-in {
+    font-size: min(61vw, 88vh);
+    font-size: min(61vw, 88svh);
+    letter-spacing: 0.02em;
+    margin-right: -0.02em;
+  }
+}
+
+/* Clean Editorial Side Annotations */
+.edit {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.14em;
+  color: rgba(229, 195, 136, 0.7);
+  text-transform: uppercase;
+}
+.edit i {
+  display: block;
+  width: 1px;
+  background: linear-gradient(rgba(229, 195, 136, 0), rgba(229, 195, 136, 0.6) 30%, rgba(229, 195, 136, 0.6) 70%, rgba(229, 195, 136, 0));
+}
+.side {
+  position: absolute;
+  top: var(--cy, 45%);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.side i { height: 68px; }
+.side span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; font-size: 10px; }
+.side.l { left: clamp(24px, 4vw, 56px); }
+.side.r { right: clamp(24px, 4vw, 56px); }
+.plumb {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% - var(--cy, 45%) + var(--rw, 240px)*0.5 + 34px);
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.plumb i { height: 60px; }
+@media (max-width: 1099px), (max-aspect-ratio: 1/1) { .side { display: none; } }
+@media (max-aspect-ratio: 1/1) { .plumb { display: flex; } }
+
+/* Floating Clean Spec Badges (Subtle Editorial Depth) */
+.docmo-badge {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  background: rgba(14, 12, 11, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline-gold);
+  border-radius: 4px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+.badge-left {
+  left: clamp(24px, 4.5vw, 64px);
+  bottom: clamp(60px, 9vh, 90px);
+}
+.badge-right {
+  right: clamp(24px, 4.5vw, 64px);
+  top: clamp(80px, 12vh, 120px);
+}
+.docmo-badge .num {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--gold-bright);
+}
+.docmo-badge .desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--bone);
+  white-space: nowrap;
+}
+@media (max-width: 900px) { .docmo-badge { display: none; } }
+
+/* Split Text wrappers */
+.ln {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.14em 0.2em;
+  margin: -0.14em -0.2em;
+}
+.ln > span { display: inline-block; }
+
+/* Scene 2: Architectural Gallery Reveal through the Ring */
+.scene2 {
+  z-index: 10;
+  background: var(--bone);
+  color: #14100d;
+  clip-path: ellipse(0px 0px at 50% 45%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.15);
+}
+.s2in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+}
+.s2-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7d7063;
+  margin-bottom: 2vh;
+}
+.s2w {
+  font: 400 min(30vw, 38vh)/0.85 var(--serif);
+  letter-spacing: -0.02em;
+  color: #120e0b;
+}
+.s2-sub {
+  max-width: 36ch;
+  margin: 3vh 0 0;
+  font: 400 12px/1.8 var(--mono);
+  letter-spacing: 0.06em;
+  color: #4a4138;
+}
+.s2-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4vh;
+}
+.btn {
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 16px 26px;
+  border: 1px solid #14100d;
+  border-radius: 99px;
+  color: #14100d;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn.fill {
+  background: #14100d;
+  color: var(--bone);
+  box-shadow: 0 4px 16px rgba(20, 16, 13, 0.2);
+}
+.btn:hover {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(228, 96, 60, 0.3);
+}
+
+/* Fine Film Grain */
+#grain {
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Clean Editorial UI HUD */
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #fff;
+  font: 400 11px/1.2 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.ui a { pointer-events: auto; color: inherit; text-decoration: none; transition: opacity 0.2s; }
+.ui a:hover { opacity: 0.7; }
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+.bar.t { top: calc(20px + env(safe-area-inset-top, 0px)); }
+.bar.b { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+.nav { display: flex; gap: 26px; }
+.cnt { display: grid; }
+.cnt span { grid-area: 1/1; }
+.c2 { opacity: 0; }
+.cue { display: flex; align-items: center; gap: 12px; }
+.cue i {
+  display: block;
+  width: 1px;
+  height: 36px;
+  background: #fff;
+  transform-origin: top;
+  animation: cue 2s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+@keyframes cue {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+.note {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(22px + env(safe-area-inset-top, 0px));
+  text-align: center;
+  opacity: 0.45;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+@media (max-aspect-ratio: 1/1), (max-width: 1000px) {
+  .note { top: auto; bottom: calc(56px + env(safe-area-inset-bottom, 0px)); padding: 0 16px; }
+}
+
+/* Minimal Luxury Preloader */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--ink);
+  clip-path: inset(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px clamp(20px, 4vw, 56px);
+  box-sizing: border-box;
+}
+#loader .lbl {
+  font: 400 11px var(--mono);
+  letter-spacing: 0.22em;
+  color: var(--gold-bright);
+}
+#cnt {
+  align-self: flex-end;
+  font: italic 400 min(24vw, 30vh)/0.8 var(--serif);
+  color: var(--cream);
+  text-shadow: 0 0 30px rgba(229, 195, 136, 0.25);
+}
+
+/* Next Section (Catalog) */
+#next {
+  background: var(--bone);
+  color: #14100d;
+  min-height: 70vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 14px;
+  font: 400 11px/1.8 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue i { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <span class="lbl">TOP JEWELRY PR · ATELIER</span>
+  <b id="cnt">000</b>
+</div>
+
+<section id="stage">
+  <!-- Clean Silky Studio Background -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="layer" id="spot"></div>
+  <div class="layer" id="ambient-glow"></div>
+
+  <!-- Docmo Architectural Grid -->
+  <div class="docmo-grid">
+    <div class="docmo-crosshair cross-tl"></div>
+    <div class="docmo-crosshair cross-tr"></div>
+    <div class="docmo-crosshair cross-bl"></div>
+    <div class="docmo-crosshair cross-br"></div>
+  </div>
+
+  <!-- Primary Identity: TOP -->
+  <div class="topw"><div class="topw-in" data-split>Top</div></div>
+
+  <!-- Integrated 3D Jewel Ring (renders dynamically anchored in the 'o') -->
+  <canvas id="ring"></canvas>
+
+  <!-- Front Editorial Complement: Jewelry PR -->
+  <div class="frontw">
+    <div class="frontw-in">
+      <span data-split>Jewelry</span><span class="pr">PR</span>
+    </div>
+  </div>
+
+  <!-- Clean Editorial Side Markings -->
+  <div class="edit" aria-hidden="true">
+    <div class="side l"><i></i><span>Atelier San Juan</span><i></i></div>
+    <div class="side r"><i></i><span>Haute Joaillerie</span><i></i></div>
+    <div class="plumb"><span>Alta Joyería PR</span><i></i></div>
+  </div>
+
+  <!-- Subtle Editorial Micro-Data Cards -->
+  <div class="docmo-badge badge-left">
+    <span class="num">[ 01 // D-FLAWLESS ]</span>
+    <span class="desc">Solitario 18K Oro & Diamante</span>
+  </div>
+  <div class="docmo-badge badge-right">
+    <span class="num">[ ATELIER PUERTO RICO ]</span>
+    <span class="desc">18°27'55" N · 66°06'20" W</span>
+  </div>
+
+  <!-- Scene 2: Architectural Gallery Reveal Through the Ring -->
+  <div class="layer scene2" id="scene2">
+    <div class="s2in">
+      <div class="s2-tag">Colección Exclusiva · 2026</div>
+      <div class="s2w" data-split>Piezas</div>
+      <p class="s2-sub">Explora el catálogo de alta orfebrería, consulta disponibilidad y solicita tu cita privada con nuestro atelier.</p>
+      <div class="s2-btns">
+        <a class="btn fill" href="#next">Explorar piezas</a>
+        <a class="btn" href="#next">Cita privada</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="layer" id="grain"></div>
+
+  <!-- Clean UI HUD -->
+  <div class="ui">
+    <div class="bar t">
+      <span>Top Jewelry PR</span>
+      <nav class="nav">
+        <a href="#next">Catálogo</a>
+        <a href="#next">Colección</a>
+        <a href="#next">Cita</a>
+      </nav>
+    </div>
+    <div class="note">Digital Flagship · Experiencia Cinematográfica de Alta Joyería</div>
+    <div class="bar b">
+      <div class="cnt">
+        <span class="c1">(01) Inicio</span>
+        <span class="c2">(02) Piezas</span>
+      </div>
+      <div class="cue"><span>Scroll</span><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section id="next">
+  <span>Catálogo Editorial</span>
+  <span>Piezas únicas de alta orfebrería</span>
+</section>
+
+<!-- GSAP + ScrollTrigger + Lenis -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+// Split text
+$$('[data-split]').forEach(el=>{
+  el.innerHTML=[...el.textContent].map(c=>`<span class="ln"><span>${c}</span></span>`).join('');
+});
+
+const stage=$('#stage'),cv=$('#ring'),g=cv.getContext('2d'),mask=$('#scene2'),spot=$('#spot'),ambient=$('#ambient-glow');
+const R=100,r=28,FOV=1100,P2=Math.PI*2,M=18;
+let PX=50;const S={base:.2,q:0,m:0,zoom:1,entry:.5,alpha:0,mx:0,my:0,tx:0,ty:0};
+let W,H,DPR,K,CX,CY,N,cT=[],sT=[];
+const cP=[],sP=[];for(let j=0;j<M;j++){cP.push(Math.cos(j/M*P2));sP.push(Math.sin(j/M*P2));}
+
+function size(){
+  W=stage.clientWidth;H=stage.clientHeight;DPR=Math.min(window.devicePixelRatio||1,1.75);
+  cv.width=W*DPR;cv.height=H*DPR;g.setTransform(DPR,0,0,DPR,0,0);
+
+  // El anillo se ancla matemáticamente a la letra O
+  const tw=$('.topw'),ti=$('.topw-in'),oL=ti.children[1],fs=parseFloat(getComputedStyle(ti).fontSize),ls=parseFloat(getComputedStyle(ti).letterSpacing)||0;
+  K=fs*(W<H?1.02:.8)/(2*(R+r));
+  CX=tw.offsetLeft+oL.offsetLeft+oL.offsetWidth/2-ls/2;
+  CY=tw.offsetTop+ti.offsetTop+ti.offsetHeight/2-.027*fs;
+  PX=Math.min(50,W*.035);
+
+  stage.style.setProperty('--cy',CY+'px');
+  stage.style.setProperty('--cx',CX+'px');
+  stage.style.setProperty('--rw',(2*(R+r)*K)+'px');
+
+  const jf=parseFloat(getComputedStyle($('.frontw-in')).fontSize);
+  stage.style.setProperty('--jb',(H-CY-.367*fs-.641*jf-jf*(W<H?.24:.02))+'px');
+
+  N=W<700?100:148;
+  cT=[];sT=[];
+  for(let i=0;i<N;i++){cT.push(Math.cos(i/N*P2));sT.push(Math.sin(i/N*P2));}
+}
+
+let c1,s1,c2,s2,tx,ty,tz;
+const T=(x,y,z)=>{
+  const y1=y*c1-z*s1,z1=y*s1+z*c1;
+  tx=x*c2+z1*s2;ty=y1;tz=-x*s2+z1*c2;
+};
+
+const gX=new Float32Array(M+1),gY=new Float32Array(M+1),gZ=new Float32Array(M+1),gC=new Array(M+1);
+
+// Renderizado de sección del anillo con sombreado de oro cálido y hot spot especular
+function section(i,sc,Lx,Ly,Lz,Hx,Hy,Hz){
+  const ct=cT[i],st=sT[i];
+  for(let j=0;j<=M;j++){
+    const k=j%M,cp=cP[k],sn=sP[k],rr=R+r*cp;
+    T(rr*ct,r*sn,rr*st);const s=FOV/(FOV+tz);
+    gX[j]=CX+tx*s*sc;gY[j]=CY+ty*s*sc;
+    T(cp*ct,sn,cp*st);gZ[j]=tz;
+    if(tz<0){
+      const d=Math.max(0,tx*Lx+ty*Ly+tz*Lz);
+      const h=tx*Hx+ty*Hy+tz*Hz;
+      const sp=h>0?Math.pow(h,32):0;
+      // Oro pulido de 18 quilates con destello de luz especular
+      const hue=(38+d*6)|0;
+      const sat=(64-sp*45)|0;
+      const lum=Math.min(96,12+d*44+sp*44)|0;
+      gC[j]=`hsl(${hue} ${sat}% ${lum}%)`;
+    }
+  }
+  g.beginPath();
+  g.moveTo(gX[0],gY[0]);
+  for(let j=1;j<M;j++) g.lineTo(gX[j],gY[j]);
+  g.closePath();
+  g.fillStyle='#140e0a';
+  g.fill();
+
+  g.lineWidth=Math.max(1,sc*2.4);
+  for(let j=0;j<M;j++){
+    if(gZ[j]<0){
+      g.beginPath();
+      g.moveTo(gX[j],gY[j]);
+      g.lineTo(gX[j+1],gY[j+1]);
+      g.strokeStyle=gC[j];
+      g.stroke();
+    }
+  }
+}
+
+// Diamante con refracción y destello prismático anamórfico
+function gem(t,sc,Lx,Ly,Lz){
+  const zg=R+r*1.55,zt=R+r*2.32,gr=r*1.12,tr=r*0.58,A=[],B=[];
+  for(let k=0;k<8;k++){
+    const a=k*Math.PI/4;
+    T(gr*Math.cos(a),gr*Math.sin(a),zg);A.push([tx,ty,tz]);
+    T(tr*Math.cos(a+Math.PI/8),tr*Math.sin(a+Math.PI/8),zt);B.push([tx,ty,tz]);
+  }
+  T(0,0,zg);const gc=[tx,ty,tz];
+  const faces=[];
+  for(let k=0;k<8;k++){
+    faces.push([A[k],A[(k+1)%8],B[k]]);
+    faces.push([A[k],B[k],B[(k+7)%8]]);
+  }
+  faces.push(B);
+
+  faces.forEach((f,idx)=>{
+    const a=f[0],b=f[1],c=f[2];
+    let nx=(b[1]-a[1])*(c[2]-a[2])-(b[2]-a[2])*(c[1]-a[1]),
+        ny=(b[2]-a[2])*(c[0]-a[0])-(b[0]-a[0])*(c[2]-a[2]),
+        nz=(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+    const mx=(a[0]+b[0]+c[0])/3-gc[0],my=(a[1]+b[1]+c[1])/3-gc[1],mz=(a[2]+b[2]+c[2])/3-gc[2];
+    if(nx*mx+ny*my+nz*mz<0){nx=-nx;ny=-ny;nz=-nz;}
+    if(nz>=0)return;
+
+    const nl=Math.hypot(nx,ny,nz);nx/=nl;ny/=nl;nz/=nl;
+    const d=Math.max(0,nx*Lx+ny*Ly+nz*Lz);
+    const fl=Math.pow(0.5+0.5*Math.sin(idx*2.4+t*1.4+S.mx*3),4);
+
+    g.beginPath();
+    f.forEach((p,n)=>{
+      const s=FOV/(FOV+p[2]),X=CX+p[0]*s*sc,Y=CY+p[1]*s*sc;
+      n?g.lineTo(X,Y):g.moveTo(X,Y);
+    });
+    g.closePath();
+    // Refracción pura de diamante (blanco, champán y fuego espectral)
+    const hue=(26+(idx*15)%40)|0;
+    const lum=Math.min(98,34+d*32+fl*36)|0;
+    g.fillStyle=`hsl(${hue} ${(18+fl*32)|0}% ${lum}%)`;
+    g.fill();
+    g.lineWidth=Math.max(0.6,sc*0.32);
+    g.strokeStyle='rgba(255,244,228,0.45)';
+    g.stroke();
+  });
+
+  T(0,0,1);const facing=tz<0;
+  if(!facing)return;
+
+  T(0,0,zt);
+  const s=FOV/(FOV+tz),X=CX+tx*s*sc,Y=CY+ty*s*sc;
+  const p=Math.pow(0.5+0.5*Math.sin(t*2.3),3);
+  const z=sc*(12+36*p);
+
+  g.save();
+  g.globalCompositeOperation='lighter';
+
+  // Halo de luz prismática
+  const rg=g.createRadialGradient(X,Y,0,X,Y,z);
+  rg.addColorStop(0,`rgba(255,248,235,${0.45+0.5*p})`);
+  rg.addColorStop(0.4,`rgba(235,210,165,${0.25+0.3*p})`);
+  rg.addColorStop(1,'rgba(210,180,140,0)');
+  g.fillStyle=rg;
+  g.beginPath();
+  g.arc(X,Y,z,0,P2);
+  g.fill();
+
+  // Destello anamórfico horizontal
+  g.strokeStyle=`rgba(255,248,238,${0.3+0.65*p})`;
+  g.lineWidth=Math.max(1,sc*0.5);
+  g.beginPath();
+  g.moveTo(X-z*2.5,Y);g.lineTo(X+z*2.5,Y);
+  g.moveTo(X,Y-z*1.8);g.lineTo(X,Y+z*1.8);
+  g.stroke();
+  g.restore();
+}
+
+function frame(){
+  const t=performance.now()/1000;
+  S.mx+=(S.tx-S.mx)*0.06;
+  S.my+=(S.ty-S.my)*0.06;
+
+  const free=1-S.q;
+  const tilt=S.base+(Math.PI/2-S.base)*S.q+(S.my*0.3+Math.sin(t*0.7)*0.07)*free;
+  const yaw=(S.mx*0.55+Math.sin(t*0.45)*0.12)*free;
+
+  c1=Math.cos(tilt);s1=Math.sin(tilt);
+  c2=Math.cos(yaw);s2=Math.sin(yaw);
+
+  const sc=K*S.zoom*S.entry;
+  const hole=(R-r)*sc,rx=hole*S.m,ry=rx*Math.abs(Math.sin(tilt));
+
+  mask.style.clipPath=mask.style.webkitClipPath=`ellipse(${rx.toFixed(1)}px ${ry.toFixed(1)}px at ${CX}px ${CY}px)`;
+  spot.style.setProperty('--x',(50+S.mx*18)+'%');
+  spot.style.setProperty('--y',(CY/H*100+S.my*14)+'%');
+
+  g.clearRect(0,0,W,H);
+  if(window.__topCover=rx>Math.hypot(W,H)*0.53)return;
+
+  let Lx=-0.35+S.mx*1.1,Ly=-0.65+S.my*1.1,Lz=-0.8;
+  const ll=Math.hypot(Lx,Ly,Lz);Lx/=ll;Ly/=ll;Lz/=ll;
+
+  let Hx=Lx,Hy=Ly,Hz=Lz-1;
+  const hl=Math.hypot(Hx,Hy,Hz);Hx/=hl;Hy/=hl;Hz/=hl;
+
+  g.globalAlpha=S.alpha;
+  g.lineJoin='round';g.lineCap='round';
+
+  const items=[];
+  for(let i=0;i<N;i++){T(R*cT[i],0,R*sT[i]);items.push([tz,i]);}
+  T(0,0,R+r*2);items.push([tz,-1]);
+  items.sort((a,b)=>b[0]-a[0]);
+
+  for(const it of items){
+    it[1]<0?gem(t,sc,Lx,Ly,Lz):section(it[1],sc,Lx,Ly,Lz,Hx,Hy,Hz);
+  }
+  g.globalAlpha=1;
+}
+
+size();
+addEventListener('resize',size);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(size);
+
+if(!window.gsap||!window.ScrollTrigger){
+  const l=$('#loader');if(l)l.remove();
+  Object.assign(S,{alpha:1,entry:1,base:1});
+  spot.style.opacity=1;ambient.style.opacity=1;
+  (function f(){frame();requestAnimationFrame(f);})();
+  return;
+}
+
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ignoreMobileResize:true});
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+let lenis=null;
+if(window.Lenis&&!rm){
+  lenis=new Lenis({lerp:0.085});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+}
+gsap.ticker.add(frame);
+
+// Estados iniciales protegidos
+gsap.set('.topw .ln span,.frontw-in .ln span,.s2w .ln span',{yPercent:115});
+gsap.set('.pr',{scale:0,opacity:0});
+gsap.set('.ui,.edit>*,.docmo-grid,.docmo-badge',{opacity:0});
+gsap.set('#bg,#spot,#ambient-glow',{opacity:0});
+gsap.set('.s2-tag,.s2-sub,.s2-btns',{opacity:0,y:24});
+
+// Parallax interactivo sutil (Docmo feeling)
+const qx=gsap.quickTo('.topw-in','x',{duration:1,ease:'power3'});
+const qy=gsap.quickTo('.topw-in','y',{duration:1,ease:'power3'});
+const qf=gsap.quickTo('.frontw-in','x',{duration:1,ease:'power3'});
+const qb1=gsap.quickTo('.badge-left','y',{duration:1.2,ease:'power3'});
+const qb2=gsap.quickTo('.badge-right','y',{duration:1.2,ease:'power3'});
+
+addEventListener('pointermove',e=>{
+  const nx=e.clientX/innerWidth-0.5,ny=e.clientY/innerHeight-0.5;
+  S.tx=nx*2;S.ty=ny*2;
+  qx(-nx*PX);
+  qy(-ny*PX*0.6);
+  qf(nx*PX*0.72);
+  qb1(-ny*18);
+  qb2(ny*18);
+});
+
+// Secuencia de Scroll: El anillo se inclina 90°, la cámara entra y el hueco se abre hacia la Escena 2
+const tl=gsap.timeline({
+  defaults:{ease:'none'},
+  scrollTrigger:{
+    trigger:'#stage',
+    start:'top top',
+    end:'+=320%',
+    scrub:0.9,
+    pin:true,
+    anticipatePin:1,
+    invalidateOnRefresh:true
+  }
+});
+
+tl.to(S,{q:1,duration:0.45,ease:'power2.inOut'},0)
+  .to(S,{zoom:()=>Math.max(6.2,Math.hypot(Math.max(CX,W-CX),Math.max(CY,H-CY))*1.04/((R-r)*K)),duration:1,ease:'power2.in'},0)
+  .to(S,{m:1,duration:0.14,ease:'power1.out'},0.3)
+  .to('.topw',{scale:1.35,autoAlpha:0,duration:0.42},0)
+  .to('.topw .ln:nth-child(1)',{xPercent:-160,duration:0.4},0)
+  .to('.topw .ln:nth-child(3)',{xPercent:160,duration:0.4},0)
+  .to('.topw .ln:nth-child(2)',{scale:2.4,duration:0.4},0)
+  .to('.frontw-in .ln',{y:-90,autoAlpha:0,stagger:0.035,duration:0.25},0)
+  .to('.edit,.docmo-grid,.docmo-badge',{autoAlpha:0,duration:0.18},0)
+  .to('.pr',{x:260,duration:0.4},0)
+  .to('.cue',{autoAlpha:0,duration:0.08},0)
+  .to('.c1',{autoAlpha:0,duration:0.05},0.4)
+  .to('.c2',{autoAlpha:1,duration:0.05},0.45)
+  .fromTo('.s2in',{scale:1.5},{scale:1,duration:0.6,ease:'power2.out'},0.38)
+  .to('.s2-tag',{opacity:1,duration:0.2},0.54)
+  .to('.s2w .ln span',{yPercent:0,stagger:0.03,duration:0.2,ease:'power3.out'},0.58)
+  .to('.s2-sub,.s2-btns',{opacity:1,y:0,stagger:0.05,duration:0.15},0.78);
+
+// Secuencia de Entrada: Contador 000→100, cortina que sube, encendido de estudio y giro del anillo
+const it=gsap.timeline({
+  paused:true,
+  onComplete:()=>{
+    lenis&&lenis.start();
+    ScrollTrigger.refresh();
+  }
+});
+
+it.to('#spot',{opacity:1,duration:2},0)
+  .to('#ambient-glow',{opacity:1,duration:2.4},0)
+  .to('#bg',{opacity:1,duration:2.8,ease:'power2.out'},0)
+  .to(S,{alpha:1,duration:0.8},0)
+  .to(S,{entry:1,duration:2.2,ease:'expo.out'},0)
+  .to(S,{base:1,duration:2.4,ease:'expo.out'},0)
+  .to('.docmo-grid',{opacity:1,duration:1.6},0.1)
+  .to('.topw .ln span',{yPercent:0,duration:1.8,ease:'expo.out',stagger:0.1},0.15)
+  .to('.frontw-in .ln span',{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.05},0.45)
+  .to('.pr',{scale:1,opacity:1,duration:0.8,ease:'back.out(2)'},1)
+  .to('.ui',{opacity:1,duration:1},0.9)
+  .to('.edit>*',{opacity:1,duration:1.6,ease:'power2.out'},1.3)
+  .to('.docmo-badge',{opacity:1,duration:1.4,stagger:0.15},1.5);
+
+const ld=$('#loader');
+if(rm){
+  ld.remove();
+  it.progress(1);
+  ScrollTrigger.refresh();
+} else {
+  const L={n:0},cnt=$('#cnt');
+  gsap.timeline({delay:0.2})
+    .to(L,{n:100,duration:1.3,ease:'power2.inOut',onUpdate:()=>{cnt.textContent=String(Math.round(L.n)).padStart(3,'0');}})
+    .to('#loader .lbl',{opacity:0,duration:0.3})
+    .to(ld,{clipPath:'inset(0 0 100% 0)',duration:1,ease:'expo.inOut'},'>-0.05')
+    .add(()=>it.play(),'<0.35')
+    .set(ld,{display:'none'});
+}
+
+// Desplazamiento suave para todos los botones ancla
+$$('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=$(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      if(lenis)lenis.scrollTo(target,{duration:1.2});
+      else target.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>ScrollTrigger.refresh());
+})();
+</script>
+
+<!-- Clean Silk & Studio Velvet Background WebGL Shader -->
+<script>
+(()=>{
+const cv=document.getElementById('bg'),stage=document.getElementById('stage');
+const gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'high-performance'});
+if(!gl){cv.remove();return;}
+
+const VS='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+const FS=`precision highp float;
+uniform vec2 R;uniform float T;uniform vec2 M;
+
+float hs(vec2 p){
+  vec3 q=fract(vec3(p.xyx)*0.1031);
+  q+=dot(q,q.yzx+33.33);
+  return fract((q.x+q.y)*q.z);
+}
+float vn(vec2 p){
+  vec2 i=floor(p),f=fract(p);
+  f=f*f*f*(f*(f*6.0-15.0)+10.0);
+  return mix(mix(hs(i),hs(i+vec2(1.0,0.0)),f.x),mix(hs(i+vec2(0.0,1.0)),hs(i+1.0),f.x),f.y);
+}
+float fbm(vec2 p){
+  float s=0.0,a=0.5;
+  mat2 m=mat2(1.6,1.2,-1.2,1.6);
+  for(int i=0;i<4;i++){s+=a*vn(p);p=m*p;a*=0.4;}
+  return s;
+}
+
+// Studio Lighting Model: Sedoso, limpio, sin ruido sucio
+vec3 studioEnv(vec3 r, vec2 uv){
+  float sw=(sin(T*0.08)*0.7+sin(T*0.04+1.2)*0.4)*0.25;
+  float d=r.x*0.75+r.y*0.6-sw;
+
+  // Key light: Luz suave de estudio en champán cálido
+  float key=smoothstep(0.4,0.0,abs(d))*0.45+smoothstep(0.08,0.0,abs(d))*0.8;
+  // Rim light: Perfil de oro cálido 18k
+  float rim=smoothstep(0.12,0.0,abs(r.y+0.22+0.1*sin(T*0.05)))*0.6;
+  // Caústica suave central
+  float caust=smoothstep(0.35,0.0,length(r.xy-vec2(0.3+0.1*sin(T*0.04),-0.12)))*0.35;
+
+  vec3 goldKey=vec3(1.0, 0.88, 0.65)*key;
+  vec3 goldRim=vec3(0.95, 0.74, 0.42)*rim;
+  vec3 warmCaust=vec3(0.9, 0.55, 0.3)*caust;
+
+  return goldKey+goldRim+warmCaust;
+}
+
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*R)/R.y;
+  float t=T*0.025;
+
+  vec2 p=vec2(uv.x*0.6,uv.y*1.4)*1.1+M*0.08;
+  vec2 q=vec2(fbm(p*0.5+vec2(t,0.0)),fbm(p*0.5+vec2(3.8,1.9)-vec2(0.0,t)));
+  vec2 w=p+0.8*(q-0.5);
+
+  float f0=fbm(w+vec2(sin(t)*0.2,t*0.3));
+  float e=0.025;
+  vec2 g=vec2(fbm(w+vec2(e,0.0))-f0,fbm(w+vec2(0.0,e))-f0)/e;
+
+  vec3 n=normalize(vec3(-g*0.18, 1.0));
+  vec3 r=reflect(vec3(0.0,0.0,-1.0),n);
+  r.xy+=uv*0.28+M*0.08;
+
+  // Base terciopelo de obsidiana profundo
+  vec3 col=vec3(0.025, 0.022, 0.02);
+
+  // Iluminación de estudio
+  vec3 envLight=studioEnv(r, uv);
+  col+=envLight*(0.4+0.6*smoothstep(0.2,0.8,f0));
+
+  // Viñeteado de estudio limpio
+  col*=mix(0.5, 1.0, smoothstep(0.1, 0.85, length(uv*vec2(0.7, 0.95))));
+  col*=1.0-0.75*smoothstep(0.25, 0.98, length(uv*vec2(1.0, 1.1)));
+
+  // Curva de tono fotográfica limpia
+  col=1.0-exp(-col*1.25);
+
+  // Micro-dither imperceptible para gradientes sedosos
+  col+=(hs(gl_FragCoord.xy+fract(T))-0.5)*(1.0/255.0);
+
+  gl_FragColor=vec4(col,1.0);
+}
+`;
+
+const sh=(t,c)=>{
+  const o=gl.createShader(t);gl.shaderSource(o,c);gl.compileShader(o);
+  if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(o));return null;}
+  return o;
+};
+
+const vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);
+if(!vs||!fs){cv.remove();return;}
+
+const pr=gl.createProgram();
+gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.remove();return;}
+
+gl.useProgram(pr);
+gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+
+const al=gl.getAttribLocation(pr,'a');
+gl.enableVertexAttribArray(al);
+gl.vertexAttribPointer(al,2,gl.FLOAT,false,0,0);
+
+const uR=gl.getUniformLocation(pr,'R'),uT=gl.getUniformLocation(pr,'T'),uM=gl.getUniformLocation(pr,'M');
+const mobile=matchMedia('(pointer:coarse)').matches||innerWidth<700,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+let sc=window.__bgSc||(mobile?0.5:0.6),mx=0,my=0,tx=0,ty=0,last=0,drawn=0,slow=0;
+
+function size(){
+  const w=Math.max(2,Math.round(stage.clientWidth*sc)),h=Math.max(2,Math.round(stage.clientHeight*sc));
+  cv.width=w;cv.height=h;gl.viewport(0,0,w,h);gl.uniform2f(uR,w,h);
+}
+
+function draw(t){
+  mx+=(tx-mx)*0.04;my+=(ty-my)*0.04;
+  gl.uniform1f(uT,t);gl.uniform2f(uM,mx,my);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+}
+
+size();
+addEventListener('resize',()=>{size();if(rm)draw(9);});
+if(rm){draw(9);return;}
+
+addEventListener('pointermove',e=>{tx=e.clientX/innerWidth-0.5;ty=0.5-e.clientY/innerHeight;});
+
+const t0=performance.now()-9000;
+(function loop(now){
+  requestAnimationFrame(loop);
+  if(window.__topCover||window.__bgFreeze)return;
+  if(mobile&&now-drawn<32)return;
+  const dt=now-last;last=now;
+  if(dt>34){if(++slow>45&&sc>0.34){sc*=0.85;size();slow=0;}}else slow=Math.max(0,slow-1);
+  drawn=now;
+  draw(window.__bgTime!==undefined?window.__bgTime:(now-t0)/1000);
+})(0);
+})();
+</script>
+
+</body>
+</html>

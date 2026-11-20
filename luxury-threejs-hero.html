@@ -154,6 +154,16 @@ body {
   white-space: nowrap;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
+.frontw-claim {
+  margin: 1.2vh auto 0;
+  font: 400 clamp(9px, 1.1vw, 11px)/1.6 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(229, 195, 136, 0.8);
+  max-width: 58ch;
+  padding: 0 16px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+}
 .pr {
   display: inline-block;
   font: 400 0.3em/1 var(--serif);
@@ -378,7 +388,110 @@ body {
 }
 .bar.t { top: calc(20px + env(safe-area-inset-top, 0px)); }
 .bar.b { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
-.nav { display: flex; gap: 26px; }
+
+.brand-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.brand-name {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: #fff;
+}
+.brand-sub {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  color: var(--gold-bright);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2vw, 24px);
+}
+.nav a {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold-bright);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.nav .nav-atelier-btn {
+  border: 1px solid rgba(229, 195, 136, 0.45);
+  padding: 6px 14px;
+  border-radius: 99px;
+  color: var(--gold-bright);
+  background: rgba(229, 195, 136, 0.08);
+  transition: all 0.3s;
+}
+.nav .nav-atelier-btn:hover {
+  background: var(--gold-bright);
+  color: #070606;
+}
+
+/* Category Capsules Strip (Fine Jewelry Pillars) */
+.jewelry-capsules {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  gap: 10px;
+  z-index: 20;
+  pointer-events: auto;
+}
+.j-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(14, 12, 11, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline-gold);
+  border-radius: 99px;
+  padding: 7px 15px;
+  font: 400 9.5px/1 var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.j-capsule:hover {
+  background: rgba(229, 195, 136, 0.15);
+  border-color: rgba(229, 195, 136, 0.6);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(229, 195, 136, 0.2);
+}
+.j-capsule .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow: 0 0 6px var(--gold-bright);
+}
+@media (max-width: 960px) {
+  .jewelry-capsules { display: none; }
+  .nav a:not(.nav-atelier-btn):not(:first-child) { display: none; }
+}
 .cnt { display: grid; }
 .cnt span { grid-area: 1/1; }
 .c2 { opacity: 0; }
@@ -487,23 +600,24 @@ body {
     <div class="frontw-in">
       <span data-split>Jewelry</span><span class="pr">PR</span>
     </div>
+    <p class="frontw-claim">Orfebrería fina en oro de 18 quilates, diamantes certificados y piezas a medida diseñadas en San Juan.</p>
   </div>
 
   <!-- Clean Editorial Side Markings -->
   <div class="edit" aria-hidden="true">
     <div class="side l"><i></i><span>Atelier San Juan</span><i></i></div>
-    <div class="side r"><i></i><span>Haute Joaillerie</span><i></i></div>
-    <div class="plumb"><span>Alta Joyería PR</span><i></i></div>
+    <div class="side r"><i></i><span>Joyería Fina PR</span><i></i></div>
+    <div class="plumb"><span>Alta Joyería</span><i></i></div>
   </div>
 
   <!-- Subtle Editorial Micro-Data Cards -->
   <div class="docmo-badge badge-left">
-    <span class="num">[ 01 // D-FLAWLESS ]</span>
-    <span class="desc">Solitario 18K Oro & Diamante 3D</span>
+    <span class="num">[ CATÁLOGO // ALTA JOYERÍA ]</span>
+    <span class="desc">Sortijas, Cadenas 18K & Diamantes</span>
   </div>
   <div class="docmo-badge badge-right">
-    <span class="num">[ ATELIER PUERTO RICO ]</span>
-    <span class="desc">18°27'55" N · 66°06'20" W</span>
+    <span class="num">[ PUERTO RICO ATELIER ]</span>
+    <span class="desc">Diamantes Naturales GIA & Oro Sólido</span>
   </div>
 
   <!-- Scene 2: Architectural Gallery Reveal Through the Ring -->
@@ -521,17 +635,30 @@ body {
 
   <div class="layer" id="grain"></div>
 
+  <!-- Clean Category Capsules Strip -->
+  <div class="jewelry-capsules">
+    <a href="#next" class="j-capsule"><i class="dot"></i>Sortijas & Anillos</a>
+    <a href="#next" class="j-capsule"><i class="dot"></i>Cadenas 18K</a>
+    <a href="#next" class="j-capsule"><i class="dot"></i>Pulseras Tennis</a>
+    <a href="#next" class="j-capsule"><i class="dot"></i>Diamantes Certificados</a>
+  </div>
+
   <!-- Clean UI HUD -->
   <div class="ui">
     <div class="bar t">
-      <span>Top Jewelry PR</span>
+      <div class="brand-badge">
+        <span class="brand-name">Top Jewelry PR</span>
+        <span class="brand-sub">FINE JEWELRY · PUERTO RICO</span>
+      </div>
       <nav class="nav">
-        <a href="#next">Catálogo</a>
-        <a href="#next">Colección</a>
-        <a href="#next">Cita</a>
+        <a href="#next">Sortijas</a>
+        <a href="#next">Cadenas 18K</a>
+        <a href="#next">Pulseras Tennis</a>
+        <a href="#next">Diamantes GIA</a>
+        <a href="#next" class="nav-atelier-btn">Cita Atelier</a>
       </nav>
     </div>
-    <div class="note">Digital Flagship · Experiencia Cinematográfica de Alta Joyería</div>
+    <div class="note">Digital Flagship · Joyería Fina & Diamantes en San Juan, PR</div>
     <div class="bar b">
       <div class="cnt">
         <span class="c1">(01) Inicio</span>
@@ -870,7 +997,7 @@ gsap.ticker.add(frame);
 // Estados iniciales protegidos
 gsap.set('.topw .ln span,.frontw-in .ln span,.s2w .ln span',{yPercent:115});
 gsap.set('.pr',{scale:0,opacity:0});
-gsap.set('.ui,.edit>*,.docmo-grid,.docmo-badge',{opacity:0});
+gsap.set('.ui,.edit>*,.docmo-grid,.docmo-badge,.frontw-claim,.jewelry-capsules',{opacity:0});
 gsap.set('#bg,#spot,#ambient-glow',{opacity:0});
 gsap.set('.s2-tag,.s2-sub,.s2-btns',{opacity:0,y:24});
 
@@ -913,6 +1040,7 @@ tl.to(S,{q:1,duration:0.45,ease:'power2.inOut'},0)
   .to('.topw .ln:nth-child(3)',{xPercent:160,duration:0.4},0)
   .to('.topw .ln:nth-child(2)',{scale:2.4,duration:0.4},0)
   .to('.frontw-in .ln',{y:-90,autoAlpha:0,stagger:0.035,duration:0.25},0)
+  .to('.frontw-claim,.jewelry-capsules',{autoAlpha:0,duration:0.18},0)
   .to('.edit,.docmo-grid,.docmo-badge',{autoAlpha:0,duration:0.18},0)
   .to('.pr',{x:260,duration:0.4},0)
   .to('.cue',{autoAlpha:0,duration:0.08},0)
@@ -942,8 +1070,10 @@ it.to('#spot',{opacity:1,duration:2},0)
   .to('.topw .ln span',{yPercent:0,duration:1.8,ease:'expo.out',stagger:0.1},0.15)
   .to('.frontw-in .ln span',{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.05},0.45)
   .to('.pr',{scale:1,opacity:1,duration:0.8,ease:'back.out(2)'},1)
+  .to('.frontw-claim',{opacity:1,duration:1.4,ease:'power2.out'},0.8)
   .to('.ui',{opacity:1,duration:1},0.9)
   .to('.edit>*',{opacity:1,duration:1.6,ease:'power2.out'},1.3)
+  .to('.jewelry-capsules',{opacity:1,duration:1.2,ease:'power2.out'},1.4)
   .to('.docmo-badge',{opacity:1,duration:1.4,stagger:0.15},1.5);
 
 const ld=$('#loader');

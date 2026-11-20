@@ -2,7 +2,7 @@
   "name": "top-jewelry-pr",
   "version": "1.0.0",
   "private": true,
-  "description": "Premium Luxury E-commerce for TOP JEWELRY PR - Puerto Rico",
+  "description": "Digital Flagship for TOP JEWELRY PR",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

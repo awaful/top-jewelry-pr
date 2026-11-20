@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TOP JEWELRY PR — Creative Art Direction Suite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Italiana&family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #08080a;
+  color: #f0ede6;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Master Suite Navigation Bar */
+#suite-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 4vw, 48px);
+  z-index: 1000;
+}
+.suite-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #e5c388;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.suite-brand .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e5c388;
+  box-shadow: 0 0 10px #e5c388;
+}
+.concept-switcher {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 4px;
+}
+.switcher-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 8px 18px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+.switcher-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+.switcher-btn.active {
+  background: #fff;
+  color: #08080a;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+.suite-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.badge-docmo {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #e5c388;
+  background: rgba(229, 195, 136, 0.1);
+  padding: 5px 12px;
+  border-radius: 99px;
+  border: 1px solid rgba(229, 195, 136, 0.25);
+  text-transform: uppercase;
+}
+
+/* Concept Container */
+.concept-viewport {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: 64px;
+  display: none;
+}
+.concept-viewport.active {
+  display: block;
+}
+
+/* ========================================================
+   CONCEPTO A: LUXURY EDITORIAL (VOGUE HAUTE JOAILLERIE)
+   ======================================================== */
+#concept-a {
+  background: #f6f3ee;
+  color: #1a1614;
+  overflow: hidden;
+}
+.a-hero {
+  position: relative;
+  height: calc(100vh - 64px);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 56px) clamp(24px, 5vw, 64px);
+  background: radial-gradient(circle at 65% 50%, rgba(240, 233, 220, 0.8), transparent 70%), #f6f3ee;
+}
+.a-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7a7065;
+  border-bottom: 1px solid rgba(26, 22, 20, 0.12);
+  padding-bottom: 16px;
+  z-index: 10;
+}
+.a-top-meta .issue {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: #1a1614;
+}
+.a-centerpiece {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.a-top-typography {
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: min(44vw, 52vh);
+  line-height: 0.75;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: rgba(26, 22, 20, 0.08);
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.a-image-stage {
+  position: relative;
+  z-index: 3;
+  width: min(720px, 85vw);
+  height: min(480px, 58vh);
+  box-shadow: 0 30px 90px rgba(40, 32, 25, 0.22), 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.a-image-stage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  transform: scale(1.03);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.a-image-stage:hover img {
+  transform: scale(1.07);
+}
+.a-floating-tag {
+  position: absolute;
+  z-index: 4;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  padding: 16px 24px;
+  border-radius: 2px;
+  border: 1px solid rgba(26, 22, 20, 0.08);
+  box-shadow: 0 20px 40px rgba(30, 24, 18, 0.08);
+}
+.a-floating-tag.tag-1 {
+  bottom: 8%;
+  left: 6%;
+  max-width: 280px;
+}
+.a-floating-tag.tag-2 {
+  top: 10%;
+  right: 6%;
+  max-width: 240px;
+}
+.a-floating-tag h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1a1614;
+  margin-bottom: 6px;
+}
+.a-floating-tag p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.4;
+  color: #6a6054;
+}
+.a-floating-tag .spec {
+  display: block;
+  margin-top: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b58d4a;
+}
+.a-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(26, 22, 20, 0.12);
+  padding-top: 18px;
+  z-index: 10;
+}
+.a-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.a-identity-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #1a1614;
+}
+.a-identity-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: #8c7e6f;
+}
+.a-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  border: 1px solid #1a1614;
+  border-radius: 99px;
+  color: #1a1614;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.a-cta-btn:hover {
+  background: #1a1614;
+  color: #f6f3ee;
+}
+
+/* ========================================================
+   CONCEPTO B: CINEMATIC JEWELRY (CHIAROSCURO DARK VAULT)
+   ======================================================== */
+#concept-b {
+  background: #040406;
+  color: #f0ede6;
+  overflow: hidden;
+}
+.b-hero {
+  position: relative;
+  height: calc(100vh - 64px);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 56px) clamp(24px, 5vw, 64px);
+  background: radial-gradient(ellipse at 50% 45%, rgba(45, 38, 28, 0.45), rgba(4, 4, 6, 0.98) 70%), #040406;
+}
+.b-light-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 650px at var(--mx, 50%) var(--my, 45%), rgba(230, 200, 140, 0.14), rgba(120, 150, 220, 0.05) 40%, transparent 70%);
+  mix-blend-mode: screen;
+  z-index: 2;
+  transition: background 0.15s ease-out;
+}
+.b-hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  z-index: 10;
+}
+.b-hud-top .lens-info {
+  display: flex;
+  gap: 20px;
+  color: #e5c388;
+}
+.b-centerpiece {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.b-monumental-bg {
+  position: absolute;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: min(48vw, 56vh);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(229, 195, 136, 0.35);
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  text-shadow: 0 0 80px rgba(229, 195, 136, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.b-jewel-frame {
+  position: relative;
+  z-index: 4;
+  width: min(640px, 80vw);
+  height: min(440px, 54vh);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 60px rgba(229, 195, 136, 0.2);
+  border: 1px solid rgba(229, 195, 136, 0.25);
+  transition: transform 0.4s ease-out;
+}
+.b-jewel-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.08) brightness(0.98);
+}
+.b-anamorphic-flare {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(160, 200, 255, 0.8) 35%, #fff 50%, rgba(255, 220, 160, 0.8) 65%, transparent);
+  box-shadow: 0 0 16px rgba(180, 220, 255, 0.7);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.85;
+}
+.b-hud-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 10;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 18px;
+}
+.b-caption {
+  max-width: 360px;
+}
+.b-caption h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e5c388;
+  margin-bottom: 6px;
+}
+.b-caption p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+}
+.b-action-wrap {
+  display: flex;
+  gap: 14px;
+}
+.b-btn-primary {
+  background: #e5c388;
+  color: #08080a;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 99px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 6px 25px rgba(229, 195, 136, 0.25);
+}
+.b-btn-primary:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.35);
+}
+
+/* ========================================================
+   CONCEPTO C: ART DIRECTION / EXPERIMENTAL LUXURY (DOCMO)
+   ======================================================== */
+#concept-c {
+  background: #09090b;
+  color: #f4f4f5;
+  overflow: hidden;
+}
+.c-hero {
+  position: relative;
+  height: calc(100vh - 64px);
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 56px) clamp(24px, 5vw, 64px);
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(ellipse at 70% 30%, rgba(20, 60, 45, 0.35), transparent 60%),
+    #09090b;
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+}
+.c-header-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 18px;
+  z-index: 10;
+}
+.c-header-center {
+  font-family: 'Italiana', serif;
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  color: #fff;
+}
+.c-centerpiece {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.c-layer-bg-title {
+  position: absolute;
+  font-family: 'Syne', sans-serif;
+  font-size: min(52vw, 62vh);
+  font-weight: 800;
+  line-height: 0.72;
+  letter-spacing: -0.04em;
+  color: rgba(255, 255, 255, 0.04);
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.c-hero-sculpture {
+  position: relative;
+  z-index: 3;
+  width: min(760px, 86vw);
+  height: min(480px, 58vh);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+.c-hero-sculpture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.1) brightness(1.02);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.c-spec-card {
+  position: absolute;
+  z-index: 4;
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 18px 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.c-spec-card.card-left {
+  left: 3%;
+  bottom: 12%;
+  max-width: 280px;
+}
+.c-spec-card.card-right {
+  right: 3%;
+  top: 14%;
+  max-width: 250px;
+}
+.c-spec-card .metric {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #10b981;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.c-spec-card h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.c-spec-card p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+.c-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 18px;
+  z-index: 10;
+}
+.c-col-left {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.c-docmo-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  color: #09090b;
+  padding: 14px 28px;
+  border-radius: 99px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.c-docmo-pill:hover {
+  transform: scale(1.03);
+  box-shadow: 0 14px 40px rgba(255, 255, 255, 0.35);
+}
+
+/* Comparison Evaluation Drawer */
+#eval-drawer {
+  background: #0e0e12;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 48px clamp(16px, 5vw, 64px);
+}
+.drawer-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e5c388;
+  margin-bottom: 24px;
+}
+.drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+.concept-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.concept-card:hover {
+  border-color: rgba(229, 195, 136, 0.4);
+  transform: translateY(-4px);
+}
+.concept-card h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  color: #fff;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.concept-card .tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5c388;
+}
+.concept-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 16px;
+}
+.concept-card ul {
+  list-style: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.concept-card ul li span {
+  color: #e5c388;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .a-floating-tag, .c-spec-card { display: none; }
+  .a-hero, .b-hero, .c-hero {
+    height: auto;
+    min-height: calc(100vh - 64px);
+    padding: 24px 16px;
+    gap: 28px;
+  }
+  .a-image-stage, .b-jewel-frame, .c-hero-sculpture {
+    width: 100%;
+    height: 360px;
+  }
+  .suite-brand span { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Suite Navigation -->
+<header id="suite-nav">
+  <div class="suite-brand">
+    <div class="dot"></div>
+    <strong>TOP JEWELRY PR</strong>
+    <span>· Art Direction Suite</span>
+  </div>
+
+  <div class="concept-switcher">
+    <button class="switcher-btn active" onclick="switchConcept('concept-a', this)">Concepto A · Editorial</button>
+    <button class="switcher-btn" onclick="switchConcept('concept-b', this)">Concepto B · Cinematic</button>
+    <button class="switcher-btn" onclick="switchConcept('concept-c', this)">Concepto C · Experimental</button>
+  </div>
+
+  <div class="suite-actions">
+    <span class="badge-docmo">Awwwards / Docmo Standard</span>
+  </div>
+</header>
+
+<!-- ========================================================
+     VIEWPORT A: LUXURY EDITORIAL (THE HAUTE JOAILLERIE ISSUE)
+     ======================================================== -->
+<section id="concept-a" class="concept-viewport active">
+  <div class="a-hero">
+    <div class="a-top-meta">
+      <span>TOP JEWELRY PR · ARCHIVE N° 01</span>
+      <span class="issue">Vogue Gioiello & Haute Couture Direction</span>
+      <span>SAN JUAN, PUERTO RICO</span>
+    </div>
+
+    <div class="a-centerpiece">
+      <div class="a-top-typography">TOP</div>
+      
+      <div class="a-image-stage" id="a-stage">
+        <img src="/concept-a-editorial.jpg" alt="Haute Joaillerie Solitaire Ring on Travertine Pedestal">
+      </div>
+
+      <div class="a-floating-tag tag-1">
+        <h4>High Jewelry Solo</h4>
+        <p>Solitario esmeralda engastado en oro cálido de 18k sobre escultura de travertino y seda marfil.</p>
+        <span class="spec">18K Gold · Emerald Cut · Certified Flawless</span>
+      </div>
+
+      <div class="a-floating-tag tag-2">
+        <h4>Editorial Layout</h4>
+        <p>Composición asimétrica inspirada en las grandes editoriales europeas de alta orfebrería.</p>
+        <span class="spec">Haute Joaillerie Campaign 2026</span>
+      </div>
+    </div>
+
+    <div class="a-bottom-bar">
+      <div class="a-identity">
+        <div class="a-identity-title">Top Jewelry PR</div>
+        <div class="a-identity-sub">Haute Joaillerie & Pièces Uniques</div>
+      </div>
+      <a href="#eval-drawer" class="a-cta-btn">Explorar Dirección Editorial &darr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     VIEWPORT B: CINEMATIC JEWELRY (CHIAROSCURO DARK VAULT)
+     ======================================================== -->
+<section id="concept-b" class="concept-viewport">
+  <div class="b-hero" id="b-hero-elem">
+    <div class="b-light-beam" id="b-beam"></div>
+
+    <div class="b-hud-top">
+      <div>TOP JEWELRY PR // THE BLACK VAULT</div>
+      <div class="lens-info">
+        <span>F/1.4 MACRO</span>
+        <span>CHIAROSCURO 35MM</span>
+        <span>ZERO GRAVITY</span>
+      </div>
+      <div>PUERTO RICO ATELIER</div>
+    </div>
+
+    <div class="b-centerpiece">
+      <div class="b-monumental-bg">TOP</div>
+
+      <div class="b-jewel-frame" id="b-jewel">
+        <img src="/concept-b-cinematic.jpg" alt="Monumental Diamond Ring Floating in Chiaroscuro Light">
+        <div class="b-anamorphic-flare"></div>
+      </div>
+    </div>
+
+    <div class="b-hud-bottom">
+      <div class="b-caption">
+        <h3>Cinematic Chiaroscuro</h3>
+        <p>Iluminación dramática inspirada en directores de fotografía de cine. El haz de luz esculpe las facetas del diamante con caústicas y dispersión espectral pura.</p>
+      </div>
+      <div class="b-action-wrap">
+        <a href="#eval-drawer" class="b-btn-primary">Ver Desglose Cinematográfico</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     VIEWPORT C: ART DIRECTION / EXPERIMENTAL LUXURY (DOCMO)
+     ======================================================== -->
+<section id="concept-c" class="concept-viewport">
+  <div class="c-hero">
+    <div class="c-header-grid">
+      <div>DOCMO / AWWWARDS LUXURY STANDARD</div>
+      <div class="c-header-center">TOP JEWELRY PR</div>
+      <div style="text-align: right;">AUTUMN / WINTER 2026</div>
+    </div>
+
+    <div class="c-centerpiece">
+      <div class="c-layer-bg-title">TOP</div>
+
+      <div class="c-hero-sculpture" id="c-sculpture">
+        <img src="/concept-c-experimental.jpg" alt="Avant-Garde Architectural Emerald and Baguette Diamond Ring">
+      </div>
+
+      <div class="c-spec-card card-left">
+        <div class="metric">[SPEC 01 // ORFEBRERÍA ESCULTÓRICA]</div>
+        <h4>Colombian Emerald & Liquid Chrome</h4>
+        <p>Estructura arquitectónica con esmeralda colombiana de corte octogonal y diamantes baguette sobre platino líquido y basalto volcánico.</p>
+      </div>
+
+      <div class="c-spec-card card-right">
+        <div class="metric">[DOCMO REFERENCE // MULTICAPA]</div>
+        <h4>Depth Stacking & Monogram</h4>
+        <p>Intersección de planos espaciales: el monograma monumental queda fusionado con la joya real en primer plano.</p>
+      </div>
+    </div>
+
+    <div class="c-bottom-grid">
+      <div class="c-col-left">
+        LAT: 18.4655° N · LON: 66.1057° W<br>
+        SAN JUAN LUXURY FLAGSHIP
+      </div>
+      <div>
+        <a href="#eval-drawer" class="c-docmo-pill">Analizar Propuesta Artística &rarr;</a>
+      </div>
+      <div style="text-align: right; font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4);">
+        CODEX: TOP-EXP-03<br>AWWWARDS CANDIDATE
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Evaluation Drawer -->
+<section id="eval-drawer">
+  <h2 class="drawer-title">Evaluación Comparativa de Direcciones de Arte</h2>
+  <div class="drawer-grid">
+    <div class="concept-card">
+      <h3>Concepto A · Luxury Editorial <span class="tag">Haute Mode</span></h3>
+      <p>Inspirado en publicaciones de prestigio como Vogue Gioiello y Vanity Fair. Huye del negro convencional utilizando travertino, alabastro y seda marfil con acentos dorados cálidos.</p>
+      <ul>
+        <li><span>Tipografía:</span> Cormorant Garamond & DM Mono</li>
+        <li><span>Paleta:</span> Travertino marfil, alabastro y oro 18K</li>
+        <li><span>Composición:</span> Asimétrica editorial con micro-citas</li>
+        <li><span>Sensación:</span> Sofisticación serena, alta costura</li>
+      </ul>
+    </div>
+
+    <div class="concept-card">
+      <h3>Concepto B · Cinematic Jewelry <span class="tag">Chiaroscuro</span></h3>
+      <p>Inspirado en la cinematografía de alta gama de Roger Deakins y campañas de Cartier/Bulgari. Iluminación direccional anamórfica sobre una bóveda de obsidiana con diamante en gravedad cero.</p>
+      <ul>
+        <li><span>Tipografía:</span> Cinzel Decorative & Cinzel Romana</li>
+        <li><span>Paleta:</span> Obsidiana profunda, haz volumétrico, fuego de diamante</li>
+        <li><span>Composición:</span> Monumental centrada con caústicas vivas</li>
+        <li><span>Sensación:</span> Misterio, poder, dramatismo cinematográfico</li>
+      </ul>
+    </div>
+
+    <div class="concept-card">
+      <h3>Concepto C · Experimental Luxury <span class="tag">Docmo / Awwwards</span></h3>
+      <p>Inspirado directamente en la referencia de Docmo Agency y estudios como Studio Freight o Active Theory. Tipografía brutalista de lujo, rejilla cartesiana y capas de profundidad que rompen el molde clásico.</p>
+      <ul>
+        <li><span>Tipografía:</span> Syne Display, Italiana & Space Mono</li>
+        <li><span>Paleta:</span> Basalto volcánico, cromo líquido y verde esmeralda</li>
+        <li><span>Composición:</span> Multicapa con tarjetas glassmorphism y microtextos</li>
+        <li><span>Sensación:</span> Vanguardia, exclusividad internacional contemporánea</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchConcept(conceptId, btn) {
+  document.querySelectorAll('.concept-viewport').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.switcher-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(conceptId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Interactive Parallax and Light Physics for Cinematic Viewport
+const bHero = document.getElementById('b-hero-elem');
+const bBeam = document.getElementById('b-beam');
+const bJewel = document.getElementById('b-jewel');
+
+bHero.addEventListener('mousemove', (e) => {
+  const rect = bHero.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width) * 100;
+  const y = ((e.clientY - rect.top) / rect.height) * 100;
+  bHero.style.setProperty('--mx', x + '%');
+  bHero.style.setProperty('--my', y + '%');
+  
+  const rotX = (y - 50) * -0.12;
+  const rotY = (x - 50) * 0.15;
+  bJewel.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+});
+
+bHero.addEventListener('mouseleave', () => {
+  bJewel.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+});
+
+// Parallax for Concept A Stage
+const aStage = document.getElementById('a-stage');
+document.getElementById('concept-a').addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 18;
+  const y = (e.clientY / window.innerHeight - 0.5) * 18;
+  aStage.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Parallax for Concept C Sculpture & Cards
+const cSculpture = document.getElementById('c-sculpture');
+const cCards = document.querySelectorAll('.c-spec-card');
+document.getElementById('concept-c').addEventListener('mousemove', (e) => {
+  const nx = (e.clientX / window.innerWidth - 0.5);
+  const ny = (e.clientY / window.innerHeight - 0.5);
+  cSculpture.style.transform = `translate(${nx * 14}px, ${ny * 10}px)`;
+  cCards[0].style.transform = `translate(${nx * -22}px, ${ny * -16}px)`;
+  if (cCards[1]) cCards[1].style.transform = `translate(${nx * 26}px, ${ny * -20}px)`;
+});
+</script>
+
+</body>
+</html>

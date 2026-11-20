@@ -69,21 +69,13 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // Servir archivos HTML específicos (ej. prototipo original de Claude y nueva versión Luxury Flagship)
-  if (pathname === '/claude-original.html' || pathname === '/claude-original') {
-    const claudeFile = path.join(__dirname, 'claude-original.html');
-    if (fs.existsSync(claudeFile)) {
+  // Servir cualquier HTML específico si existe en la raíz
+  if (pathname.endsWith('.html') || !pathname.includes('.')) {
+    const requestedHtml = pathname.endsWith('.html') ? pathname.slice(1) : `${pathname.slice(1)}.html`;
+    const specificFile = path.join(__dirname, requestedHtml);
+    if (fs.existsSync(specificFile) && fs.statSync(specificFile).isFile()) {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(fs.readFileSync(claudeFile, 'utf-8'));
-      return;
-    }
-  }
-
-  if (pathname === '/luxury-flagship.html' || pathname === '/luxury-flagship') {
-    const flagshipFile = path.join(__dirname, 'luxury-flagship.html');
-    if (fs.existsSync(flagshipFile)) {
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(fs.readFileSync(flagshipFile, 'utf-8'));
+      res.end(fs.readFileSync(specificFile, 'utf-8'));
       return;
     }
   }

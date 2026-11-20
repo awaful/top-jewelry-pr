@@ -235,45 +235,81 @@ body {
 @media (max-width: 1099px), (max-aspect-ratio: 1/1) { .side { display: none; } }
 @media (max-aspect-ratio: 1/1) { .plumb { display: flex; } }
 
-/* Floating Clean Spec Badges (Subtle Editorial Depth) */
-.docmo-badge {
+/* Haute Joaillerie Campaign Stage (Editorial Depth Layering) */
+.campaign-stage {
   position: absolute;
-  z-index: 6;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
-  background: rgba(14, 12, 11, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--hairline-gold);
-  border-radius: 4px;
-  padding: 10px 14px;
+  overflow: hidden;
+}
+.campaign-frame {
+  position: absolute;
+  top: var(--cy, 45%);
+  transform: translateY(-50%);
+  width: clamp(210px, 23vw, 340px);
+  height: clamp(300px, 54vh, 480px);
+  pointer-events: auto;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.frame-left {
+  left: clamp(20px, 4.5vw, 68px);
+}
+.frame-right {
+  right: clamp(20px, 4.5vw, 68px);
+}
+.frame-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.88), 0 0 0 1px rgba(229, 195, 136, 0.2);
+  background: #0d0a09;
+}
+.frame-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.08) brightness(0.96);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.campaign-frame:hover .frame-inner img {
+  transform: scale(1.05);
+}
+.frame-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    linear-gradient(to top, rgba(7, 6, 6, 0.85) 0%, transparent 45%),
+    linear-gradient(to bottom, rgba(7, 6, 6, 0.4) 0%, transparent 35%);
+}
+.frame-caption {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  right: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 3px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-}
-.badge-left {
-  left: clamp(24px, 4.5vw, 64px);
-  bottom: clamp(60px, 9vh, 90px);
-}
-.badge-right {
-  right: clamp(24px, 4.5vw, 64px);
-  top: clamp(80px, 12vh, 120px);
-}
-.docmo-badge .num {
+  justify-content: space-between;
+  align-items: flex-end;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--gold-bright);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
-.docmo-badge .desc {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--bone);
-  white-space: nowrap;
+.frame-caption .idx {
+  color: rgba(255, 255, 255, 0.6);
 }
-@media (max-width: 900px) { .docmo-badge { display: none; } }
+
+@media (max-width: 960px), (max-aspect-ratio: 1/1) {
+  .campaign-frame {
+    display: none;
+  }
+}
 
 /* Split Text wrappers */
 .ln {
@@ -435,7 +471,7 @@ body {
 }
 .nav .nav-atelier-btn {
   border: 1px solid rgba(229, 195, 136, 0.45);
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 99px;
   color: var(--gold-bright);
   background: rgba(229, 195, 136, 0.08);
@@ -445,51 +481,7 @@ body {
   background: var(--gold-bright);
   color: #070606;
 }
-
-/* Category Capsules Strip (Fine Jewelry Pillars) */
-.jewelry-capsules {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(56px + env(safe-area-inset-bottom, 0px));
-  display: flex;
-  gap: 10px;
-  z-index: 20;
-  pointer-events: auto;
-}
-.j-capsule {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(14, 12, 11, 0.6);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--hairline-gold);
-  border-radius: 99px;
-  padding: 7px 15px;
-  font: 400 9.5px/1 var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bone);
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.j-capsule:hover {
-  background: rgba(229, 195, 136, 0.15);
-  border-color: rgba(229, 195, 136, 0.6);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(229, 195, 136, 0.2);
-}
-.j-capsule .dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--gold-bright);
-  box-shadow: 0 0 6px var(--gold-bright);
-}
 @media (max-width: 960px) {
-  .jewelry-capsules { display: none; }
   .nav a:not(.nav-atelier-btn):not(:first-child) { display: none; }
 }
 .cnt { display: grid; }
@@ -589,6 +581,33 @@ body {
     <div class="docmo-crosshair cross-br"></div>
   </div>
 
+  <!-- Haute Joaillerie Campaign Stage (Editorial Depth Layering) -->
+  <div class="campaign-stage">
+    <!-- Left: Editorial Model with Gold Choker in Studio Chiaroscuro -->
+    <div class="campaign-frame frame-left">
+      <div class="frame-inner">
+        <img src="/campaign-left-model.jpg" alt="Alta Joyería Gargantilla de Oro en Modelo">
+        <div class="frame-vignette"></div>
+        <div class="frame-caption">
+          <span>Gargantilla Oro 18K</span>
+          <span class="idx">[01]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Macro Still Life of Cuban Chain & Diamond Tennis on Obsidian -->
+    <div class="campaign-frame frame-right">
+      <div class="frame-inner">
+        <img src="/campaign-right-macro.jpg" alt="Bodegón Macro Cadena Cubana y Diamantes sobre Obsidiana">
+        <div class="frame-vignette"></div>
+        <div class="frame-caption">
+          <span>Cadena & Diamantes Pavé</span>
+          <span class="idx">[02]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Primary Identity: TOP -->
   <div class="topw"><div class="topw-in" data-split>Top</div></div>
 
@@ -600,24 +619,14 @@ body {
     <div class="frontw-in">
       <span data-split>Jewelry</span><span class="pr">PR</span>
     </div>
-    <p class="frontw-claim">Orfebrería fina en oro de 18 quilates, diamantes certificados y piezas a medida diseñadas en San Juan.</p>
+    <p class="frontw-claim">Alta orfebrería en oro de 18 quilates y diamantes</p>
   </div>
 
   <!-- Clean Editorial Side Markings -->
   <div class="edit" aria-hidden="true">
     <div class="side l"><i></i><span>Atelier San Juan</span><i></i></div>
-    <div class="side r"><i></i><span>Joyería Fina PR</span><i></i></div>
+    <div class="side r"><i></i><span>Alta Joyería PR</span><i></i></div>
     <div class="plumb"><span>Alta Joyería</span><i></i></div>
-  </div>
-
-  <!-- Subtle Editorial Micro-Data Cards -->
-  <div class="docmo-badge badge-left">
-    <span class="num">[ CATÁLOGO // ALTA JOYERÍA ]</span>
-    <span class="desc">Sortijas, Cadenas 18K & Diamantes</span>
-  </div>
-  <div class="docmo-badge badge-right">
-    <span class="num">[ PUERTO RICO ATELIER ]</span>
-    <span class="desc">Diamantes Naturales GIA & Oro Sólido</span>
   </div>
 
   <!-- Scene 2: Architectural Gallery Reveal Through the Ring -->
@@ -635,14 +644,6 @@ body {
 
   <div class="layer" id="grain"></div>
 
-  <!-- Clean Category Capsules Strip -->
-  <div class="jewelry-capsules">
-    <a href="#next" class="j-capsule"><i class="dot"></i>Sortijas & Anillos</a>
-    <a href="#next" class="j-capsule"><i class="dot"></i>Cadenas 18K</a>
-    <a href="#next" class="j-capsule"><i class="dot"></i>Pulseras Tennis</a>
-    <a href="#next" class="j-capsule"><i class="dot"></i>Diamantes Certificados</a>
-  </div>
-
   <!-- Clean UI HUD -->
   <div class="ui">
     <div class="bar t">
@@ -651,10 +652,8 @@ body {
         <span class="brand-sub">FINE JEWELRY · PUERTO RICO</span>
       </div>
       <nav class="nav">
-        <a href="#next">Sortijas</a>
-        <a href="#next">Cadenas 18K</a>
-        <a href="#next">Pulseras Tennis</a>
-        <a href="#next">Diamantes GIA</a>
+        <a href="#next">Colecciones</a>
+        <a href="#next">Alta Joyería</a>
         <a href="#next" class="nav-atelier-btn">Cita Atelier</a>
       </nav>
     </div>
@@ -997,7 +996,8 @@ gsap.ticker.add(frame);
 // Estados iniciales protegidos
 gsap.set('.topw .ln span,.frontw-in .ln span,.s2w .ln span',{yPercent:115});
 gsap.set('.pr',{scale:0,opacity:0});
-gsap.set('.ui,.edit>*,.docmo-grid,.docmo-badge,.frontw-claim,.jewelry-capsules',{opacity:0});
+gsap.set('.ui,.edit>*,.docmo-grid,.campaign-frame,.frontw-claim',{opacity:0});
+gsap.set('.campaign-frame',{scale:1.06});
 gsap.set('#bg,#spot,#ambient-glow',{opacity:0});
 gsap.set('.s2-tag,.s2-sub,.s2-btns',{opacity:0,y:24});
 
@@ -1005,8 +1005,10 @@ gsap.set('.s2-tag,.s2-sub,.s2-btns',{opacity:0,y:24});
 const qx=gsap.quickTo('.topw-in','x',{duration:1,ease:'power3'});
 const qy=gsap.quickTo('.topw-in','y',{duration:1,ease:'power3'});
 const qf=gsap.quickTo('.frontw-in','x',{duration:1,ease:'power3'});
-const qb1=gsap.quickTo('.badge-left','y',{duration:1.2,ease:'power3'});
-const qb2=gsap.quickTo('.badge-right','y',{duration:1.2,ease:'power3'});
+const qfl=gsap.quickTo('.frame-left','x',{duration:1.2,ease:'power3'});
+const qfr=gsap.quickTo('.frame-right','x',{duration:1.2,ease:'power3'});
+const qfly=gsap.quickTo('.frame-left','y',{duration:1.2,ease:'power3'});
+const qfry=gsap.quickTo('.frame-right','y',{duration:1.2,ease:'power3'});
 
 addEventListener('pointermove',e=>{
   const nx=e.clientX/innerWidth-0.5,ny=e.clientY/innerHeight-0.5;
@@ -1014,8 +1016,8 @@ addEventListener('pointermove',e=>{
   qx(-nx*PX);
   qy(-ny*PX*0.6);
   qf(nx*PX*0.72);
-  qb1(-ny*18);
-  qb2(ny*18);
+  qfl(-nx*22);qfly(-ny*16);
+  qfr(nx*24);qfry(-ny*16);
 });
 
 // Secuencia de Scroll: El anillo 3D se inclina 90°, la cámara entra y el hueco se abre hacia la Escena 2
@@ -1039,9 +1041,11 @@ tl.to(S,{q:1,duration:0.45,ease:'power2.inOut'},0)
   .to('.topw .ln:nth-child(1)',{xPercent:-160,duration:0.4},0)
   .to('.topw .ln:nth-child(3)',{xPercent:160,duration:0.4},0)
   .to('.topw .ln:nth-child(2)',{scale:2.4,duration:0.4},0)
+  .to('.frame-left',{xPercent:-70,autoAlpha:0,duration:0.35},0)
+  .to('.frame-right',{xPercent:70,autoAlpha:0,duration:0.35},0)
   .to('.frontw-in .ln',{y:-90,autoAlpha:0,stagger:0.035,duration:0.25},0)
-  .to('.frontw-claim,.jewelry-capsules',{autoAlpha:0,duration:0.18},0)
-  .to('.edit,.docmo-grid,.docmo-badge',{autoAlpha:0,duration:0.18},0)
+  .to('.frontw-claim',{autoAlpha:0,duration:0.18},0)
+  .to('.edit,.docmo-grid',{autoAlpha:0,duration:0.18},0)
   .to('.pr',{x:260,duration:0.4},0)
   .to('.cue',{autoAlpha:0,duration:0.08},0)
   .to('.c1',{autoAlpha:0,duration:0.05},0.4)
@@ -1067,14 +1071,13 @@ it.to('#spot',{opacity:1,duration:2},0)
   .to(S,{entry:1,duration:2.2,ease:'expo.out'},0)
   .to(S,{base:1,duration:2.4,ease:'expo.out'},0)
   .to('.docmo-grid',{opacity:1,duration:1.6},0.1)
+  .to('.campaign-frame',{opacity:1,scale:1,duration:1.8,ease:'power2.out',stagger:0.15},0.8)
   .to('.topw .ln span',{yPercent:0,duration:1.8,ease:'expo.out',stagger:0.1},0.15)
   .to('.frontw-in .ln span',{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.05},0.45)
   .to('.pr',{scale:1,opacity:1,duration:0.8,ease:'back.out(2)'},1)
-  .to('.frontw-claim',{opacity:1,duration:1.4,ease:'power2.out'},0.8)
+  .to('.frontw-claim',{opacity:1,duration:1.4,ease:'power2.out'},1.0)
   .to('.ui',{opacity:1,duration:1},0.9)
-  .to('.edit>*',{opacity:1,duration:1.6,ease:'power2.out'},1.3)
-  .to('.jewelry-capsules',{opacity:1,duration:1.2,ease:'power2.out'},1.4)
-  .to('.docmo-badge',{opacity:1,duration:1.4,stagger:0.15},1.5);
+  .to('.edit>*',{opacity:1,duration:1.6,ease:'power2.out'},1.3);
 
 const ld=$('#loader');
 if(rm){

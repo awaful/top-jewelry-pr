@@ -64,7 +64,6 @@ top-jewelry-pr/
 │   ├── sec2-campaign.jpg      # Fotografía de campaña (Brand Statement)
 │   ├── logo-transparent.png   # Insignia oficial de marca
 │   └── ...
-├── build_scripts/             # Herramientas de auditoría y verificación
 └── README.md                  # Documentación del proyecto
 ```
 
